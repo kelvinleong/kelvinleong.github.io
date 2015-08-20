@@ -1,7 +1,7 @@
-title: Long Haul
+title: Kelvin
 description: Long Form Jekyll theme built with SASS / COMPASS / SUSY
 
-url: http://brianmaierjr.github.com/long-haul
+url: http://kelvinleong.github.io/kelvinleong
 baseurl: ""
 paginate_path: "blog/page:num/"
 permalink: blog/:title/
@@ -14,14 +14,13 @@ navigation:
  - title: Home
    url: /index.html
  - title: About
-   url: /about
+   url: /about.html
  - title: Contact
-   url: /contact
+   url: /contact.html
 
 social:
-   github: brianmaierjr
-   twitter: brianmaierjr
-   facebook: brianmaierjr
-   email: brimaidesigns@gmail.com
+   github: kelvinleong
+   facebook: Kelvin Liang
+   email: kelvin_liang@outlook.com
 
 google_analytics: "UA-58263416-1"
