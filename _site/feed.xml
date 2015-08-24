@@ -5,9 +5,52 @@
     <description>Long Form Jekyll theme built with SASS / COMPASS / SUSY</description>
     <link>http://kelvinleong.github.io/kelvinleong/</link>
     <atom:link href="http://kelvinleong.github.io/kelvinleong/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 20 Aug 2015 14:15:46 +0800</pubDate>
-    <lastBuildDate>Thu, 20 Aug 2015 14:15:46 +0800</lastBuildDate>
+    <pubDate>Mon, 24 Aug 2015 13:34:48 +0800</pubDate>
+    <lastBuildDate>Mon, 24 Aug 2015 13:34:48 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      
+      <item>
+        <title>Oracle Significant Tables</title>
+        <description>&lt;h4&gt;[Oracle SQL]Significant Tables&lt;/h4&gt;
+
+&lt;p&gt;Difference between USER&lt;em&gt;TABLES, ALL&lt;/em&gt;TABLES and DBA_TABLES&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;User_tables are those owned by the specified user(schema).&lt;/p&gt;
+
+&lt;p&gt;For example, an oracle database user log in with the identity &amp;quot;USER&amp;quot; and execute the following sql:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user_tables&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;All the retrieved tables are owned by user &amp;quot;USER&amp;quot; only.&lt;/p&gt;
+
+&lt;p&gt;And if execute the following sql:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;SELECT * FROM all_tables;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, the retrieved tables are owned by user USER and those granted to USER.&lt;/p&gt;
+
+&lt;p&gt;DBA_tables, contains all the tables in the database.&lt;/p&gt;
+
+&lt;p&gt;So the relation ship should be: DBA&lt;em&gt;tables &amp;gt; All&lt;/em&gt;Tables &amp;gt; User_Tables.&lt;/p&gt;
+
+&lt;p&gt;For constraint/triggers/synonym, it is much the same.&lt;/p&gt;
+</description>
+        
+          <description>&lt;h4&gt;[Oracle SQL]Significant Tables&lt;/h4&gt;
+</description>
+        
+        <pubDate>Thu, 20 Aug 2015 07:24:58 +0800</pubDate>
+        <link>http://kelvinleong.github.io/kelvinleong/blog/db-tables/</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/db-tables/</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+      
     
       
       <item>

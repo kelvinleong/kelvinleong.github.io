@@ -3,6 +3,9 @@
  */
 .highlight {
     background: #fff;
+    max-width: 300px;
+    margin-left: -2em;
+    padding-left: 2em;
     @extend %vertical-rhythm;
 
     .c     { color: #998; font-style: italic } // Comment
