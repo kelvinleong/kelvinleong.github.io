@@ -8,6 +8,8 @@ permalink: blog/:title/
 
 markdown: redcarpet
 highlighter: pygments
+redcarpet:
+    extensions: ["no_intra_emphasis","fenced_code_blocks", "autolink", "tables", "strikethrough","with_toc_data"]
 paginate: 5
 
 navigation:
@@ -20,7 +22,7 @@ navigation:
 
 social:
    github: kelvinleong
-   facebook: Kelvin Liang
+   facebook: kelvin.Y.H.Leung
    email: kelvin_liang@outlook.com
 
 google_analytics: "UA-58263416-1"

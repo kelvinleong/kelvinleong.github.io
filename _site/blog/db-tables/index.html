@@ -75,9 +75,7 @@ ga('send', 'pageview');
   <h1 class="postTitle">Oracle Significant Tables</h1>
   <p class="meta">August 20, 2015 | <span class="time">0</span> Minute Read</p>
   
-  <h4>[Oracle SQL]Significant Tables</h4>
-
-<p>Difference between USER<em>TABLES, ALL</em>TABLES and DBA_TABLES</p>
+  <h4>[Oracle SQL] Difference between USER<em>TABLES, ALL</em>TABLES and DBA_TABLES</h4>
 
 <hr>
 
@@ -89,7 +87,7 @@ ga('send', 'pageview');
 <p>All the retrieved tables are owned by user &quot;USER&quot; only.</p>
 
 <p>And if execute the following sql:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">SELECT * FROM all_tables;
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">all_tables</span><span class="p">;</span>
 </code></pre></div>
 <p>Now, the retrieved tables are owned by user USER and those granted to USER.</p>
 
@@ -102,11 +100,11 @@ ga('send', 'pageview');
 
   <!-- POST NAVIGATION -->
   <div class="postNav clearfix">
-     
-      <a class="prev" href="/blog/welcome-to-jekyll/"><span>&laquo;&nbsp;Welcome to Jekyll!</span>
       
-    </a>
       
+      <a class="next" href="/blog/mvn-client/"><span>Maven Client too old to build&nbsp;&raquo;</span>
+       
+      </a>
      
   </div>
 </div>
@@ -147,8 +145,8 @@ ga('send', 'pageview');
 <script src="/assets/js/dropcap.min.js"></script>
 <script src="/assets/js/responsive-nav.min.js"></script>
 <script src="/assets/js/scripts.js"></script>
-<link rel="stylesheet" href="/assets/js/plugins/prettify/prettify.css">
-<script src="/assets/js/plugins/prettify/prettify.js"></script>
+<link rel="stylesheet" href="/assets/js/plugins/prettify.css">
+<script src="/assets/js/plugins/prettify.js"></script>
 <script type="text/javascript">
   $(function(){
     $("pre").addClass("prettyprint");

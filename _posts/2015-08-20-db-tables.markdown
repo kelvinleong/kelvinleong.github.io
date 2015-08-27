@@ -2,15 +2,12 @@
 layout: post
 title:  "Oracle Significant Tables"
 date:   2015-08-19 23:24:58
-categories: jekyll update
+categories: Oracle
 ---
 
-####[Oracle SQL]Significant Tables
-
-
-Difference between USER_TABLES, ALL_TABLES and DBA_TABLES
-
+####[Oracle SQL] Difference between USER_TABLES, ALL_TABLES and DBA_TABLES
 ---
+
 User_tables are those owned by the specified user(schema).
 
 For example, an oracle database user log in with the identity "USER" and execute the following sql:
@@ -23,7 +20,7 @@ All the retrieved tables are owned by user "USER" only.
 
 And if execute the following sql:
 
-```
+```sql
 SELECT * FROM all_tables;
 ```
 
@@ -32,6 +29,5 @@ Now, the retrieved tables are owned by user USER and those granted to USER.
 DBA_tables, contains all the tables in the database.
 
 So the relation ship should be: DBA_tables > All_Tables > User_Tables.
-
 
 For constraint/triggers/synonym, it is much the same.
