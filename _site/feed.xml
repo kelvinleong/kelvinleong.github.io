@@ -5,8 +5,8 @@
     <description>Long Form Jekyll theme built with SASS / COMPASS / SUSY</description>
     <link>http://kelvinleong.github.io/kelvinleong/</link>
     <atom:link href="http://kelvinleong.github.io/kelvinleong/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 07 Sep 2015 13:47:36 +0800</pubDate>
-    <lastBuildDate>Mon, 07 Sep 2015 13:47:36 +0800</lastBuildDate>
+    <pubDate>Tue, 08 Sep 2015 14:04:23 +0800</pubDate>
+    <lastBuildDate>Tue, 08 Sep 2015 14:04:23 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       
@@ -141,6 +141,46 @@ a negative integer, zero, or a positive integer as the first argument is less th
         
         
         <category>oracle</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>Setup your Jekyll Theme on Github</title>
+        <description>&lt;h5 id=&quot;requirements&quot;&gt;Requirements:&lt;/h5&gt;
+
+&lt;p&gt;Make sure your system has the following requirements.&lt;/p&gt;
+
+&lt;p&gt;&lt;li&gt;&lt;strong&gt;&lt;em&gt;Ruby (including development headers)&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;RubyGems&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;Linux, Unix, or Mac OS X&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;NodeJS, or another JavaScript runtime (for CoffeeScript support).&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;&lt;/p&gt;
+
+&lt;p&gt;For the installation details, please refer to:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://cenalulu.github.io/jekyll/setup-comment-for-your-blog/?utm_source=tuicool&quot;&gt;http://cenalulu.github.io/jekyll/setup-comment-for-your-blog/?utm_source=tuicool&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Note, it&amp;#39;s recommended that to work on Unix/Linux though it&amp;#39;s able to work on Windows (you have to cater for the compatiblity).&lt;/p&gt;
+
+&lt;p&gt;If you want to add comments on your blog, please follow the below tutorial.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.tuicool.com/articles/Q32Mrmb&quot;&gt;http://www.tuicool.com/articles/Q32Mrmb&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        
+          <description>&lt;h5 id=&quot;requirements&quot;&gt;Requirements:&lt;/h5&gt;
+</description>
+        
+        <pubDate>Sun, 16 Aug 2015 04:24:58 +0800</pubDate>
+        <link>http://kelvinleong.github.io/kelvinleong/blog/jellky-comments/</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/jellky-comments/</guid>
+        
+        
+        <category>theme</category>
         
       </item>
       
