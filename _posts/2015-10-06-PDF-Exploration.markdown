@@ -11,7 +11,7 @@ Background: I was asked to develop an application to extract a pdf and convert t
 At first, I think it's not that difficult until I really get suck into the "notorious" format...So, to begin with, let's look at the brief
 of what is a PDF.
 
-####1. What is the PDF(http://www.wikiwand.com/en/Portable_Document_Format)?
+####1. What is the [PDF](http://www.wikiwand.com/en/Portable_Document_Format)?
 
 >Portable Document Format (PDF) is a file format used to present documents in a manner independent of application software, hardware and operating systems.[2] Each PDF file encapsulates a complete description of a fixed-layout flat document, including the text, fonts, graphics and other information needed to display it. [From WikiPedia]
 
