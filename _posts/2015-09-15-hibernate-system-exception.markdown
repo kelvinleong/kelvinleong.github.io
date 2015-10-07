@@ -7,7 +7,7 @@ categories: Theme
 
 I accidentally encountered the following hibernate system exception after I modified the xml file.
 
-> hibernateSystemException Don’t change the reference to a collection with cascade=”all-delete-orphan”
+> ***hibernateSystemException Don’t change the reference to a collection with cascade=”all-delete-orphan”***
 
 The explanation told nothing at all.. So I try google or stackOverflow, none of them provided a practical solution for me.
 
