@@ -5,9 +5,64 @@
     <description>Long Form Jekyll theme built with SASS / COMPASS / SUSY</description>
     <link>http://kelvinleong.github.io/kelvinleong/</link>
     <atom:link href="http://kelvinleong.github.io/kelvinleong/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 10 Nov 2015 00:30:37 +0800</pubDate>
-    <lastBuildDate>Tue, 10 Nov 2015 00:30:37 +0800</lastBuildDate>
+    <pubDate>Thu, 26 Nov 2015 00:19:33 +0800</pubDate>
+    <lastBuildDate>Thu, 26 Nov 2015 00:19:33 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      
+      <item>
+        <title>Java Garbage Collection</title>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;This article is to illustrate and explore the mechanism of Garbage Collection&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Garbage collection is a big topic for Java programmer and it always occurs in the interview (I was challenged several times) ! So in this passage, I will try to illustrate how Garbage Collection works with the Hotspot JVM.&lt;/p&gt;
+
+&lt;p&gt;Java&amp;#39;s automatic garbage collection nicely frees programmers from worrying about memory management. Think about C++ programming, every time you new something, you have to cater for the delete appropriately. However, in java, you just new an object as you want without concerning to free them at all. But the convenience is not free and exactly JVM is responsible to collect the unreferenced objects(or so called &amp;quot;garbage&amp;quot;). That&amp;#39;s why the interviewer like to challenge interviewee on this topic.&lt;/p&gt;
+
+&lt;p&gt;First, how does Garbage Collection works?&lt;/p&gt;
+
+&lt;p&gt;Java implements something called a generational garbage collector based upon the generational hypothesis assumption, which states that &lt;strong&gt;&lt;em&gt;the majority of objects that are created are quickly discarded&lt;/em&gt;&lt;/strong&gt;, and objects that are not quickly collected are likely to be around for a while.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s have a look at the structure of Hotspot heap&lt;/p&gt;
+
+&lt;p&gt;[id]:&lt;/p&gt;
+
+&lt;p&gt;As you can see from the diagram, the heap is divided into 3 parts, young , tenured and permanent generation respectively.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The Young Generation is where all new objects are allocated and aged. When the young generation fills up, this causes a minor garbage collection. Minor collections can be optimized assuming a high object mortality rate. A young generation full of dead objects is collected very quickly. Some surviving objects are aged and eventually move to the old generation. More specifically,&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Eden Space - Objects start out here. Most objects are created and destroyed in the Eden Space. Here, the GC does Minors GCs, which are optimized garbage collections. When a Minor GC is performed, any references to objects that are still needed are migrated to one of the survivors spaces (S0 or S1).&lt;/li&gt;
+&lt;li&gt;Survivor Space (S0 and S1) - Objects that survive Eden end up here. There are two of these, and only one is in use at any given time (unless we have a serious memory leak). One is designated as empty, and the other as live, alternating with every GC cycle.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The Old Generation is used to store long surviving objects. Typically, a threshold is set for young generation object and when that age is met, the object gets moved to the old generation. Eventually the old generation needs to be collected. This event is called a major garbage collection.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The Permanent generation contains metadata required by the JVM to describe the classes and methods used in the application. The permanent generation is populated by the JVM at runtime based on classes in use by the application. In addition, Java SE library classes and methods may be stored here.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html&quot;&gt;http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html&lt;/a&gt;
+  &lt;a href=&quot;http://www.toptal.com/java/hunting-memory-leaks-in-java&quot;&gt;http://www.toptal.com/java/hunting-memory-leaks-in-java&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        
+          <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;This article is to illustrate and explore the mechanism of Garbage Collection&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        
+        <pubDate>Tue, 10 Nov 2015 23:53:00 +0800</pubDate>
+        <link>http://kelvinleong.github.io/kelvinleong/blog/JVM-Introduction/</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/JVM-Introduction/</guid>
+        
+        
+        <category>theme</category>
+        
+      </item>
+      
     
       
       <item>
