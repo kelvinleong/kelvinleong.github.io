@@ -5,8 +5,8 @@
     <description>Long Form Jekyll theme built with SASS / COMPASS / SUSY</description>
     <link>http://kelvinleong.github.io/kelvinleong/</link>
     <atom:link href="http://kelvinleong.github.io/kelvinleong/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 26 Nov 2015 00:19:33 +0800</pubDate>
-    <lastBuildDate>Thu, 26 Nov 2015 00:19:33 +0800</lastBuildDate>
+    <pubDate>Thu, 26 Nov 2015 00:27:26 +0800</pubDate>
+    <lastBuildDate>Thu, 26 Nov 2015 00:27:26 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       
@@ -26,7 +26,7 @@
 
 &lt;p&gt;Let&amp;#39;s have a look at the structure of Hotspot heap&lt;/p&gt;
 
-&lt;p&gt;[id]:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/resources/Slide5.PNG&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;As you can see from the diagram, the heap is divided into 3 parts, young , tenured and permanent generation respectively.&lt;/p&gt;
 
@@ -44,8 +44,10 @@
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html&quot;&gt;http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html&lt;/a&gt;
-  &lt;a href=&quot;http://www.toptal.com/java/hunting-memory-leaks-in-java&quot;&gt;http://www.toptal.com/java/hunting-memory-leaks-in-java&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html&quot;&gt;http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.toptal.com/java/hunting-memory-leaks-in-java&quot;&gt;http://www.toptal.com/java/hunting-memory-leaks-in-java&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/blockquote&gt;
 </description>
         

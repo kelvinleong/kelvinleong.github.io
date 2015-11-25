@@ -17,7 +17,7 @@ Java implements something called a generational garbage collector based upon the
 
 Let's have a look at the structure of Hotspot heap
 
-[id]:
+![Alt text](/resources/Slide5.PNG)
 
 As you can see from the diagram, the heap is divided into 3 parts, young , tenured and permanent generation respectively.
 
@@ -32,5 +32,5 @@ As you can see from the diagram, the heap is divided into 3 parts, young , tenur
 * The Permanent generation contains metadata required by the JVM to describe the classes and methods used in the application. The permanent generation is populated by the JVM at runtime based on classes in use by the application. In addition, Java SE library classes and methods may be stored here.
 
 ***Reference***
-> http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html
-  http://www.toptal.com/java/hunting-memory-leaks-in-java
+>* http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html
+>* http://www.toptal.com/java/hunting-memory-leaks-in-java
