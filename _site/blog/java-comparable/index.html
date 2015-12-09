@@ -20,7 +20,7 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/assets/css/style.css">
     <!--[if IE 8]><link rel="stylesheet" href="/assets/css/ie.css"><![endif]-->
-    <link rel="canonical" href="http://kelvinleong.github.io/kelvinleong/blog/java-comparable/">
+    <link rel="canonical" href="http://kelvinleong.github.io/kelvinleongblog/java-comparable/">
 
     <!-- Modernizr -->
     <script src="/assets/js/modernizr.custom.15390.js" type="text/javascript"></script>
@@ -80,23 +80,27 @@ ga('send', 'pageview');
 <hr>
 
 <p>In a project, I have to retrieved amounts of data with the following table structure.</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java">  <span class="kd">class</span> <span class="nc">Entity</span><span class="o">{</span>
-      <span class="kt">int</span> <span class="n">id</span><span class="o">;</span> <span class="c1">//Primary key</span>
-      <span class="n">type</span> <span class="n">fields</span><span class="o">;</span>
-  <span class="o">}</span>
-</code></pre></div>
+
+<pre><code class="java">  class Entity{
+      int id; //Primary key
+      type fields;
+  }
+</code></pre>
+
 <p>But each time, the data retrieved are not in numerical order. In order to maintain an ascending ordering to show in the UI, a comparator is needed.</p>
 
 <p>Let&#39;s say we have a list Entity and want to sort by its id.</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span> <span class="n">entityList</span> <span class="o">=</span> <span class="n">getEntityList</span><span class="o">();</span>
 
-    <span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">entityList</span><span class="o">,</span> <span class="k">new</span> <span class="nf">comparator</span><span class="o">(){</span>
-          <span class="nd">@Override</span>
-          <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Entity</span> <span class="n">o1</span><span class="o">,</span> <span class="n">Entity</span> <span class="n">o2</span><span class="o">){</span>
-              <span class="k">return</span> <span class="o">(</span><span class="n">o1</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span> <span class="o">-</span> <span class="n">o2</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
-          <span class="o">}</span>
-    <span class="o">})</span>
-</code></pre></div>
+<pre><code class="java">    List&lt;Entity&gt; entityList = getEntityList();
+
+    Collections.sort(entityList, new comparator(){
+          @Override
+          public int compare(Entity o1, Entity o2){
+              return (o1.getId() - o2.getId());
+          }
+    })
+</code></pre>
+
 <p>For a descending order, just change the position o1 and o2.</p>
 
 <blockquote>
@@ -117,12 +121,12 @@ a negative integer, zero, or a positive integer as the first argument is less th
   <!-- POST NAVIGATION -->
   <div class="postNav clearfix">
     
-      <a class="prev" href="/blog/mvn-client/"><span>&laquo;&nbsp;Maven Client too old to build</span>
+      <a class="prev" href="blog/mvn-client/"><span>&laquo;&nbsp;Maven Client too old to build</span>
       
     </a>
     
     
-      <a class="next" href="/blog/JavaFX-Concurrency/"><span>JavaFX Concurrency&nbsp;&raquo;</span>
+      <a class="next" href="blog/JavaFX-Concurrency/"><span>JavaFX Concurrency&nbsp;&raquo;</span>
       
       </a>
     

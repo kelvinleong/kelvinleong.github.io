@@ -5,9 +5,88 @@
     <description>Long Form Jekyll theme built with SASS / COMPASS / SUSY</description>
     <link>http://kelvinleong.github.io/kelvinleong/</link>
     <atom:link href="http://kelvinleong.github.io/kelvinleong/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 26 Nov 2015 00:27:26 +0800</pubDate>
-    <lastBuildDate>Thu, 26 Nov 2015 00:27:26 +0800</lastBuildDate>
-    <generator>Jekyll v2.5.3</generator>
+    <pubDate>2015-12-09 12:32:40 +0800</pubDate>
+    <lastBuildDate>2015-12-09 12:32:40 +0800</lastBuildDate>
+    <generator>Jekyll v</generator>
+    
+      
+      <item>
+        <title>Trace the application in JVisualVm</title>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;This article is to illustrate how to fine tuning your application with the help of JVisualVm&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I am developing a JavaFx test tool for back-end server APIs validity checking. In practice, I found the application is easy to hang after running for a while. Therefore, I use the JVisualVm to monitor the application and find out what&amp;#39;s going wrong there.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s go more details.&lt;/p&gt;
+
+&lt;h4 id=&quot;1-how-to-install-jvisualvm&quot;&gt;1. How to Install JVisualVM ?&lt;/h4&gt;
+
+&lt;p&gt;JVisualVm is a standard part of Sun&amp;#39;s JDK distribution since JDK 6 Update. To begin the tour following &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/technotes/guides/visualvm/intro.html&quot;&gt;this link&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;2-to-monitor-your-application&quot;&gt;2. To monitor your application&lt;/h4&gt;
+
+&lt;p&gt;It&amp;#39;s convenient to use JVisualVM to monitor your application. Just click the application&amp;#39;s name on the &amp;quot;Applications&amp;quot; list view on the left. You can see the CPU/Heap/Classes/Threads usage diagrams by clicking the &amp;quot;Monitor&amp;quot; tab for further exploration.
+&lt;img src=&quot;/resources/jvisualvm/monitor.PNG&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;By monitoring the threads, I found a big problem that every time I open one of the UI, which is for history view, it creates a new thread and after closing the UI, the tread still keeps alive and never terminated (as shown in the following figure). That would cause a MOM disaster if the history view ui is in frequent use.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/jvisualvm/thread-trace.jpg&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;So, I check carefully in the source of the history view UI, I found a thread is always created to read the data from a blocking queue periodically during initialization of creating the UI. But the problem is the thread is embedded with a dead loop which will never end up so that even its parent UI died, the thread will not be killed but continue the dead loop. Therefore, I modify the UI to change a volatile boolean value before going die for signaling the its death. Therefore, the thread would notice the death of its parent UI and thus terminating itself by leaving the loop. Then I assign a name &amp;quot;History View For Update&amp;quot; to the thread and trace it in JVisualVm.
+As shown in the figure, the thread is dead after UI close, which is expected, thus solving the MOM problem.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/jvisualvm/thread-trace-1.jpg&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.javaworld.com/article/2072322/from-jconsole-to-visualvm.html&quot;&gt;http://www.javaworld.com/article/2072322/from-jconsole-to-visualvm.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        
+          <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;This article is to illustrate how to fine tuning your application with the help of JVisualVm&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I am developing a JavaFx test tool for back-end server APIs validity checking. In practice, I found the application is easy to hang after running for a while. Therefore, I use the JVisualVm to monitor the application and find out what&amp;#39;s going wrong there.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s go more details.&lt;/p&gt;
+
+&lt;h4 id=&quot;1-how-to-install-jvisualvm&quot;&gt;1. How to Install JVisualVM ?&lt;/h4&gt;
+
+&lt;p&gt;JVisualVm is a standard part of Sun&amp;#39;s JDK distribution since JDK 6 Update. To begin the tour following &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/technotes/guides/visualvm/intro.html&quot;&gt;this link&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;2-to-monitor-your-application&quot;&gt;2. To monitor your application&lt;/h4&gt;
+
+&lt;p&gt;It&amp;#39;s convenient to use JVisualVM to monitor your application. Just click the application&amp;#39;s name on the &amp;quot;Applications&amp;quot; list view on the left. You can see the CPU/Heap/Classes/Threads usage diagrams by clicking the &amp;quot;Monitor&amp;quot; tab for further exploration.
+&lt;img src=&quot;/resources/jvisualvm/monitor.PNG&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;By monitoring the threads, I found a big problem that every time I open one of the UI, which is for history view, it creates a new thread and after closing the UI, the tread still keeps alive and never terminated (as shown in the following figure). That would cause a MOM disaster if the history view ui is in frequent use.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/jvisualvm/thread-trace.jpg&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;So, I check carefully in the source of the history view UI, I found a thread is always created to read the data from a blocking queue periodically during initialization of creating the UI. But the problem is the thread is embedded with a dead loop which will never end up so that even its parent UI died, the thread will not be killed but continue the dead loop. Therefore, I modify the UI to change a volatile boolean value before going die for signaling the its death. Therefore, the thread would notice the death of its parent UI and thus terminating itself by leaving the loop. Then I assign a name &amp;quot;History View For Update&amp;quot; to the thread and trace it in JVisualVm.
+As shown in the figure, the thread is dead after UI close, which is expected, thus solving the MOM problem.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/jvisualvm/thread-trace-1.jpg&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.javaworld.com/article/2072322/from-jconsole-to-visualvm.html&quot;&gt;http://www.javaworld.com/article/2072322/from-jconsole-to-visualvm.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        
+        <pubDate>2015-11-30 23:53:00 +0800</pubDate>
+        <link>http://kelvinleong.github.io/kelvinleongblog/Find-All-Referenced-Tables/</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleongblog/Find-All-Referenced-Tables/</guid>
+        
+        
+        <category>Oracle</category>
+        
+      </item>
+      
     
       
       <item>
@@ -54,14 +133,48 @@
           <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;This article is to illustrate and explore the mechanism of Garbage Collection&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
+
+&lt;p&gt;Garbage collection is a big topic for Java programmer and it always occurs in the interview (I was challenged several times) ! So in this passage, I will try to illustrate how Garbage Collection works with the Hotspot JVM.&lt;/p&gt;
+
+&lt;p&gt;Java&amp;#39;s automatic garbage collection nicely frees programmers from worrying about memory management. Think about C++ programming, every time you new something, you have to cater for the delete appropriately. However, in java, you just new an object as you want without concerning to free them at all. But the convenience is not free and exactly JVM is responsible to collect the unreferenced objects(or so called &amp;quot;garbage&amp;quot;). That&amp;#39;s why the interviewer like to challenge interviewee on this topic.&lt;/p&gt;
+
+&lt;p&gt;First, how does Garbage Collection works?&lt;/p&gt;
+
+&lt;p&gt;Java implements something called a generational garbage collector based upon the generational hypothesis assumption, which states that &lt;strong&gt;&lt;em&gt;the majority of objects that are created are quickly discarded&lt;/em&gt;&lt;/strong&gt;, and objects that are not quickly collected are likely to be around for a while.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s have a look at the structure of Hotspot heap&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/Slide5.PNG&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can see from the diagram, the heap is divided into 3 parts, young , tenured and permanent generation respectively.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The Young Generation is where all new objects are allocated and aged. When the young generation fills up, this causes a minor garbage collection. Minor collections can be optimized assuming a high object mortality rate. A young generation full of dead objects is collected very quickly. Some surviving objects are aged and eventually move to the old generation. More specifically,&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Eden Space - Objects start out here. Most objects are created and destroyed in the Eden Space. Here, the GC does Minors GCs, which are optimized garbage collections. When a Minor GC is performed, any references to objects that are still needed are migrated to one of the survivors spaces (S0 or S1).&lt;/li&gt;
+&lt;li&gt;Survivor Space (S0 and S1) - Objects that survive Eden end up here. There are two of these, and only one is in use at any given time (unless we have a serious memory leak). One is designated as empty, and the other as live, alternating with every GC cycle.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The Old Generation is used to store long surviving objects. Typically, a threshold is set for young generation object and when that age is met, the object gets moved to the old generation. Eventually the old generation needs to be collected. This event is called a major garbage collection.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The Permanent generation contains metadata required by the JVM to describe the classes and methods used in the application. The permanent generation is populated by the JVM at runtime based on classes in use by the application. In addition, Java SE library classes and methods may be stored here.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html&quot;&gt;http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.toptal.com/java/hunting-memory-leaks-in-java&quot;&gt;http://www.toptal.com/java/hunting-memory-leaks-in-java&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
 </description>
         
-        <pubDate>Tue, 10 Nov 2015 23:53:00 +0800</pubDate>
-        <link>http://kelvinleong.github.io/kelvinleong/blog/JVM-Introduction/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/JVM-Introduction/</guid>
+        <pubDate>2015-11-10 23:53:00 +0800</pubDate>
+        <link>http://kelvinleong.github.io/kelvinleongblog/JVM-Introduction/</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleongblog/JVM-Introduction/</guid>
         
         
-        <category>theme</category>
+        <category>Theme</category>
         
       </item>
       
@@ -115,14 +228,52 @@ of what is a PDF.&lt;/p&gt;
           <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;This article is to illustrate and explore the popular encoding format &amp;quot;PDF&amp;quot;&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
+
+&lt;p&gt;Background: I was asked to develop an application to extract a pdf and convert those traditional Chinese to simplified. Sounds easy, ahuh?
+At first, I think it&amp;#39;s not that difficult until I really get suck into the &amp;quot;notorious&amp;quot; format...So, to begin with, let&amp;#39;s look at the brief
+of what is a PDF.&lt;/p&gt;
+
+&lt;h4 id=&quot;1-what-is-the-pdf&quot;&gt;1. What is the PDF?&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Portable Document Format (PDF) is a file format used to present documents in a manner independent of application software, hardware and operating systems.[2] Each PDF file encapsulates a complete description of a fixed-layout flat document, including the text, fonts, graphics and other information needed to display it. [From &lt;a href=&quot;http://www.wikiwand.com/en/Portable_Document_Format&quot;&gt;WikiPedia&lt;/a&gt;]&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Basically, the PDF is designed as a universal reading format so that the document can be viewed in various kinds of devices. Therefore, it&amp;#39;s not expected to &amp;quot;edit&amp;quot; a pdf document as per the &amp;quot;universal read&amp;quot; design principle. But, if you are ambitious enough (just like me), you would forcibly process a PDF and make some kinds of modification on that with the help of an Apache project &lt;a href=&quot;https://pdfbox.apache.org/&quot;&gt;&amp;quot;PDFBox&amp;quot;&lt;/a&gt; . Fortunately, PDFBox is a powerful lib for processing a pdf document. There are apis for pdf extraction and parse. What&amp;#39;s more, it is open source! So I can even customize the lib to suit for my needs. But I would say it&amp;#39;s a little bit mess of the PDFBox source code, I mean the source code it&amp;#39;s rather in a complicated nature as I read. Well, that will be another post to talk about the PDFBox.&lt;/p&gt;
+
+&lt;p&gt;Since there is no way to overwrite the PDF document, the only way to replace the traditional chinese characters is to re-write the content to a new file with substitution, a &amp;quot;copy-and-replace&amp;quot; solution. It seems that the strategy is reasonable and straightforward. But as you explore more in the PDF structure and its format encoding, you will find it&amp;#39;s a nightmare to simplify the solution as &amp;quot;copy-and-replace&amp;quot;. To sum up, you have to pay if you insist to edit the PDF!!! Then I will talk about the PDF structure.&lt;/p&gt;
+
+&lt;h4 id=&quot;2-pdf-structure&quot;&gt;2. PDF Structure&lt;/h4&gt;
+
+&lt;p&gt;Significantly, a PDF document is composed of 3 key elements images, text and graphics   (symbols/lines/arrows/etc). So if you want completely rewrite the a pdf, you&amp;#39;ll have to extract all the information of those elements and use them to recover in the new file.&lt;/p&gt;
+
+&lt;h5 id=&quot;2-1-text&quot;&gt;2.1 Text&lt;/h5&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Text in PDF is represented by text elements in page content streams. A text element specifies that characters should be drawn at certain positions. The characters are specified using the encoding of a selected font resource.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So to edit a text, you have to deal with two aspects, one is the font and the other is &amp;quot;encoding&amp;quot;. English and ASCII characters are easy to handle in this case as the font and encoding would not be complicated for those characters. But for chinese characters, it&amp;#39;s a catastrophe.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s say I have parsed the text position and get all the information. The first step is to detect what is &amp;quot;character&amp;quot; inside, whether a English letter or chinese character. Fortunately, pdfBox provide api to retrieve the Unicode of that particular character. Assume that a traditional chinese character &amp;quot;檔&amp;quot; is found and wanna change it to simplified &amp;quot;档&amp;quot;. Again the nightmare occurs, you will have to specify a font which contains simplified chinese charaset and then put the corresponding Unicode to the font writer and then write it out.&lt;/p&gt;
+
+&lt;h5 id=&quot;2-2-images-amp-symbols&quot;&gt;2.2 Images &amp;amp; symbols&lt;/h5&gt;
+
+&lt;p&gt;The most complicated part would be to process images &amp;amp; symbols as their nature of complication. Unfortunately, the meta-data would hardly retrieved which causing the information loss. Frankly speaking, you&amp;#39;ll have no way to recover the images and symbols in a complete similarity as the previous document. So that&amp;#39;s why I have to give up my continuation of developing the application. It&amp;#39;s in vain to develop such an application that only provide a similar but never the same document in terms of structure.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://ccckmit.wikidot.com/pdf:streamcoding&quot;&gt;http://ccckmit.wikidot.com/pdf:streamcoding&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 </description>
         
-        <pubDate>Tue, 06 Oct 2015 23:53:00 +0800</pubDate>
-        <link>http://kelvinleong.github.io/kelvinleong/blog/PDF-Exploration/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/PDF-Exploration/</guid>
+        <pubDate>2015-10-06 23:53:00 +0800</pubDate>
+        <link>http://kelvinleong.github.io/kelvinleongblog/PDF-Exploration/</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleongblog/PDF-Exploration/</guid>
         
         
-        <category>theme</category>
+        <category>Theme</category>
         
       </item>
       
@@ -141,36 +292,69 @@ of what is a PDF.&lt;/p&gt;
 &lt;p&gt;Finally, I examined my xml carefully again and again, then suddenly I realize that one of the bean name is reused again.&lt;/p&gt;
 
 &lt;p&gt;After I corrrect it, the exception disappared!&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;tradingAccCredit&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;com.cmms.sharedlib.ControlGroup&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;property&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;controls&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;util:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;com.cmms.sharedlib.ClientMaint&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;tradingLimitCM&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;expDtOfTradeLimitCM&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;tradingLoanLimitCM&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// The bean name is used previously in another xml&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;expDtOfLoanLimitCM&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;creditRatingCM&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;util:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;property&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;property&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;userRoles&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;util:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;com.cmms.sharedlib.ControlUserRole&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;mo_editMode&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;mom_editMode&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;util:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;property&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;&amp;lt;bean id=&amp;quot;tradingAccCredit&amp;quot; class=&amp;quot;com.cmms.sharedlib.ControlGroup&amp;quot;&amp;gt;
+    &amp;lt;property name=&amp;quot;controls&amp;quot;&amp;gt;
+    &amp;lt;util:list value-type=&amp;quot;com.cmms.sharedlib.ClientMaint&amp;quot;&amp;gt;
+            &amp;lt;ref bean=&amp;quot;tradingLimitCM&amp;quot; /&amp;gt;
+            &amp;lt;ref bean=&amp;quot;expDtOfTradeLimitCM&amp;quot; /&amp;gt;
+            &amp;lt;ref bean=&amp;quot;tradingLoanLimitCM&amp;quot; /&amp;gt; // The bean name is used previously in another xml
+            &amp;lt;ref bean=&amp;quot;expDtOfLoanLimitCM&amp;quot; /&amp;gt;
+            &amp;lt;ref bean=&amp;quot;creditRatingCM&amp;quot; /&amp;gt;
+    &amp;lt;/util:list&amp;gt;
+    &amp;lt;/property&amp;gt;
+    &amp;lt;property name=&amp;quot;userRoles&amp;quot;&amp;gt;
+    &amp;lt;util:list value-type=&amp;quot;com.cmms.sharedlib.ControlUserRole&amp;quot;&amp;gt;
+    &amp;lt;ref bean=&amp;quot;mo_editMode&amp;quot; /&amp;gt;
+    &amp;lt;ref bean=&amp;quot;mom_editMode&amp;quot; /&amp;gt;
+    &amp;lt;/util:list&amp;gt;
+    &amp;lt;/property&amp;gt;
+&amp;lt;/bean&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;To sum up, make sure the bean names are unique.&lt;/p&gt;
 </description>
         
           <description>&lt;p&gt;I accidentally encountered the following hibernate system exception after I modified the xml file.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;hibernateSystemException Don’t change the reference to a collection with cascade=”all-delete-orphan”&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The explanation told nothing at all.. So I try google or stackOverflow, none of them provided a practical solution for me.&lt;/p&gt;
+
+&lt;p&gt;Finally, I examined my xml carefully again and again, then suddenly I realize that one of the bean name is reused again.&lt;/p&gt;
+
+&lt;p&gt;After I corrrect it, the exception disappared!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;&amp;lt;bean id=&amp;quot;tradingAccCredit&amp;quot; class=&amp;quot;com.cmms.sharedlib.ControlGroup&amp;quot;&amp;gt;
+    &amp;lt;property name=&amp;quot;controls&amp;quot;&amp;gt;
+    &amp;lt;util:list value-type=&amp;quot;com.cmms.sharedlib.ClientMaint&amp;quot;&amp;gt;
+            &amp;lt;ref bean=&amp;quot;tradingLimitCM&amp;quot; /&amp;gt;
+            &amp;lt;ref bean=&amp;quot;expDtOfTradeLimitCM&amp;quot; /&amp;gt;
+            &amp;lt;ref bean=&amp;quot;tradingLoanLimitCM&amp;quot; /&amp;gt; // The bean name is used previously in another xml
+            &amp;lt;ref bean=&amp;quot;expDtOfLoanLimitCM&amp;quot; /&amp;gt;
+            &amp;lt;ref bean=&amp;quot;creditRatingCM&amp;quot; /&amp;gt;
+    &amp;lt;/util:list&amp;gt;
+    &amp;lt;/property&amp;gt;
+    &amp;lt;property name=&amp;quot;userRoles&amp;quot;&amp;gt;
+    &amp;lt;util:list value-type=&amp;quot;com.cmms.sharedlib.ControlUserRole&amp;quot;&amp;gt;
+    &amp;lt;ref bean=&amp;quot;mo_editMode&amp;quot; /&amp;gt;
+    &amp;lt;ref bean=&amp;quot;mom_editMode&amp;quot; /&amp;gt;
+    &amp;lt;/util:list&amp;gt;
+    &amp;lt;/property&amp;gt;
+&amp;lt;/bean&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To sum up, make sure the bean names are unique.&lt;/p&gt;
 </description>
         
-        <pubDate>Wed, 16 Sep 2015 04:24:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/kelvinleong/blog/hibernate-system-exception/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/hibernate-system-exception/</guid>
+        <pubDate>2015-09-16 04:24:58 +0800</pubDate>
+        <link>http://kelvinleong.github.io/kelvinleongblog/hibernate-system-exception/</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleongblog/hibernate-system-exception/</guid>
         
         
-        <category>theme</category>
+        <category>Theme</category>
         
       </item>
       
@@ -302,15 +486,132 @@ of what is a PDF.&lt;/p&gt;
         
           <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;本文将阐述字符集（CharSet）、字符编码(Encoding)之间的关系，以及浅谈集中常用的中文字符集和编码&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;概述： 中文的乱码现象，以及繁简中文的乱码现象在以中文主导的地区时有发生，而解决乱码的根本，就必须要明白电脑是
+到底是如何存放和编排我们日常所见的字符，本文将深入探讨，并对有关的名词给予深入的解释，希望之后再遇到有关的编码的问题，
+能够游刃有余。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr&gt;
+
+&lt;h4 id=&quot;1-什么是字符集（charset）？&quot;&gt;1. 什么是字符集（CharSet）？&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;charset is the set of characters you can use&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;在英文资料中，与字符集（CharSet）可以同意的词汇有 &lt;strong&gt;&lt;em&gt;character set, character map, codeset or code page&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;简单讲，字符集就是某一类字符的集合。比如说常用的英文字母和符号都包含在&lt;a href=&quot;http://www.asciitable.com&quot;&gt;ASCII&lt;/a&gt;这个字符集中。
+再例如，我们看到的简体和繁体汉字，其实都有各自的字符集，简体汉字的常用字符集有以下几种，GB2312／GB 13000／GBK／GB18030。
+同理，繁体字字符集Big5包含了常用的繁体字。概括的说，字符集规定了某类字符对应的二进制数值存放方式（编码），通过一个二进制数值
+在某种字符集中寻找出对应代表的字符就是解码的过程。&lt;/p&gt;
+
+&lt;p&gt;那么问题就来了，为什么我们会看到业界有如此多的字符集，诸如UTF-8/UTF-16/Unicode等各式各样的字符集呢？很明显，字符集的产生是随
+着计算机不断发展壮大带来的问题，首先当时字符集标准的制定者没有意识到要建立一种标准通用的准则，特别是当初计算机只在英文和欧洲语系
+的国家流行（相对来说，英文和拉丁字母数量少，编码容易）。然而他们没有意识到，随着科技发展，电脑已经深入到各个国家和民族当中，自然
+每个民族都希望自己的语言能被电脑识别，因为各个国家语言的字符集都相继推出，这也导致字符集不断壮大。既然如此，可否制定一个通用编码
+原则，让每个后来创建的字符集按照制定的方式来编码，这样不就解决了不统一的问题了吗？事实上，
+&lt;emcode&gt;Unicode&lt;/emcode&gt;就是种想法的实践者，它对世界上大部分的文字系统进行了整理、编码，使得电脑可以用更为简单的方式来呈现和
+处理文字，这样只要电脑预先装载好unicode的字符集，就不用特地再安装简体字符集也可以在任何电脑上显示出简体汉字。
+例如&lt;emcode&gt;欢&lt;/emcode&gt;，以下是其在简体字符集和Unicode字符集中的编码。&lt;/p&gt;
+
+&lt;table&gt;&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align: center&quot;&gt;字符集&lt;/th&gt;
+&lt;th style=&quot;text-align: center&quot;&gt;(&amp;quot;欢&amp;quot;)编码值Hex Value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align: center&quot;&gt;GBK&lt;/td&gt;
+&lt;td style=&quot;text-align: center&quot;&gt;0xBB66&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align: center&quot;&gt;Unicode&lt;/td&gt;
+&lt;td style=&quot;text-align: center&quot;&gt;0x6B22&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+
+&lt;hr&gt;
+
+&lt;h4 id=&quot;2-什么是字符编码（encoding）&quot;&gt;2. 什么是字符编码（Encoding）?&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;encoding is the way these characters are stored into memory&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;读到这里，大家应该有个印象，字符集是某一种字符的集合，要找到某个字符，那首先就应该找到改字符所在的字符集，那么下一步就应该是如何从
+字符集找出对应的字符了。&lt;/p&gt;
+
+&lt;p&gt;事实上，要从一个字符集正确编码转码一个字符需要三个关键元素：字库表（character repertoire）、编码字符集（coded character set）、
+字符编码（character encoding form）。其中字库表是一个相当于所有可读或者可显示字符的数据库，
+字库表决定了整个字符集能够展现表示的所有字符的范围。编码字符集(coded character set)，即用一个编码值&lt;emcode&gt;code point&lt;/emcode&gt;来表示一个字符在字库中的位置。字符编码，
+将编码字符集和实际存储数值之间的转换关系。一般来说都会直接将code point的值作为编码后的值直接存储。例如在ASCII中A在表中排第65位，
+而编码后A的数值是0100 0001也即十进制的65的二进制转换结果。&lt;/p&gt;
+
+&lt;p&gt;不过问题就来，从上文可以看到，其实只需要&lt;emcode&gt;字库表&lt;/emcode&gt;和&lt;emcode&gt;编码字符集&lt;/emcode&gt;就足够正确编码解码一个字符了，为何要多此一举引入
+字符编码（Encoding）呢？各种的原因主要是要考虑到，如果让全球各国统一的使用字符标和编码字符集来为其国家的语言文字进行编码，会来一定的数据冗余，从
+上文的例子可以看到，按照该方式存储文字，每个字符都需要3个bytes来存储，这对复杂语言来说可能没什么问题，但是对于英文来说，本来1个字节就能存的东西，现在
+要用3个字节来存储，自然是是带来数据的冗余，因此字符编码的引进就是为了能够正确存储字符，又能节省该字符在内存占用空间。&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h4 id=&quot;3-utf-8和unicode的关系&quot;&gt;3. UTF-8和Unicode的关系?&lt;/h4&gt;
+
+&lt;p&gt;看完上面两个概念解释，那么解释UTF-8和Unicode的关系就比较简单了。Unicode就是上文中提到的编码字符集，而UTF-8就是字符编码，即Unicode规则字库的一种实现形式。随着互联网的发展，对同一字库集的要求越来越迫切，Unicode标准也就自然而然的出现。它几乎涵盖了各个国家语言可能出现的符号和文字，并将为他们编号。详见：Unicode on Wikipedia。Unicode的编号从0000开始一直到10FFFF共分为16个Plane，每个Plane中有65536个字符。而UTF-8则只实现了第一个Plane，可见UTF-8虽然是一个当今接受度最广的字符集编码，但是它并没有涵盖整个Unicode的字库。&lt;/p&gt;
+
+&lt;h4 id=&quot;4-utf8编码&quot;&gt;4.UTF8编码&lt;/h4&gt;
+
+&lt;p&gt;上一节已经介绍了有关utf-8的编码知识，下面具体解释下，到底什么UTF-8编码。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;UTF-8编码为变长编码。最小编码单位（code unit）为一个字节。一个字节的前1-3个bit为描述性部分，后面为实际序号部分。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;li&gt;&lt;em&gt;如果一个字节的第一位为 0，那么代表当前字符为单字节字符，占用一个字节的空间。0之后的所有部分（7个bit）代表在Unicode中的序号。&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;如果一个字节以110开头，那么代表当前字符为双字节字符，占用2个字节的空间。110之后的所有部分（5个bit）加上后一个字节的除10外的部分（6个bit）代表在Unicode中的序号。且第二个字节以10开头&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;如果一个字节以1110开头，那么代表当前字符为三字节字符，占用2个字节的空间。110之后的所有部分（5个bit）加上后两个字节的除10外的部分（12个bit）代表在Unicode中的序号。且第二、第三个字节以10开头&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;如果一个字节以10开头，那么代表当前字节为多字节字符的第二个字节。10之后的所有部分（6个bit）和之前的部分一同组成在Unicode中的序号。&lt;/em&gt;&lt;/li&gt;&lt;/p&gt;
+
+&lt;p&gt;举个例子，前面我们提到了“欢”字的Unicode是0x6B22，按照以上的规则，可以通过其Unicode得到相应的UTF-8 encoding。&lt;/p&gt;
+
+&lt;table&gt;&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align: center&quot;&gt;“欢”&lt;/th&gt;
+&lt;th style=&quot;text-align: center&quot;&gt;Binary Stream&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align: center&quot;&gt;Unicode&lt;/td&gt;
+&lt;td style=&quot;text-align: center&quot;&gt;0110 1010 0010 0010&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align: center&quot;&gt;UTF-8&lt;/td&gt;
+&lt;td style=&quot;text-align: center&quot;&gt;1110 0110 1010 1000 1010 0010&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+
+&lt;hr&gt;
+
+&lt;h4 id=&quot;5-乱码原由&quot;&gt;5.乱码原由&lt;/h4&gt;
+
+&lt;p&gt;在实际编程中，经常会出现乱码的现象。当我们理清了字符集、字符编码这些概念后，便知道其根本原因就是，我们错用某种字符编码去decode另外一种字符编码，最常见的错误就是，把一个UTF-8编码后的字符，用GBK去解码，
+这样，常常就会出现一些无法理解的符号或者其他离奇的汉字，以欢字为例，其utf-8的编码的二进制流是&lt;emcode&gt;“1110 0110 1010 1000 1010 0010”&lt;/emcode&gt;，若用gbk来解码，则会得到&lt;emcode&gt;“妯  ”&lt;/emcode&gt;，究其原因是，前面的两个字节&lt;emcode&gt;“E6(1110 0110) A8(1010 1000)”&lt;/emcode&gt; 恰对应“妯”字，而余下的一个字节，因为不是汉字，会被解码成某种符号。这样一来，欢子的utf8编码在gbk下就会被
+错误解码成，“妯”和一个特殊符号，于是成为了乱码。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://cenalulu.github.io/linux/character-encoding/&quot;&gt;http://cenalulu.github.io/linux/character-encoding/&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
         
-        <pubDate>Wed, 16 Sep 2015 04:24:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/kelvinleong/blog/Encoding-and-CharSets/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/Encoding-and-CharSets/</guid>
+        <pubDate>2015-09-16 04:24:58 +0800</pubDate>
+        <link>http://kelvinleong.github.io/kelvinleongblog/Encoding-and-CharSets/</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleongblog/Encoding-and-CharSets/</guid>
         
         
-        <category>theme</category>
+        <category>Theme</category>
         
       </item>
       
@@ -335,36 +636,40 @@ Example: Why Can&amp;#39;t we use Platform.runLater(...) for long calculations (
 &lt;p&gt;Problem: Background thread which just counts from 0 to 1 million and update progress bar in UI.&lt;/p&gt;
 
 &lt;p&gt;&lt;li&gt;Code using Platform.runLater(...):&lt;/li&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ProgressBar&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ProgressBar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Runnable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;Platform&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;runLater&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Runnable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setProgress&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1000000.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;final ProgressBar bar = new ProgressBar();
+new Thread(new Runnable() {
+    @Override public void run() {
+    for (int i=1; i&amp;lt;=1000000; i++) {
+        final int counter = i;
+        Platform.runLater(new Runnable() {
+            @Override public void run() {
+                bar.setProgress(counter/1000000.0);
+            }
+        });
+    }
+}).start();
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;This is a hideous hunk of code, a crime against nature (and programming in general). First, you’ll lose brain cells just looking at this double nesting of Runnables. Second, it is going to swamp the event queue with little Runnables — a million of them in fact. Clearly, we needed some API to make it easier to write background workers which then communicate back with the UI.&lt;/p&gt;
 
 &lt;p&gt;&lt;li&gt;Code using Task :&lt;/li&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;updateProgress&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
 
-&lt;span class=&quot;n&quot;&gt;ProgressBar&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ProgressBar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;progressProperty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;progressProperty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;Task task = new Task&amp;lt;Void&amp;gt;() {
+    @Override public Void call() {
+        static final int max = 1000000;
+        for (int i = 1; i &amp;lt;= max; i++) {
+            updateProgress(i, max);
+        }
+        return null;
+    }
+};
+
+ProgressBar bar = new ProgressBar();
+bar.progressProperty().bind(task.progressProperty());
+new Thread(task).start();
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;blockquote&gt;
 &lt;p&gt;it suffers from none of the flaws exhibited in the previous code&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -375,14 +680,67 @@ Example: Why Can&amp;#39;t we use Platform.runLater(...) for long calculations (
           <description>&lt;h4 id=&quot;java-differences-between-platform-runlater-amp-task-serivce-in-javafx&quot;&gt;[Java] Differences between Platform.runlater() &amp;amp; Task/Serivce in JavaFx&lt;/h4&gt;
 
 &lt;hr&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Repost from: &lt;a href=&quot;http://stackoverflow.com/questions/13784333/platform-runlater-and-task-javafx&quot;&gt;http://stackoverflow.com/questions/13784333/platform-runlater-and-task-javafx&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Use Platform.runLater(...) for quick and simple operations and Task for complex and big operations .&lt;/p&gt;
+
+&lt;p&gt;Use case for Platform.runLater(...)
+Use case for Task: Task Example in Ensemble App
+Example: Why Can&amp;#39;t we use Platform.runLater(...) for long calculations (Taken from below reference).&lt;/p&gt;
+
+&lt;p&gt;Problem: Background thread which just counts from 0 to 1 million and update progress bar in UI.&lt;/p&gt;
+
+&lt;p&gt;&lt;li&gt;Code using Platform.runLater(...):&lt;/li&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;final ProgressBar bar = new ProgressBar();
+new Thread(new Runnable() {
+    @Override public void run() {
+    for (int i=1; i&amp;lt;=1000000; i++) {
+        final int counter = i;
+        Platform.runLater(new Runnable() {
+            @Override public void run() {
+                bar.setProgress(counter/1000000.0);
+            }
+        });
+    }
+}).start();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is a hideous hunk of code, a crime against nature (and programming in general). First, you’ll lose brain cells just looking at this double nesting of Runnables. Second, it is going to swamp the event queue with little Runnables — a million of them in fact. Clearly, we needed some API to make it easier to write background workers which then communicate back with the UI.&lt;/p&gt;
+
+&lt;p&gt;&lt;li&gt;Code using Task :&lt;/li&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;Task task = new Task&amp;lt;Void&amp;gt;() {
+    @Override public Void call() {
+        static final int max = 1000000;
+        for (int i = 1; i &amp;lt;= max; i++) {
+            updateProgress(i, max);
+        }
+        return null;
+    }
+};
+
+ProgressBar bar = new ProgressBar();
+bar.progressProperty().bind(task.progressProperty());
+new Thread(task).start();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;it suffers from none of the flaws exhibited in the previous code&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt; : &lt;a href=&quot;http://fxexperience.com/2011/07/worker-threading-in-javafx-2-0/&quot;&gt;Worker Threading in JavaFX 2.0&lt;/a&gt;&lt;/p&gt;
 </description>
         
-        <pubDate>Sun, 30 Aug 2015 04:15:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/kelvinleong/blog/JavaFX-Concurrency/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/JavaFX-Concurrency/</guid>
+        <pubDate>2015-08-30 04:15:58 +0800</pubDate>
+        <link>http://kelvinleong.github.io/kelvinleongblog/JavaFX-Concurrency/</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleongblog/JavaFX-Concurrency/</guid>
         
         
-        <category>java</category>
+        <category>Java</category>
         
       </item>
       
@@ -395,23 +753,27 @@ Example: Why Can&amp;#39;t we use Platform.runLater(...) for long calculations (
 &lt;hr&gt;
 
 &lt;p&gt;In a project, I have to retrieved amounts of data with the following table structure.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;  &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Entity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Primary key&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;  class Entity{
+      int id; //Primary key
+      type fields;
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;But each time, the data retrieved are not in numerical order. In order to maintain an ascending ordering to show in the UI, a comparator is needed.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;#39;s say we have a list Entity and want to sort by its id.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Entity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;entityList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getEntityList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 
-    &lt;span class=&quot;n&quot;&gt;Collections&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;entityList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;comparator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-          &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-          &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;compare&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Entity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Entity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-              &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;o1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-          &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;    List&amp;lt;Entity&amp;gt; entityList = getEntityList();
+
+    Collections.sort(entityList, new comparator(){
+          @Override
+          public int compare(Entity o1, Entity o2){
+              return (o1.getId() - o2.getId());
+          }
+    })
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;For a descending order, just change the position o1 and o2.&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -432,14 +794,52 @@ a negative integer, zero, or a positive integer as the first argument is less th
           <description>&lt;h4 id=&quot;java-sort-a-list&quot;&gt;[Java] Sort a List&lt;/h4&gt;
 
 &lt;hr&gt;
+
+&lt;p&gt;In a project, I have to retrieved amounts of data with the following table structure.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;  class Entity{
+      int id; //Primary key
+      type fields;
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But each time, the data retrieved are not in numerical order. In order to maintain an ascending ordering to show in the UI, a comparator is needed.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s say we have a list Entity and want to sort by its id.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;    List&amp;lt;Entity&amp;gt; entityList = getEntityList();
+
+    Collections.sort(entityList, new comparator(){
+          @Override
+          public int compare(Entity o1, Entity o2){
+              return (o1.getId() - o2.getId());
+          }
+    })
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For a descending order, just change the position o1 and o2.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Parameters: &lt;strong&gt;&lt;em&gt;o1&lt;/em&gt;&lt;/strong&gt; - the first object to be compared.
+&lt;strong&gt;&lt;em&gt;o2&lt;/em&gt;&lt;/strong&gt; - the second object to be compared.&lt;/p&gt;
+
+&lt;p&gt;Returns:
+a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Reference&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html&quot;&gt;https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 </description>
         
-        <pubDate>Sat, 29 Aug 2015 07:24:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/kelvinleong/blog/java-comparable/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/java-comparable/</guid>
+        <pubDate>2015-08-29 07:24:58 +0800</pubDate>
+        <link>http://kelvinleong.github.io/kelvinleongblog/java-comparable/</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleongblog/java-comparable/</guid>
         
         
-        <category>oracle</category>
+        <category>Oracle</category>
         
       </item>
       
@@ -458,26 +858,45 @@ a negative integer, zero, or a positive integer as the first argument is less th
 &lt;/blockquote&gt;
 
 &lt;p&gt;Add the following dependency, which upgrade the svn version to 1.8 (my current version)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependencies&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.tmatesoft.svnkit&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;svnkit&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.8.10&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependencies&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+
+&lt;pre&gt;&lt;code class=&quot;xml&quot;&gt;&amp;lt;dependencies&amp;gt;
+    &amp;lt;dependency&amp;gt;
+        &amp;lt;groupId&amp;gt;org.tmatesoft.svnkit&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;svnkit&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;1.8.10&amp;lt;/version&amp;gt;
+    &amp;lt;/dependency&amp;gt;
+&amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
         
           <description>&lt;h4 id=&quot;maven-update-svn-version&quot;&gt;[maven] Update SVN version&lt;/h4&gt;
 
 &lt;hr&gt;
+
+&lt;p&gt;In the .pom.xml file,  find the following plugin in.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;groupId&amp;gt; com.google.code.maven-svn-revision-number-plugin&amp;lt;/groupId&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Add the following dependency, which upgrade the svn version to 1.8 (my current version)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;xml&quot;&gt;&amp;lt;dependencies&amp;gt;
+    &amp;lt;dependency&amp;gt;
+        &amp;lt;groupId&amp;gt;org.tmatesoft.svnkit&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;svnkit&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;1.8.10&amp;lt;/version&amp;gt;
+    &amp;lt;/dependency&amp;gt;
+&amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 </description>
         
-        <pubDate>Thu, 20 Aug 2015 07:24:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/kelvinleong/blog/mvn-client/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/mvn-client/</guid>
+        <pubDate>2015-08-20 07:24:58 +0800</pubDate>
+        <link>http://kelvinleong.github.io/kelvinleongblog/mvn-client/</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleongblog/mvn-client/</guid>
         
         
-        <category>oracle</category>
+        <category>Oracle</category>
         
       </item>
       
@@ -492,13 +911,17 @@ a negative integer, zero, or a positive integer as the first argument is less th
 &lt;p&gt;User_tables are those owned by the specified user(schema).&lt;/p&gt;
 
 &lt;p&gt;For example, an oracle database user log in with the identity &amp;quot;USER&amp;quot; and execute the following sql:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user_tables&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&quot;sql&quot;&gt;SELECT * FROM user_tables;
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;All the retrieved tables are owned by user &amp;quot;USER&amp;quot; only.&lt;/p&gt;
 
 &lt;p&gt;And if execute the following sql:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;all_tables&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&quot;sql&quot;&gt;SELECT * FROM all_tables;
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;Now, the retrieved tables are owned by user USER and those granted to USER.&lt;/p&gt;
 
 &lt;p&gt;DBA_tables, contains all the tables in the database.&lt;/p&gt;
@@ -511,14 +934,36 @@ a negative integer, zero, or a positive integer as the first argument is less th
           <description>&lt;h4 id=&quot;oracle-sql-difference-between-user_tables-all_tables-and-dba_tables&quot;&gt;[Oracle SQL] Difference between USER_TABLES, ALL_TABLES and DBA_TABLES&lt;/h4&gt;
 
 &lt;hr&gt;
+
+&lt;p&gt;User_tables are those owned by the specified user(schema).&lt;/p&gt;
+
+&lt;p&gt;For example, an oracle database user log in with the identity &amp;quot;USER&amp;quot; and execute the following sql:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;sql&quot;&gt;SELECT * FROM user_tables;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All the retrieved tables are owned by user &amp;quot;USER&amp;quot; only.&lt;/p&gt;
+
+&lt;p&gt;And if execute the following sql:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;sql&quot;&gt;SELECT * FROM all_tables;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, the retrieved tables are owned by user USER and those granted to USER.&lt;/p&gt;
+
+&lt;p&gt;DBA_tables, contains all the tables in the database.&lt;/p&gt;
+
+&lt;p&gt;So the relation ship should be: DBA_tables &amp;gt; All_Tables &amp;gt; User_Tables.&lt;/p&gt;
+
+&lt;p&gt;For constraint/triggers/synonym, it is much the same.&lt;/p&gt;
 </description>
         
-        <pubDate>Thu, 20 Aug 2015 07:24:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/kelvinleong/blog/db-tables/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/db-tables/</guid>
+        <pubDate>2015-08-20 07:24:58 +0800</pubDate>
+        <link>http://kelvinleong.github.io/kelvinleongblog/db-tables/</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleongblog/db-tables/</guid>
         
         
-        <category>oracle</category>
+        <category>Oracle</category>
         
       </item>
       
@@ -551,14 +996,35 @@ a negative integer, zero, or a positive integer as the first argument is less th
 </description>
         
           <description>&lt;h5 id=&quot;requirements&quot;&gt;Requirements:&lt;/h5&gt;
+
+&lt;p&gt;Make sure your system has the following requirements.&lt;/p&gt;
+
+&lt;p&gt;&lt;li&gt;&lt;strong&gt;&lt;em&gt;Ruby (including development headers)&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;RubyGems&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;Linux, Unix, or Mac OS X&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;NodeJS, or another JavaScript runtime (for CoffeeScript support).&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;&lt;/p&gt;
+
+&lt;p&gt;For the installation details, please refer to:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://cenalulu.github.io/jekyll/setup-comment-for-your-blog/?utm_source=tuicool&quot;&gt;http://cenalulu.github.io/jekyll/setup-comment-for-your-blog/?utm_source=tuicool&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Note, it&amp;#39;s recommended that to work on Unix/Linux though it&amp;#39;s able to work on Windows (you have to cater for the compatiblity).&lt;/p&gt;
+
+&lt;p&gt;If you want to add comments on your blog, please follow the below tutorial.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.tuicool.com/articles/Q32Mrmb&quot;&gt;http://www.tuicool.com/articles/Q32Mrmb&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 </description>
         
-        <pubDate>Sun, 16 Aug 2015 04:24:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/kelvinleong/blog/jellky-comments/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/jellky-comments/</guid>
+        <pubDate>2015-08-16 04:24:58 +0800</pubDate>
+        <link>http://kelvinleong.github.io/kelvinleongblog/jellky-comments/</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleongblog/jellky-comments/</guid>
         
         
-        <category>theme</category>
+        <category>Theme</category>
         
       </item>
       

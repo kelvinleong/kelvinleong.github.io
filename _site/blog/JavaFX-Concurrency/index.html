@@ -20,7 +20,7 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/assets/css/style.css">
     <!--[if IE 8]><link rel="stylesheet" href="/assets/css/ie.css"><![endif]-->
-    <link rel="canonical" href="http://kelvinleong.github.io/kelvinleong/blog/JavaFX-Concurrency/">
+    <link rel="canonical" href="http://kelvinleong.github.io/kelvinleongblog/JavaFX-Concurrency/">
 
     <!-- Modernizr -->
     <script src="/assets/js/modernizr.custom.15390.js" type="text/javascript"></script>
@@ -92,36 +92,40 @@ Example: Why Can&#39;t we use Platform.runLater(...) for long calculations (Take
 <p>Problem: Background thread which just counts from 0 to 1 million and update progress bar in UI.</p>
 
 <p><li>Code using Platform.runLater(...):</li></p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="n">ProgressBar</span> <span class="n">bar</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ProgressBar</span><span class="o">();</span>
-<span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="nf">Runnable</span><span class="o">()</span> <span class="o">{</span>
-    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">1000000</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="kd">final</span> <span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-        <span class="n">Platform</span><span class="o">.</span><span class="na">runLater</span><span class="o">(</span><span class="k">new</span> <span class="nf">Runnable</span><span class="o">()</span> <span class="o">{</span>
-            <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-                <span class="n">bar</span><span class="o">.</span><span class="na">setProgress</span><span class="o">(</span><span class="n">counter</span><span class="o">/</span><span class="mf">1000000.0</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">});</span>
-    <span class="o">}</span>
-<span class="o">}).</span><span class="na">start</span><span class="o">();</span>
-</code></pre></div>
+
+<pre><code class="java">final ProgressBar bar = new ProgressBar();
+new Thread(new Runnable() {
+    @Override public void run() {
+    for (int i=1; i&lt;=1000000; i++) {
+        final int counter = i;
+        Platform.runLater(new Runnable() {
+            @Override public void run() {
+                bar.setProgress(counter/1000000.0);
+            }
+        });
+    }
+}).start();
+</code></pre>
+
 <p>This is a hideous hunk of code, a crime against nature (and programming in general). First, you’ll lose brain cells just looking at this double nesting of Runnables. Second, it is going to swamp the event queue with little Runnables — a million of them in fact. Clearly, we needed some API to make it easier to write background workers which then communicate back with the UI.</p>
 
 <p><li>Code using Task :</li></p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Task</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Task</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;()</span> <span class="o">{</span>
-    <span class="nd">@Override</span> <span class="kd">public</span> <span class="n">Void</span> <span class="nf">call</span><span class="o">()</span> <span class="o">{</span>
-        <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">1000000</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">max</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="n">updateProgress</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">max</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">};</span>
 
-<span class="n">ProgressBar</span> <span class="n">bar</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ProgressBar</span><span class="o">();</span>
-<span class="n">bar</span><span class="o">.</span><span class="na">progressProperty</span><span class="o">().</span><span class="na">bind</span><span class="o">(</span><span class="n">task</span><span class="o">.</span><span class="na">progressProperty</span><span class="o">());</span>
-<span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="n">task</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
-</code></pre></div>
+<pre><code class="java">Task task = new Task&lt;Void&gt;() {
+    @Override public Void call() {
+        static final int max = 1000000;
+        for (int i = 1; i &lt;= max; i++) {
+            updateProgress(i, max);
+        }
+        return null;
+    }
+};
+
+ProgressBar bar = new ProgressBar();
+bar.progressProperty().bind(task.progressProperty());
+new Thread(task).start();
+</code></pre>
+
 <blockquote>
 <p>it suffers from none of the flaws exhibited in the previous code</p>
 </blockquote>
@@ -132,12 +136,12 @@ Example: Why Can&#39;t we use Platform.runLater(...) for long calculations (Take
   <!-- POST NAVIGATION -->
   <div class="postNav clearfix">
     
-      <a class="prev" href="/blog/java-comparable/"><span>&laquo;&nbsp;Java Comparator</span>
+      <a class="prev" href="blog/java-comparable/"><span>&laquo;&nbsp;Java Comparator</span>
       
     </a>
     
     
-      <a class="next" href="/blog/Encoding-and-CharSets/"><span>细说字符集(CharSet)和字符编码(Encoding)&nbsp;&raquo;</span>
+      <a class="next" href="blog/Encoding-and-CharSets/"><span>细说字符集(CharSet)和字符编码(Encoding)&nbsp;&raquo;</span>
       
       </a>
     
