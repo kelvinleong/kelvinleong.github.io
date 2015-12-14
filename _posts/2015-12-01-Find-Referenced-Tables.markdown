@@ -16,8 +16,8 @@ Before that, we should have an explicit ideal on how the reference constrains is
 |   Column           |         Descriptions         |
 |:-------------------|:-----------------------------|
 |  CONSTRAINT_TYPE   | <ul><li>C (check constraint on a table)</li><li>P (primary key)</li><li>U (unique key)</li><li>R (referential integrity)</li><li>V (with check option, on a view)</li><li>O (with read only, on a view)</li></ul>|
-|  CONSTRAINT_NAME   | Name of the unique constraint definition for referenced table|
-|  R_CONSTRAINT_NAME | Name of the constraint definition                            |
+|  R_CONSTRAINT_NAME | Name of the unique constraint definition for referenced table|
+|  CONSTRAINT_NAME   | Name of the constraint definition                            |
 
 There is a hierarchical structure in this table that *R_CONSTRAINT_NAME* indicating the foreign key constraint of a table would be the *CONSTRAINT_NAME* of the table it refers to (note, foreign key must be a primary key). By this relationship, we can create a hierarchical query to find out the table name, primary constraint name and its referenced tables name and the foreign key constraint name.
 
