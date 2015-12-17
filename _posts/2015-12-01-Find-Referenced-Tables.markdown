@@ -7,9 +7,9 @@ categories: Oracle SQL
 
 Scenario: *An requirement states "to delete the data from a table which is referenced by different tables".*
 
-Well, to delete records in Oracle Database is believed to be an simple job by the following command *"Delete FROM table_name"*. But the prerequisite is that the table should not referenced by any other tables otherwise it may cause the "foreign key violation" while trying to delete the table.
+Well, to delete records in Oracle Database is believed to be an simple job by the following command *"Delete FROM table_name"*. But the prerequisite is that the table should not be referenced by any other tables otherwise it may cause the "foreign key violation" while trying to delete the table.
 
-Before that, we should have an explicit ideal on how the reference constrains is maintained in Oracle. The key table is ***ALL_CONSTRAINTS***.
+Before that, we should have an explicit view on how the reference constraints is maintained in Oracle. The key system table is ***ALL_CONSTRAINTS***.
 
 >**ALL_CONSTRAINTS** describes constraint definitions on tables accessible to the current user.
 
@@ -19,7 +19,7 @@ Before that, we should have an explicit ideal on how the reference constrains is
 |  R_CONSTRAINT_NAME | Name of the unique constraint definition for referenced table|
 |  CONSTRAINT_NAME   | Name of the constraint definition                            |
 
-There is a hierarchical structure in this table that *R_CONSTRAINT_NAME* indicating the foreign key constraint of a table would be the *CONSTRAINT_NAME* of the table it refers to (note, foreign key must be a primary key). By this relationship, we can create a hierarchical query to find out the table name, primary constraint name and its referenced tables name and the foreign key constraint name.
+There is a hierarchical structure in this table that *R_CONSTRAINT_NAME* indicating the foreign key constraint of the table would be the *CONSTRAINT_NAME* of a table it refers to (note, foreign key must refer to a primary key). By this relationship, we can create a hierarchical query to find out the table name, primary constraint name and its referenced tables name and the foreign key constraint name.
 
 ```sql
   SELECT CONSTRAINT_NAME,
@@ -54,7 +54,9 @@ WHERE ACC.CONSTRAINT_NAME = TREE.CONSTRAINT_NAME
 AND   AIC.INDEX_NAME = TREE.R_CONSTRAINT_NAME;
 ```
 
-As shown, the hierarchical query result is nested as a Tree table for join operation. I find another slow solution from the other, it's easy to understand but with less efficiency as too many join operations to perform for getting the result.
+As shown, the hierarchical query result is nested as a Tree table for join operation.
+
+I find another slow solution from the other, it's easy to understand but with less efficiency as too many join operations to perform for getting the result.
 
 ```sql
   SELECT	AC.Table_Name,		--Source
@@ -69,7 +71,7 @@ As shown, the hierarchical query result is nested as a Tree table for join opera
         	(
         	SELECT	Constraint_Name
         	FROM	All_Constraints
-        	WHERE	Table_Name = UPPER('TA')
+        	WHERE	Table_Name = UPPER(szTableName)
         	AND	Constraint_Type = 'P'
         	) TMP
   WHERE	AC.Constraint_Name = ACC.Constraint_Name
@@ -80,6 +82,9 @@ As shown, the hierarchical query result is nested as a Tree table for join opera
   AND	  ACC.Position = AIC.Column_Position
   ORDER BY 1, 2, 3, 4, 5, 6;
 ```
+
+But these two solutions are buggy if there is **slef referential constraint** among those tables. Therefore, make sure there is no tables has foreign keys refer to itself or using ***"ON DELETE CASCADE*** to avoid the problem.
+
 
 ***Reference***
 > https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022
