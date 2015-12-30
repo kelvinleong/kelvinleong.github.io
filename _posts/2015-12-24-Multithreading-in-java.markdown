@@ -25,6 +25,7 @@ public class ThreadB implements Runnable {
 //Started with a "new Thread(threadB).start()" call
 ```
 Or, with extends Thread:
+
 ```java
 public class ThreadA extends Thread {
     public ThreadA() {
