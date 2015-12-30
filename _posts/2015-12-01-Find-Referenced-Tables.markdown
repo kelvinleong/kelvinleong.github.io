@@ -83,7 +83,7 @@ I find another slow solution from the other, it's easy to understand but with le
   ORDER BY 1, 2, 3, 4, 5, 6;
 ```
 
-But these two solutions are buggy if there is **slef referential constraint** among those tables. Therefore, make sure there is no tables has foreign keys refer to itself or using ***"ON DELETE CASCADE*** to avoid the problem.
+But these two solutions are buggy if there is **self referential constraint** among those tables. Therefore, make sure there is no tables has foreign keys refer to itself or using ***"ON DELETE CASCADE*** to avoid the problem.
 
 
 ***Reference***
