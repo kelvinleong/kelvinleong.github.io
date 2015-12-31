@@ -16,6 +16,7 @@ This is the preface copied from "Effective Java", of course, concurrent programm
 Basically, there are two ways to create threads in Java programming. One is to "implement Runnable" and the other is to "extends Thread".
 
 With implements Runnable:
+
 ```java
 public class ThreadB implements Runnable {
     public void run() {
@@ -49,8 +50,11 @@ As shown in the code example, both two methods actually embed the thread body in
 Thread should be started by invoking the native method start() to begin execution.The Java Virtual Machine then calls the run method of this thread to go.Directly invoking the run() method from main thread, the run() method goes onto the current call stack rather than at the beginning of a new call stack i.e., run() will serve as a function call instead by direct invoking.
 
 **start()** method of Thread class is used to start a newly created thread. It performs following tasks:
+
 * A new thread starts(with new callstack).
+
 * The thread moves from New state to the Runnable state.
+
 * When the thread gets a chance to execute, its target run() method will run.
 
 To further understand the pitfall, read the following passage.
@@ -63,6 +67,7 @@ Synchronization in java is the capability to control the access of multiple thre
 Java Synchronization is better option where we want to allow only one thread to access the shared resource.
 
 Syntax to use synchronized method:
+
 ```java
 public class MyObject {
   synchronized someMethod(object reference expression) {   
@@ -74,6 +79,7 @@ public class MyObject {
 With the ***synchronized*** keyword, it can be guaranteed that only one thread can access method "someMethod()" which is to lock an object for any shared resources. But there is performance tradeoff by simply using synchronized keyword. Suppose you have 50 lines of code in your method, but you want to synchronize only 5 lines. Therefore, synchronized block is an alternative to solve the problem.
 
 Syntax to use synchronized block
+
 ```java
 synchronized (object reference expression) {   
   //code block   
@@ -81,6 +87,7 @@ synchronized (object reference expression) {
 ```
 
 Actually, the synchronized method is equivalent to the following code snippet:
+
 ```java
 public class MyObject {
   void someMethod(object reference expression) {  
@@ -90,6 +97,7 @@ public class MyObject {
   }  
 }
 ```
+
 For further details read the following:
 http://www.javatpoint.com/synchronization-in-java
 
@@ -141,6 +149,5 @@ For the further leanring of CountDownLatch, read:
 https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CountDownLatch.html
 
 ***Reference***
-> https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022
->
-http://www.javatpoint.com/multithreading-in-java
+>https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022
+>http://www.javatpoint.com/multithreading-in-java
