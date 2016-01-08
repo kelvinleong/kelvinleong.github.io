@@ -20,7 +20,7 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/assets/css/style.css">
     <!--[if IE 8]><link rel="stylesheet" href="/assets/css/ie.css"><![endif]-->
-    <link rel="canonical" href="http://kelvinleong.github.io/kelvinleongblog/hibernate-system-exception/">
+    <link rel="canonical" href="http://kelvinleong.github.io/kelvinleong/blog/hibernate-system-exception/">
 
     <!-- Modernizr -->
     <script src="/assets/js/modernizr.custom.15390.js" type="text/javascript"></script>
@@ -76,8 +76,20 @@ ga('send', 'pageview');
 
     
     
+        <li><a href="/archive.html#December2015">December 2015</a></li>
+        
+    
+
+    
+    
         <li><a href="/archive.html#November2015">November 2015</a></li>
         
+    
+
+    
+    
+
+    
     
 
     
@@ -141,6 +153,18 @@ ga('send', 'pageview');
      pdf</span>
      </a></li>
     
+     <li><a href="/categories.html#jvm-ref">
+     jvm</span>
+     </a></li>
+    
+     <li><a href="/categories.html#oracle-ref">
+     oracle</span>
+     </a></li>
+    
+     <li><a href="/categories.html#multithreading-ref">
+     multithreading</span>
+     </a></li>
+    
   
 </ul>
 </div>
@@ -163,38 +187,36 @@ ga('send', 'pageview');
 <p>Finally, I examined my xml carefully again and again, then suddenly I realize that one of the bean name is reused again.</p>
 
 <p>After I corrrect it, the exception disappared!</p>
-
-<pre><code class="java">&lt;bean id=&quot;tradingAccCredit&quot; class=&quot;com.cmms.sharedlib.ControlGroup&quot;&gt;
-    &lt;property name=&quot;controls&quot;&gt;
-    &lt;util:list value-type=&quot;com.cmms.sharedlib.ClientMaint&quot;&gt;
-            &lt;ref bean=&quot;tradingLimitCM&quot; /&gt;
-            &lt;ref bean=&quot;expDtOfTradeLimitCM&quot; /&gt;
-            &lt;ref bean=&quot;tradingLoanLimitCM&quot; /&gt; // The bean name is used previously in another xml
-            &lt;ref bean=&quot;expDtOfLoanLimitCM&quot; /&gt;
-            &lt;ref bean=&quot;creditRatingCM&quot; /&gt;
-    &lt;/util:list&gt;
-    &lt;/property&gt;
-    &lt;property name=&quot;userRoles&quot;&gt;
-    &lt;util:list value-type=&quot;com.cmms.sharedlib.ControlUserRole&quot;&gt;
-    &lt;ref bean=&quot;mo_editMode&quot; /&gt;
-    &lt;ref bean=&quot;mom_editMode&quot; /&gt;
-    &lt;/util:list&gt;
-    &lt;/property&gt;
-&lt;/bean&gt;
-</code></pre>
-
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">&lt;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;tradingAccCredit&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;com.cmms.sharedlib.ControlGroup&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;controls&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nl">util:</span><span class="n">list</span> <span class="n">value</span><span class="o">-</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;com.cmms.sharedlib.ClientMaint&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">ref</span> <span class="n">bean</span><span class="o">=</span><span class="s">&quot;tradingLimitCM&quot;</span> <span class="o">/&gt;</span>
+            <span class="o">&lt;</span><span class="n">ref</span> <span class="n">bean</span><span class="o">=</span><span class="s">&quot;expDtOfTradeLimitCM&quot;</span> <span class="o">/&gt;</span>
+            <span class="o">&lt;</span><span class="n">ref</span> <span class="n">bean</span><span class="o">=</span><span class="s">&quot;tradingLoanLimitCM&quot;</span> <span class="o">/&gt;</span> <span class="c1">// The bean name is used previously in another xml</span>
+            <span class="o">&lt;</span><span class="n">ref</span> <span class="n">bean</span><span class="o">=</span><span class="s">&quot;expDtOfLoanLimitCM&quot;</span> <span class="o">/&gt;</span>
+            <span class="o">&lt;</span><span class="n">ref</span> <span class="n">bean</span><span class="o">=</span><span class="s">&quot;creditRatingCM&quot;</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="nl">util:</span><span class="n">list</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;userRoles&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nl">util:</span><span class="n">list</span> <span class="n">value</span><span class="o">-</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;com.cmms.sharedlib.ControlUserRole&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">ref</span> <span class="n">bean</span><span class="o">=</span><span class="s">&quot;mo_editMode&quot;</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="n">ref</span> <span class="n">bean</span><span class="o">=</span><span class="s">&quot;mom_editMode&quot;</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="nl">util:</span><span class="n">list</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">bean</span><span class="o">&gt;</span>
+</code></pre></div>
 <p>To sum up, make sure the bean names are unique.</p>
 
 
   <!-- POST NAVIGATION -->
   <div class="postNav clearfix">
     
-      <a class="prev" href="blog/Encoding-and-CharSets/"><span>&laquo;&nbsp;细说字符集(CharSet)和字符编码(Encoding)</span>
+      <a class="prev" href="/blog/Encoding-and-CharSets/"><span>&laquo;&nbsp;细说字符集(CharSet)和字符编码(Encoding)</span>
       
     </a>
     
     
-      <a class="next" href="blog/PDF-Exploration/"><span>Explore PDF&nbsp;&raquo;</span>
+      <a class="next" href="/blog/PDF-Exploration/"><span>Explore PDF&nbsp;&raquo;</span>
       
       </a>
     
