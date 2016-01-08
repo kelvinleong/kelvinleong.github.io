@@ -2,7 +2,7 @@
 layout: post
 title:  "Hibernate System Exception"
 date:   2015-09-15 20:24:58
-categories: Theme
+categories: Java
 ---
 
 I accidentally encountered the following hibernate system exception after I modified the xml file.

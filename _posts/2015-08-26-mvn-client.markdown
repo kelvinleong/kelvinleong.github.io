@@ -2,10 +2,10 @@
 layout: post
 title:  "Maven Client too old to build"
 date:   2015-08-19 23:24:58
-categories: Oracle
+categories: Java
 ---
 
-#### [maven] Update SVN version 
+#### [maven] Update SVN version
 ----
 
 In the .pom.xml file,  find the following plugin in.

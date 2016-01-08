@@ -2,7 +2,7 @@
 layout: post
 title:  "Explore PDF"
 date:   2015-10-06 15:53:00
-categories: Theme
+categories: PDF
 ---
 
 > *This article is to illustrate and explore the popular encoding format "PDF"*

@@ -5,8 +5,8 @@
     <description>Long Form Jekyll theme built with SASS / COMPASS / SUSY</description>
     <link>http://kelvinleong.github.io/kelvinleong/</link>
     <atom:link href="http://kelvinleong.github.io/kelvinleong/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 26 Nov 2015 00:27:26 +0800</pubDate>
-    <lastBuildDate>Thu, 26 Nov 2015 00:27:26 +0800</lastBuildDate>
+    <pubDate>Fri, 08 Jan 2016 23:23:48 +0800</pubDate>
+    <lastBuildDate>Fri, 08 Jan 2016 23:23:48 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       
@@ -61,7 +61,7 @@
         <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/JVM-Introduction/</guid>
         
         
-        <category>theme</category>
+        <category>java</category>
         
       </item>
       
@@ -122,7 +122,7 @@ of what is a PDF.&lt;/p&gt;
         <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/PDF-Exploration/</guid>
         
         
-        <category>theme</category>
+        <category>pdf</category>
         
       </item>
       
@@ -170,7 +170,7 @@ of what is a PDF.&lt;/p&gt;
         <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/hibernate-system-exception/</guid>
         
         
-        <category>theme</category>
+        <category>java</category>
         
       </item>
       
@@ -310,7 +310,7 @@ of what is a PDF.&lt;/p&gt;
         <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/Encoding-and-CharSets/</guid>
         
         
-        <category>theme</category>
+        <category>encoding</category>
         
       </item>
       
@@ -439,7 +439,7 @@ a negative integer, zero, or a positive integer as the first argument is less th
         <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/java-comparable/</guid>
         
         
-        <category>oracle</category>
+        <category>java</category>
         
       </item>
       
@@ -477,7 +477,7 @@ a negative integer, zero, or a positive integer as the first argument is less th
         <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/mvn-client/</guid>
         
         
-        <category>oracle</category>
+        <category>java</category>
         
       </item>
       
@@ -518,7 +518,7 @@ a negative integer, zero, or a positive integer as the first argument is less th
         <guid isPermaLink="true">http://kelvinleong.github.io/kelvinleong/blog/db-tables/</guid>
         
         
-        <category>oracle</category>
+        <category>database</category>
         
       </item>
       

@@ -2,7 +2,7 @@
 layout: post
 title:  "Java Garbage Collection"
 date:   2015-11-10 15:53:00
-categories: Theme
+categories: Java
 ---
 
 > *This article is to illustrate and explore the mechanism of Garbage Collection*

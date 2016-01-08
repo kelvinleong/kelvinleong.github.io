@@ -2,7 +2,7 @@
 layout: post
 title:  "Java Comparator"
 date:   2015-08-28 23:24:58
-categories: Oracle
+categories: Java
 ---
 
 #### [Java] Sort a List

@@ -2,7 +2,7 @@
 layout: post
 title:  "细说字符集(CharSet)和字符编码(Encoding)"
 date:   2015-09-15 20:24:58
-categories: Theme
+categories: Encoding
 ---
 
 > ***本文将阐述字符集（CharSet）、字符编码(Encoding)之间的关系，以及浅谈集中常用的中文字符集和编码***
