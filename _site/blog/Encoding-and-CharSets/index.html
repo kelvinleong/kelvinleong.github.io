@@ -15,12 +15,12 @@
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
 
     <!-- Come and get me RSS readers -->
-    <link rel="alternate" type="application/rss+xml" title="Kelvin" href="http://kelvinleong.github.io/kelvinleong/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Kelvin" href="http://kelvinleong.github.io/feed.xml" />
     
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/assets/css/style.css">
     <!--[if IE 8]><link rel="stylesheet" href="/assets/css/ie.css"><![endif]-->
-    <link rel="canonical" href="http://kelvinleong.github.io/kelvinleong/blog/Encoding-and-CharSets/">
+    <link rel="canonical" href="http://kelvinleong.github.io/blog/Encoding-and-CharSets/">
 
     <!-- Modernizr -->
     <script src="/assets/js/modernizr.custom.15390.js" type="text/javascript"></script>
@@ -177,19 +177,21 @@ ga('send', 'pageview');
   <p class="meta">September 16, 2015 | <span class="time">0</span> Minute Read</p>
 
   <blockquote>
-<p><strong><em>本文将阐述字符集（CharSet）、字符编码(Encoding)之间的关系，以及浅谈集中常用的中文字符集和编码</em></strong></p>
+  <p><strong><em>本文将阐述字符集（CharSet）、字符编码(Encoding)之间的关系，以及浅谈集中常用的中文字符集和编码</em></strong></p>
+</blockquote>
 
-<p>概述： 中文的乱码现象，以及繁简中文的乱码现象在以中文主导的地区时有发生，而解决乱码的根本，就必须要明白电脑是
+<blockquote>
+  <p>概述： 中文的乱码现象，以及繁简中文的乱码现象在以中文主导的地区时有发生，而解决乱码的根本，就必须要明白电脑是
 到底是如何存放和编排我们日常所见的字符，本文将深入探讨，并对有关的名词给予深入的解释，希望之后再遇到有关的编码的问题，
 能够游刃有余。</p>
 </blockquote>
 
-<hr>
+<hr />
 
-<h4 id="1-什么是字符集（charset）？">1. 什么是字符集（CharSet）？</h4>
+<h4 id="charset">1. 什么是字符集（CharSet）？</h4>
 
 <blockquote>
-<p><strong><em>charset is the set of characters you can use</em></strong></p>
+  <p><strong><em>charset is the set of characters you can use</em></strong></p>
 </blockquote>
 
 <p>在英文资料中，与字符集（CharSet）可以同意的词汇有 <strong><em>character set, character map, codeset or code page</em></strong></p>
@@ -203,33 +205,21 @@ ga('send', 'pageview');
 着计算机不断发展壮大带来的问题，首先当时字符集标准的制定者没有意识到要建立一种标准通用的准则，特别是当初计算机只在英文和欧洲语系
 的国家流行（相对来说，英文和拉丁字母数量少，编码容易）。然而他们没有意识到，随着科技发展，电脑已经深入到各个国家和民族当中，自然
 每个民族都希望自己的语言能被电脑识别，因为各个国家语言的字符集都相继推出，这也导致字符集不断壮大。既然如此，可否制定一个通用编码
-原则，让每个后来创建的字符集按照制定的方式来编码，这样不就解决了不统一的问题了吗？事实上，
-<emcode>Unicode</emcode>就是种想法的实践者，它对世界上大部分的文字系统进行了整理、编码，使得电脑可以用更为简单的方式来呈现和
+原则，让每个后来创建的字符集按照制定的方式来编码，这样不就解决了不统一的问题了吗？事实上，</p>
+<emcode>Unicode</emcode>
+<p>就是种想法的实践者，它对世界上大部分的文字系统进行了整理、编码，使得电脑可以用更为简单的方式来呈现和
 处理文字，这样只要电脑预先装载好unicode的字符集，就不用特地再安装简体字符集也可以在任何电脑上显示出简体汉字。
 例如<emcode>欢</emcode>，以下是其在简体字符集和Unicode字符集中的编码。</p>
 
-<table><thead>
-<tr>
-<th style="text-align: center">字符集</th>
-<th style="text-align: center">(&quot;欢&quot;)编码值Hex Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: center">GBK</td>
-<td style="text-align: center">0xBB66</td>
-</tr>
-<tr>
-<td style="text-align: center">Unicode</td>
-<td style="text-align: center">0x6B22</td>
-</tr>
-</tbody></table>
-
-<hr>
-
-<h4 id="2-什么是字符编码（encoding）">2. 什么是字符编码（Encoding）?</h4>
+<p>|  字符集       | (“欢”)编码值Hex Value         |
+|:————:|:—————————-:|
+|  GBK         | 0xBB66                       |
+|  Unicode     | 0x6B22                       |
+——-
+####2. 什么是字符编码（Encoding）?</p>
 
 <blockquote>
-<p><strong><em>encoding is the way these characters are stored into memory</em></strong></p>
+  <p><strong><em>encoding is the way these characters are stored into memory</em></strong></p>
 </blockquote>
 
 <p>读到这里，大家应该有个印象，字符集是某一种字符的集合，要找到某个字符，那首先就应该找到改字符所在的字符集，那么下一步就应该是如何从
@@ -246,56 +236,54 @@ ga('send', 'pageview');
 上文的例子可以看到，按照该方式存储文字，每个字符都需要3个bytes来存储，这对复杂语言来说可能没什么问题，但是对于英文来说，本来1个字节就能存的东西，现在
 要用3个字节来存储，自然是是带来数据的冗余，因此字符编码的引进就是为了能够正确存储字符，又能节省该字符在内存占用空间。</p>
 
-<hr>
+<hr />
 
-<h4 id="3-utf-8和unicode的关系">3. UTF-8和Unicode的关系?</h4>
+<h4 id="utf-8unicode">3. UTF-8和Unicode的关系?</h4>
 
 <p>看完上面两个概念解释，那么解释UTF-8和Unicode的关系就比较简单了。Unicode就是上文中提到的编码字符集，而UTF-8就是字符编码，即Unicode规则字库的一种实现形式。随着互联网的发展，对同一字库集的要求越来越迫切，Unicode标准也就自然而然的出现。它几乎涵盖了各个国家语言可能出现的符号和文字，并将为他们编号。详见：Unicode on Wikipedia。Unicode的编号从0000开始一直到10FFFF共分为16个Plane，每个Plane中有65536个字符。而UTF-8则只实现了第一个Plane，可见UTF-8虽然是一个当今接受度最广的字符集编码，但是它并没有涵盖整个Unicode的字库。</p>
 
-<h4 id="4-utf8编码">4.UTF8编码</h4>
-
+<h4 id="utf8">4.UTF8编码</h4>
 <p>上一节已经介绍了有关utf-8的编码知识，下面具体解释下，到底什么UTF-8编码。</p>
 
 <blockquote>
-<p><strong><em>UTF-8编码为变长编码。最小编码单位（code unit）为一个字节。一个字节的前1-3个bit为描述性部分，后面为实际序号部分。</em></strong></p>
+  <p><strong><em>UTF-8编码为变长编码。最小编码单位（code unit）为一个字节。一个字节的前1-3个bit为描述性部分，后面为实际序号部分。</em></strong></p>
 </blockquote>
 
-<p><li><em>如果一个字节的第一位为 0，那么代表当前字符为单字节字符，占用一个字节的空间。0之后的所有部分（7个bit）代表在Unicode中的序号。</em></li>
-<li><em>如果一个字节以110开头，那么代表当前字符为双字节字符，占用2个字节的空间。110之后的所有部分（5个bit）加上后一个字节的除10外的部分（6个bit）代表在Unicode中的序号。且第二个字节以10开头</em></li>
-<li><em>如果一个字节以1110开头，那么代表当前字符为三字节字符，占用2个字节的空间。110之后的所有部分（5个bit）加上后两个字节的除10外的部分（12个bit）代表在Unicode中的序号。且第二、第三个字节以10开头</em></li>
-<li><em>如果一个字节以10开头，那么代表当前字节为多字节字符的第二个字节。10之后的所有部分（6个bit）和之前的部分一同组成在Unicode中的序号。</em></li></p>
+<li>*如果一个字节的第一位为 0，那么代表当前字符为单字节字符，占用一个字节的空间。0之后的所有部分（7个bit）代表在Unicode中的序号。*</li>
+<li>*如果一个字节以110开头，那么代表当前字符为双字节字符，占用2个字节的空间。110之后的所有部分（5个bit）加上后一个字节的除10外的部分（6个bit）代表在Unicode中的序号。且第二个字节以10开头*</li>
+<li>*如果一个字节以1110开头，那么代表当前字符为三字节字符，占用2个字节的空间。110之后的所有部分（5个bit）加上后两个字节的除10外的部分（12个bit）代表在Unicode中的序号。且第二、第三个字节以10开头*</li>
+<li>*如果一个字节以10开头，那么代表当前字节为多字节字符的第二个字节。10之后的所有部分（6个bit）和之前的部分一同组成在Unicode中的序号。*</li>
 
 <p>举个例子，前面我们提到了“欢”字的Unicode是0x6B22，按照以上的规则，可以通过其Unicode得到相应的UTF-8 encoding。</p>
 
-<table><thead>
-<tr>
-<th style="text-align: center">“欢”</th>
-<th style="text-align: center">Binary Stream</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: center">Unicode</td>
-<td style="text-align: center">0110 1010 0010 0010</td>
-</tr>
-<tr>
-<td style="text-align: center">UTF-8</td>
-<td style="text-align: center">1110 0110 1010 1000 1010 0010</td>
-</tr>
-</tbody></table>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">“欢”</th>
+      <th style="text-align: center">Binary Stream</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Unicode</td>
+      <td style="text-align: center">0110 1010 0010 0010</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">UTF-8</td>
+      <td style="text-align: center">1110 0110 1010 1000 1010 0010</td>
+    </tr>
+  </tbody>
+</table>
 
-<hr>
+<hr />
 
-<h4 id="5-乱码原由">5.乱码原由</h4>
-
+<h4 id="section">5.乱码原由</h4>
 <p>在实际编程中，经常会出现乱码的现象。当我们理清了字符集、字符编码这些概念后，便知道其根本原因就是，我们错用某种字符编码去decode另外一种字符编码，最常见的错误就是，把一个UTF-8编码后的字符，用GBK去解码，
 这样，常常就会出现一些无法理解的符号或者其他离奇的汉字，以欢字为例，其utf-8的编码的二进制流是<emcode>“1110 0110 1010 1000 1010 0010”</emcode>，若用gbk来解码，则会得到<emcode>“妯  ”</emcode>，究其原因是，前面的两个字节<emcode>“E6(1110 0110) A8(1010 1000)”</emcode> 恰对应“妯”字，而余下的一个字节，因为不是汉字，会被解码成某种符号。这样一来，欢子的utf8编码在gbk下就会被
 错误解码成，“妯”和一个特殊符号，于是成为了乱码。</p>
 
-<p><strong><em>Reference:</em></strong></p>
-
-<blockquote>
-<p><a href="http://cenalulu.github.io/linux/character-encoding/">http://cenalulu.github.io/linux/character-encoding/</a></p>
-</blockquote>
+<p><strong><em>Reference:</em></strong>
+&gt;http://cenalulu.github.io/linux/character-encoding/</p>
 
 
   <!-- POST NAVIGATION -->

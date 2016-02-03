@@ -15,12 +15,12 @@
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
 
     <!-- Come and get me RSS readers -->
-    <link rel="alternate" type="application/rss+xml" title="Kelvin" href="http://kelvinleong.github.io/kelvinleong/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Kelvin" href="http://kelvinleong.github.io/feed.xml" />
     
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/assets/css/style.css">
     <!--[if IE 8]><link rel="stylesheet" href="/assets/css/ie.css"><![endif]-->
-    <link rel="canonical" href="http://kelvinleong.github.io/kelvinleong/blog/JVM-Introduction/">
+    <link rel="canonical" href="http://kelvinleong.github.io/blog/JVM-Introduction/">
 
     <!-- Modernizr -->
     <script src="/assets/js/modernizr.custom.15390.js" type="text/javascript"></script>
@@ -177,42 +177,47 @@ ga('send', 'pageview');
   <p class="meta">November 10, 2015 | <span class="time">2</span> Minute Read</p>
 
   <blockquote>
-<p><em>This article is to illustrate and explore the mechanism of Garbage Collection</em></p>
+  <p><em>This article is to illustrate and explore the mechanism of Garbage Collection</em></p>
 </blockquote>
 
 <p>Garbage collection is a big topic for Java programmer and it always occurs in the interview (I was challenged several times) ! So in this passage, I will try to illustrate how Garbage Collection works with the Hotspot JVM.</p>
 
-<p>Java&#39;s automatic garbage collection nicely frees programmers from worrying about memory management. Think about C++ programming, every time you new something, you have to cater for the delete appropriately. However, in java, you just new an object as you want without concerning to free them at all. But the convenience is not free and exactly JVM is responsible to collect the unreferenced objects(or so called &quot;garbage&quot;). That&#39;s why the interviewer like to challenge interviewee on this topic.</p>
+<p>Java’s automatic garbage collection nicely frees programmers from worrying about memory management. Think about C++ programming, every time you new something, you have to cater for the delete appropriately. However, in java, you just new an object as you want without concerning to free them at all. But the convenience is not free and exactly JVM is responsible to collect the unreferenced objects(or so called “garbage”). That’s why the interviewer like to challenge interviewee on this topic.</p>
 
 <p>First, how does Garbage Collection works?</p>
 
 <p>Java implements something called a generational garbage collector based upon the generational hypothesis assumption, which states that <strong><em>the majority of objects that are created are quickly discarded</em></strong>, and objects that are not quickly collected are likely to be around for a while.</p>
 
-<p>Let&#39;s have a look at the structure of Hotspot heap</p>
+<p>Let’s have a look at the structure of Hotspot heap</p>
 
-<p><img src="/resources/Slide5.PNG" alt="Alt text"></p>
+<p><img src="/resources/Slide5.PNG" alt="Alt text" /></p>
 
 <p>As you can see from the diagram, the heap is divided into 3 parts, young , tenured and permanent generation respectively.</p>
 
 <ul>
-<li><p>The Young Generation is where all new objects are allocated and aged. When the young generation fills up, this causes a minor garbage collection. Minor collections can be optimized assuming a high object mortality rate. A young generation full of dead objects is collected very quickly. Some surviving objects are aged and eventually move to the old generation. More specifically,</p>
+  <li>
+    <p>The Young Generation is where all new objects are allocated and aged. When the young generation fills up, this causes a minor garbage collection. Minor collections can be optimized assuming a high object mortality rate. A young generation full of dead objects is collected very quickly. Some surviving objects are aged and eventually move to the old generation. More specifically,</p>
 
-<ul>
-<li>Eden Space - Objects start out here. Most objects are created and destroyed in the Eden Space. Here, the GC does Minors GCs, which are optimized garbage collections. When a Minor GC is performed, any references to objects that are still needed are migrated to one of the survivors spaces (S0 or S1).</li>
-<li>Survivor Space (S0 and S1) - Objects that survive Eden end up here. There are two of these, and only one is in use at any given time (unless we have a serious memory leak). One is designated as empty, and the other as live, alternating with every GC cycle.</li>
-</ul></li>
-<li><p>The Old Generation is used to store long surviving objects. Typically, a threshold is set for young generation object and when that age is met, the object gets moved to the old generation. Eventually the old generation needs to be collected. This event is called a major garbage collection.</p></li>
-<li><p>The Permanent generation contains metadata required by the JVM to describe the classes and methods used in the application. The permanent generation is populated by the JVM at runtime based on classes in use by the application. In addition, Java SE library classes and methods may be stored here.</p></li>
+    <ul>
+      <li>
+        <p>Eden Space - Objects start out here. Most objects are created and destroyed in the Eden Space. Here, the GC does Minors GCs, which are optimized garbage collections. When a Minor GC is performed, any references to objects that are still needed are migrated to one of the survivors spaces (S0 or S1).</p>
+      </li>
+      <li>
+        <p>Survivor Space (S0 and S1) - Objects that survive Eden end up here. There are two of these, and only one is in use at any given time (unless we have a serious memory leak). One is designated as empty, and the other as live, alternating with every GC cycle.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>The Old Generation is used to store long surviving objects. Typically, a threshold is set for young generation object and when that age is met, the object gets moved to the old generation. Eventually the old generation needs to be collected. This event is called a major garbage collection.</p>
+  </li>
+  <li>
+    <p>The Permanent generation contains metadata required by the JVM to describe the classes and methods used in the application. The permanent generation is populated by the JVM at runtime based on classes in use by the application. In addition, Java SE library classes and methods may be stored here.</p>
+  </li>
 </ul>
 
-<p><strong><em>Reference</em></strong></p>
-
-<blockquote>
-<ul>
-<li><a href="http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html">http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html</a></li>
-<li><a href="http://www.toptal.com/java/hunting-memory-leaks-in-java">http://www.toptal.com/java/hunting-memory-leaks-in-java</a></li>
-</ul>
-</blockquote>
+<p><strong><em>Reference</em></strong>
+&gt;* http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html
+&gt;* http://www.toptal.com/java/hunting-memory-leaks-in-java</p>
 
 
   <!-- POST NAVIGATION -->
