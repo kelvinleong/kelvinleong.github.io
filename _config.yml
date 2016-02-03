@@ -7,7 +7,7 @@ paginate_path: "blog/page:num/"
 permalink: blog/:title/
 
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 redcarpet:
     extensions: ["no_intra_emphasis","fenced_code_blocks", "autolink", "tables", "strikethrough","with_toc_data"]
 paginate: 7
