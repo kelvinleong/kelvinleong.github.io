@@ -179,41 +179,40 @@ ga('send', 'pageview');
   <p><em>This passage is to demonstrate the usage of thread and some concrete examples in practice.</em></p>
 
 <blockquote>
-  <p>Threads allow multiple activities to proceed concurrently. Concurrent programming is harder than single-threaded programming, because more things can go wrong, and failures can be hard to reproduce. But you can’t avoid concurrency. It is inherent in much of what we do, and a requirement if you are to obtain good performance from multicore processors, which are now commonplace. This chapter contains advice to help you write clear, correct, well-documented concurrent programs.</p>
+<p>Threads allow multiple activities to proceed concurrently. Concurrent programming is harder than single-threaded programming, because more things can go wrong, and failures can be hard to reproduce. But you can’t avoid concurrency. It is inherent in much of what we do, and a requirement if you are to obtain good performance from multicore processors, which are now commonplace. This chapter contains advice to help you write clear, correct, well-documented concurrent programs.</p>
 </blockquote>
 
-<p>This is the preface copied from “Effective Java”, of course, concurrent programming is somehow a nightmare for developer particularly when production issues occur. Multithreading is known as notoriously hard to debug and reproduce the error. But as stated, multithreading empower the performance by making good use of multicore processors. Therefore, it’s inevitable for a programmer to take the challenges on multithreading programming.</p>
+<p>This is the preface copied from &quot;Effective Java&quot;, of course, concurrent programming is somehow a nightmare for developer particularly when production issues occur. Multithreading is known as notoriously hard to debug and reproduce the error. But as stated, multithreading empower the performance by making good use of multicore processors. Therefore, it&#39;s inevitable for a programmer to take the challenges on multithreading programming.</p>
 
 <h3 id="how-to-create-a-thread-in-java">How to create a thread in Java?</h3>
 
-<p>Basically, there are two ways to create threads in Java programming. One is to “implement Runnable” and the other is to “extends Thread”.</p>
+<p>Basically, there are two ways to create threads in Java programming. One is to &quot;implement Runnable&quot; and the other is to &quot;extends Thread&quot;.</p>
 
 <p>With implements Runnable:</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadB</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">//Code</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1">//Started with a &quot;new Thread(threadB).start()&quot; call</span>
+</code></pre></div>
+<p>Or, with extends Thread:</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadA</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">ThreadA</span><span class="o">()</span> <span class="o">{</span>
+         <span class="kd">super</span><span class="o">(</span><span class="s">&quot;ThreadA&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
 
-<p><code>java
-public class ThreadB implements Runnable {
-    public void run() {
-        //Code
-    }
-}
-//Started with a "new Thread(threadB).start()" call
-</code>
-Or, with extends Thread:</p>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">//Code</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1">//Started with a &quot;threadA.start()&quot; call</span>
+</code></pre></div>
+<p>This hierarchy can be shown in the following diagram.</p>
 
-<p>```java
-public class ThreadA extends Thread {
-    public ThreadA() {
-         super(“ThreadA”);
-    }</p>
+<p><img src="/resources/multithreading/thread-runnable-erp.png" alt="Alt text"></p>
 
-<pre><code>public void run() {
-    //Code
-} } //Started with a "threadA.start()" call ``` This hierarchy can be shown in the following diagram.
-</code></pre>
-
-<p><img src="/resources/multithreading/thread-runnable-erp.png" alt="Alt text" /></p>
-
-<p>As shown in the code example, both two methods actually embed the thread body in run() method but the semantic difference is that ThreadB implement the interface run() of Runnable while ThreadA override the method in Thread object. In practice, creating thread using ThreadA is straightforward for beginner to go but ThreadB is actually the preferred method to create a thread. The reason is that <strong><em>“implements Runnable”</em></strong> is more flexible as multi inheritance is not supported in Java. Say, you want to customize a timer control to update the time every 2 seconds by extending an implemented timer class. By this way, you cannot use “extend Thread” method due to the single inheritance restrict in Java.Instead, you can only make the timer to <strong><em>“implements Runnable”</em></strong> and override the run() method to specialize the thread’s behavior.</p>
+<p>As shown in the code example, both two methods actually embed the thread body in run() method but the semantic difference is that ThreadB implement the interface run() of Runnable while ThreadA override the method in Thread object. In practice, creating thread using ThreadA is straightforward for beginner to go but ThreadB is actually the preferred method to create a thread. The reason is that <strong><em>&quot;implements Runnable&quot;</em></strong> is more flexible as multi inheritance is not supported in Java. Say, you want to customize a timer control to update the time every 2 seconds by extending an implemented timer class. By this way, you cannot use &quot;extend Thread&quot; method due to the single inheritance restrict in Java.Instead, you can only make the timer to <strong><em>&quot;implements Runnable&quot;</em></strong> and override the run() method to specialize the thread&#39;s behavior.</p>
 
 <h3 id="start-a-thread">Start a thread</h3>
 
@@ -222,19 +221,13 @@ public class ThreadA extends Thread {
 <p><strong>start()</strong> method of Thread class is used to start a newly created thread. It performs following tasks:</p>
 
 <ul>
-  <li>
-    <p>A new thread starts(with new callstack).</p>
-  </li>
-  <li>
-    <p>The thread moves from New state to the Runnable state.</p>
-  </li>
-  <li>
-    <p>When the thread gets a chance to execute, its target run() method will run.</p>
-  </li>
+<li><p>A new thread starts(with new callstack).</p></li>
+<li><p>The thread moves from New state to the Runnable state.</p></li>
+<li><p>When the thread gets a chance to execute, its target run() method will run.</p></li>
 </ul>
 
 <p>To further understand the pitfall, read the following passage.
-http://tutorials.jenkov.com/java-concurrency/creating-and-starting-threads.html#common-pitfall</p>
+<a href="http://tutorials.jenkov.com/java-concurrency/creating-and-starting-threads.html#common-pitfall">http://tutorials.jenkov.com/java-concurrency/creating-and-starting-threads.html#common-pitfall</a></p>
 
 <h3 id="data-concurrency">Data concurrency</h3>
 
@@ -243,89 +236,81 @@ http://tutorials.jenkov.com/java-concurrency/creating-and-starting-threads.html#
 <p>Java Synchronization is better option where we want to allow only one thread to access the shared resource.</p>
 
 <p>Syntax to use synchronized method:</p>
-
-<p><code>java
-public class MyObject {
-  synchronized someMethod(object reference expression) {   
-    //code block   
-  }  
-}
-</code></p>
-
-<p>With the <strong><em>synchronized</em></strong> keyword, it can be guaranteed that only one thread can access method “someMethod()” which is to lock an object for any shared resources. But there is performance tradeoff by simply using synchronized keyword. Suppose you have 50 lines of code in your method, but you want to synchronize only 5 lines. Therefore, synchronized block is an alternative to solve the problem.</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyObject</span> <span class="o">{</span>
+  <span class="kd">synchronized</span> <span class="nf">someMethod</span><span class="o">(</span><span class="n">object</span> <span class="n">reference</span> <span class="n">expression</span><span class="o">)</span> <span class="o">{</span>   
+    <span class="c1">//code block   </span>
+  <span class="o">}</span>  
+<span class="o">}</span>
+</code></pre></div>
+<p>With the <strong><em>synchronized</em></strong> keyword, it can be guaranteed that only one thread can access method &quot;someMethod()&quot; which is to lock an object for any shared resources. But there is performance tradeoff by simply using synchronized keyword. Suppose you have 50 lines of code in your method, but you want to synchronize only 5 lines. Therefore, synchronized block is an alternative to solve the problem.</p>
 
 <p>Syntax to use synchronized block</p>
-
-<p><code>java
-synchronized (object reference expression) {   
-  //code block   
-}
-</code></p>
-
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">synchronized</span> <span class="o">(</span><span class="n">object</span> <span class="n">reference</span> <span class="n">expression</span><span class="o">)</span> <span class="o">{</span>   
+  <span class="c1">//code block   </span>
+<span class="o">}</span>
+</code></pre></div>
 <p>Actually, the synchronized method is equivalent to the following code snippet:</p>
-
-<p><code>java
-public class MyObject {
-  void someMethod(object reference expression) {  
-    synchronized(this){
-      //code block   
-    }
-  }  
-}
-</code></p>
-
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyObject</span> <span class="o">{</span>
+  <span class="kt">void</span> <span class="nf">someMethod</span><span class="o">(</span><span class="n">object</span> <span class="n">reference</span> <span class="n">expression</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="kd">synchronized</span><span class="o">(</span><span class="k">this</span><span class="o">){</span>
+      <span class="c1">//code block   </span>
+    <span class="o">}</span>
+  <span class="o">}</span>  
+<span class="o">}</span>
+</code></pre></div>
 <p>For further details read the following:
-http://www.javatpoint.com/synchronization-in-java</p>
+<a href="http://www.javatpoint.com/synchronization-in-java">http://www.javatpoint.com/synchronization-in-java</a></p>
 
 <h3 id="inter-thread-communication">Inter-Thread Communication</h3>
 
-<p>Inter-thread communication is important in multithreading programming. Let’s say there is a scenario that ThreadA is waiting for ThreadB completing its execution to continue its job. One of the solution is to create a status tracker which allows one or more threads to wait until a set of operations being performed in other threads completes.</p>
+<p>Inter-thread communication is important in multithreading programming. Let&#39;s say there is a scenario that ThreadA is waiting for ThreadB completing its execution to continue its job. One of the solution is to create a status tracker which allows one or more threads to wait until a set of operations being performed in other threads completes.</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StatusTracker</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">enum</span> <span class="n">STATUS</span> <span class="o">{</span>
+        <span class="n">PENDING</span><span class="o">,</span>
+        <span class="n">COMPLETED</span>
+    <span class="o">}</span>       
 
-<p>```java
-public class StatusTracker {
-	public enum STATUS {
-		PENDING,
-		COMPLETED
-	}</p>
+    <span class="kd">private</span> <span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">STATUS</span><span class="o">,</span> <span class="n">CountDownLatch</span><span class="o">&gt;</span> <span class="n">signalLatchMap</span> <span class="o">=</span>
+                            <span class="k">new</span> <span class="n">ConcurrentHashMap</span><span class="o">&lt;</span><span class="n">STATUS</span><span class="o">,</span> <span class="n">CountDownLatch</span><span class="o">&gt;();</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">status</span><span class="o">;</span>
 
-<pre><code>private ConcurrentMap&lt;STATUS, CountDownLatch&gt; signalLatchMap =
-			  			new ConcurrentHashMap&lt;STATUS, CountDownLatch&gt;();
-private int status;
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">await</span><span class="o">(</span><span class="n">STATUS</span> <span class="n">signal</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
 
-public void await(STATUS signal) {
-	try {
+            <span class="n">CountDownLatch</span> <span class="n">signalLatch</span> <span class="o">=</span> <span class="n">signalLatchMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">signal</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">signalLatch</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">signalLatch</span><span class="o">.</span><span class="na">await</span><span class="o">();</span>
+                <span class="n">signalLatchMap</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">signal</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="k">else</span> <span class="o">{</span>
+                <span class="n">signalLatch</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">CountDownLatch</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+                <span class="n">signalLatchMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">signal</span><span class="o">,</span> <span class="n">signalLatch</span><span class="o">);</span>
+                <span class="n">signalLatch</span><span class="o">.</span><span class="na">await</span><span class="o">();</span>
+                <span class="n">signalLatchMap</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">signal</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
+    <span class="o">}</span>
 
-		CountDownLatch signalLatch = signalLatchMap.get(signal);
-		if (signalLatch != null) {
-			signalLatch.await();
-			signalLatchMap.remove(signal);
-		}
-		else {
-			signalLatch = new CountDownLatch(1);
-			signalLatchMap.put(signal, signalLatch);
-			signalLatch.await();
-			signalLatchMap.remove(signal);
-		}
-	}
-	catch (Exception e) { }
-}
-
-public void signal(STATUS signal) {
-	CountDownLatch signalLatch = signalLatchMap.get(signal);
-	if (signalLatch != null){
-		signalLatch.countDown();
-	}
-} } ```
-</code></pre>
-
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">signal</span><span class="o">(</span><span class="n">STATUS</span> <span class="n">signal</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">CountDownLatch</span> <span class="n">signalLatch</span> <span class="o">=</span> <span class="n">signalLatchMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">signal</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">signalLatch</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>
+            <span class="n">signalLatch</span><span class="o">.</span><span class="na">countDown</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
 <p>By invoking <strong><em>await(STATUS.COMPLETED)</em></strong> in ThreadA, it will release the lock and wait for the notification invoked by <strong><em>signal(STATUS.COMPLETED)</em></strong> in ThreadB.</p>
 
 <p>For the further leanring of CountDownLatch, read:
-https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CountDownLatch.html</p>
+<a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CountDownLatch.html">https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CountDownLatch.html</a></p>
 
-<p><strong><em>Reference</em></strong>
-&gt;https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022
-&gt;http://www.javatpoint.com/multithreading-in-java</p>
+<p><strong><em>Reference</em></strong></p>
+
+<blockquote>
+<p><a href="https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022">https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022</a>
+<a href="http://www.javatpoint.com/multithreading-in-java">http://www.javatpoint.com/multithreading-in-java</a></p>
+</blockquote>
 
 
   <!-- POST NAVIGATION -->

@@ -17,8 +17,10 @@ navigation:
    url: /index.html
  - title: About
    url: /about.html
+   permalink: about/index.html
  - title: Contact
    url: /contact.html
+   permalink: contact/index.html
 
 social:
    github: kelvinleong

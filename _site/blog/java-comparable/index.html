@@ -177,45 +177,42 @@ ga('send', 'pageview');
   <p class="meta">August 29, 2015 | <span class="time">0</span> Minute Read</p>
 
   <h4 id="java-sort-a-list">[Java] Sort a List</h4>
-<hr />
+
+<hr>
 
 <p>In a project, I have to retrieved amounts of data with the following table structure.</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">  <span class="kd">class</span> <span class="nc">Entity</span><span class="o">{</span>
+      <span class="kt">int</span> <span class="n">id</span><span class="o">;</span> <span class="c1">//Primary key</span>
+      <span class="n">type</span> <span class="n">fields</span><span class="o">;</span>
+  <span class="o">}</span>
+</code></pre></div>
+<p>But each time, the data retrieved are not in numerical order. In order to maintain an ascending ordering to show in the UI, a comparator is needed.</p>
 
-<p><code>java
-  class Entity{
-      int id; //Primary key
-      type fields;
-  }
-</code>
- But each time, the data retrieved are not in numerical order. In order to maintain an ascending ordering to show in the UI, a comparator is needed.</p>
+<p>Let&#39;s say we have a list Entity and want to sort by its id.</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span> <span class="n">entityList</span> <span class="o">=</span> <span class="n">getEntityList</span><span class="o">();</span>
 
-<p>Let’s say we have a list Entity and want to sort by its id.</p>
-
-<p>```java
-    List<entity> entityList = getEntityList();</entity></p>
-
-<pre><code>Collections.sort(entityList, new comparator(){
-      @Override
-      public int compare(Entity o1, Entity o2){
-          return (o1.getId() - o2.getId());
-      }
-})  ```
-</code></pre>
-
+    <span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">entityList</span><span class="o">,</span> <span class="k">new</span> <span class="nf">comparator</span><span class="o">(){</span>
+          <span class="nd">@Override</span>
+          <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Entity</span> <span class="n">o1</span><span class="o">,</span> <span class="n">Entity</span> <span class="n">o2</span><span class="o">){</span>
+              <span class="k">return</span> <span class="o">(</span><span class="n">o1</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span> <span class="o">-</span> <span class="n">o2</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+          <span class="o">}</span>
+    <span class="o">})</span>
+</code></pre></div>
 <p>For a descending order, just change the position o1 and o2.</p>
 
 <blockquote>
-  <p>Parameters: <strong><em>o1</em></strong> - the first object to be compared.
+<p>Parameters: <strong><em>o1</em></strong> - the first object to be compared.
 <strong><em>o2</em></strong> - the second object to be compared.</p>
-</blockquote>
 
-<blockquote>
-  <p>Returns:
+<p>Returns:
 a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.</p>
 </blockquote>
 
-<p>Reference
-&gt;https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html</p>
+<p>Reference</p>
+
+<blockquote>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html">https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html</a></p>
+</blockquote>
 
 
   <!-- POST NAVIGATION -->

@@ -177,26 +177,24 @@ ga('send', 'pageview');
   <p class="meta">August 20, 2015 | <span class="time">0</span> Minute Read</p>
 
   <h4 id="maven-update-svn-version">[maven] Update SVN version</h4>
-<hr />
+
+<hr>
 
 <p>In the .pom.xml file,  find the following plugin in.</p>
 
 <blockquote>
-  <p><code>&lt;groupId&gt; com.google.code.maven-svn-revision-number-plugin&lt;/groupId&gt;</code></p>
+<p><code>&lt;groupId&gt; com.google.code.maven-svn-revision-number-plugin&lt;/groupId&gt;</code></p>
 </blockquote>
 
 <p>Add the following dependency, which upgrade the svn version to 1.8 (my current version)</p>
-
-<p>```xml</p>
-<dependencies>
-    <dependency>
-        <groupid>org.tmatesoft.svnkit</groupid>
-        <artifactid>svnkit</artifactid>
-        <version>1.8.10</version>
-    </dependency>
-</dependencies>
-<p>```</p>
-
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.tmatesoft.svnkit<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>svnkit<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>1.8.10<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+</code></pre></div>
 
   <!-- POST NAVIGATION -->
   <div class="postNav clearfix">

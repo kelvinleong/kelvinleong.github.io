@@ -176,107 +176,98 @@ ga('send', 'pageview');
   <h1 class="postTitle">Find tables that reference a particular column in a table </h1>
   <p class="meta">November 30, 2015 | <span class="time">2</span> Minute Read</p>
 
-  <p>Scenario: <em>An requirement states “to delete the data from a table which is referenced by different tables”.</em></p>
+  <p>Scenario: <em>An requirement states &quot;to delete the data from a table which is referenced by different tables&quot;.</em></p>
 
-<p>Well, to delete records in Oracle Database is believed to be an simple job by the following command <em>“Delete FROM table_name”</em>. But the prerequisite is that the table should not be referenced by any other tables otherwise it may cause the “foreign key violation” while trying to delete the table.</p>
+<p>Well, to delete records in Oracle Database is believed to be an simple job by the following command <em>&quot;Delete FROM table_name&quot;</em>. But the prerequisite is that the table should not be referenced by any other tables otherwise it may cause the &quot;foreign key violation&quot; while trying to delete the table.</p>
 
 <p>Before that, we should have an explicit view on how the reference constraints is maintained in Oracle. The key system table is <strong><em>ALL_CONSTRAINTS</em></strong>.</p>
 
 <blockquote>
-  <p><strong>ALL_CONSTRAINTS</strong> describes constraint definitions on tables accessible to the current user.</p>
+<p><strong>ALL_CONSTRAINTS</strong> describes constraint definitions on tables accessible to the current user.</p>
 </blockquote>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Column</th>
-      <th style="text-align: left">Descriptions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">CONSTRAINT_TYPE</td>
-      <td style="text-align: left">&lt;ul&gt;&lt;li&gt;C (check constraint on a table)&lt;/li&gt;&lt;li&gt;P (primary key)&lt;/li&gt;&lt;li&gt;U (unique key)&lt;/li&gt;&lt;li&gt;R (referential integrity)&lt;/li&gt;&lt;li&gt;V (with check option, on a view)&lt;/li&gt;&lt;li&gt;O (with read only, on a view)&lt;/li&gt;&lt;/ul&gt;</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">R_CONSTRAINT_NAME</td>
-      <td style="text-align: left">Name of the unique constraint definition for referenced table</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">CONSTRAINT_NAME</td>
-      <td style="text-align: left">Name of the constraint definition</td>
-    </tr>
-  </tbody>
-</table>
+<table><thead>
+<tr>
+<th style="text-align: left">Column</th>
+<th style="text-align: left">Descriptions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">CONSTRAINT_TYPE</td>
+<td style="text-align: left"><ul><li>C (check constraint on a table)</li><li>P (primary key)</li><li>U (unique key)</li><li>R (referential integrity)</li><li>V (with check option, on a view)</li><li>O (with read only, on a view)</li></ul></td>
+</tr>
+<tr>
+<td style="text-align: left">R_CONSTRAINT_NAME</td>
+<td style="text-align: left">Name of the unique constraint definition for referenced table</td>
+</tr>
+<tr>
+<td style="text-align: left">CONSTRAINT_NAME</td>
+<td style="text-align: left">Name of the constraint definition</td>
+</tr>
+</tbody></table>
 
 <p>There is a hierarchical structure in this table that <em>R_CONSTRAINT_NAME</em> indicating the foreign key constraint of the table would be the <em>CONSTRAINT_NAME</em> of a table it refers to (note, foreign key must refer to a primary key). By this relationship, we can create a hierarchical query to find out the table name, primary constraint name and its referenced tables name and the foreign key constraint name.</p>
-
-<p><code>sql
-  SELECT CONSTRAINT_NAME,
-         TABLE_NAME,
-         CONSTRAINT_TYPE,
-         R_CONSTRAINT_NAME,
-         LEVEL (LVL)
-  FROM ALL_CONSTRAINTS
-  START WITH TABLE_NAME = 'szTableName' AND CONSTRAINT_TYPE = 'P'
-  CONNECT BY PRIOR CONSTRAINT_NAME = R_CONSTRAINT_NAME
-</code></p>
-
+<div class="highlight"><pre><code class="language-sql" data-lang="sql">  <span class="k">SELECT</span> <span class="k">CONSTRAINT_NAME</span><span class="p">,</span>
+         <span class="k">TABLE_NAME</span><span class="p">,</span>
+         <span class="n">CONSTRAINT_TYPE</span><span class="p">,</span>
+         <span class="n">R_CONSTRAINT_NAME</span><span class="p">,</span>
+         <span class="k">LEVEL</span> <span class="p">(</span><span class="n">LVL</span><span class="p">)</span>
+  <span class="k">FROM</span> <span class="n">ALL_CONSTRAINTS</span>
+  <span class="k">START</span> <span class="k">WITH</span> <span class="k">TABLE_NAME</span> <span class="o">=</span> <span class="s1">&#39;szTableName&#39;</span> <span class="k">AND</span> <span class="n">CONSTRAINT_TYPE</span> <span class="o">=</span> <span class="s1">&#39;P&#39;</span>
+  <span class="k">CONNECT</span> <span class="k">BY</span> <span class="k">PRIOR</span> <span class="k">CONSTRAINT_NAME</span> <span class="o">=</span> <span class="n">R_CONSTRAINT_NAME</span>
+</code></pre></div>
 <p>To further find out the corresponding primary and foreign key columns, we can use the above result to join with table <strong><em>ALL_IND_COLUMNS</em></strong> and <strong><em>ALL_CONS_COLUMNS</em></strong>.</p>
-
-<p><code>sql
-SELECT AIC.TABLE_NAME,
-       AIC.COLUMN_NAME,
-       ACC.COLUMN_NAME,
-       TREE.TABLE_NAME,
-       TREE.CONSTRAINT_NAME,
-       TREE.LVL
-FROM
-      ALL_IND_COLUMNS AIC,
-      ALL_CONS_COLUMNS ACC,
-      (
-      SELECT CONSTRAINT_NAME, TABLE_NAME, CONSTRAINT_TYPE, R_CONSTRAINT_NAME, LEVEL LVL
-      FROM ALL_CONSTRAINTS
-      START WITH TABLE_NAME = 'szTableName' AND CONSTRAINT_TYPE = 'P'
-      CONNECT BY PRIOR CONSTRAINT_NAME = R_CONSTRAINT_NAME
-      )Tree
-WHERE ACC.CONSTRAINT_NAME = TREE.CONSTRAINT_NAME
-AND   AIC.INDEX_NAME = TREE.R_CONSTRAINT_NAME;
-</code></p>
-
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">AIC</span><span class="p">.</span><span class="k">TABLE_NAME</span><span class="p">,</span>
+       <span class="n">AIC</span><span class="p">.</span><span class="k">COLUMN_NAME</span><span class="p">,</span>
+       <span class="n">ACC</span><span class="p">.</span><span class="k">COLUMN_NAME</span><span class="p">,</span>
+       <span class="n">TREE</span><span class="p">.</span><span class="k">TABLE_NAME</span><span class="p">,</span>
+       <span class="n">TREE</span><span class="p">.</span><span class="k">CONSTRAINT_NAME</span><span class="p">,</span>
+       <span class="n">TREE</span><span class="p">.</span><span class="n">LVL</span>
+<span class="k">FROM</span>
+      <span class="n">ALL_IND_COLUMNS</span> <span class="n">AIC</span><span class="p">,</span>
+      <span class="n">ALL_CONS_COLUMNS</span> <span class="n">ACC</span><span class="p">,</span>
+      <span class="p">(</span>
+      <span class="k">SELECT</span> <span class="k">CONSTRAINT_NAME</span><span class="p">,</span> <span class="k">TABLE_NAME</span><span class="p">,</span> <span class="n">CONSTRAINT_TYPE</span><span class="p">,</span> <span class="n">R_CONSTRAINT_NAME</span><span class="p">,</span> <span class="k">LEVEL</span> <span class="n">LVL</span>
+      <span class="k">FROM</span> <span class="n">ALL_CONSTRAINTS</span>
+      <span class="k">START</span> <span class="k">WITH</span> <span class="k">TABLE_NAME</span> <span class="o">=</span> <span class="s1">&#39;szTableName&#39;</span> <span class="k">AND</span> <span class="n">CONSTRAINT_TYPE</span> <span class="o">=</span> <span class="s1">&#39;P&#39;</span>
+      <span class="k">CONNECT</span> <span class="k">BY</span> <span class="k">PRIOR</span> <span class="k">CONSTRAINT_NAME</span> <span class="o">=</span> <span class="n">R_CONSTRAINT_NAME</span>
+      <span class="p">)</span><span class="n">Tree</span>
+<span class="k">WHERE</span> <span class="n">ACC</span><span class="p">.</span><span class="k">CONSTRAINT_NAME</span> <span class="o">=</span> <span class="n">TREE</span><span class="p">.</span><span class="k">CONSTRAINT_NAME</span>
+<span class="k">AND</span>   <span class="n">AIC</span><span class="p">.</span><span class="n">INDEX_NAME</span> <span class="o">=</span> <span class="n">TREE</span><span class="p">.</span><span class="n">R_CONSTRAINT_NAME</span><span class="p">;</span>
+</code></pre></div>
 <p>As shown, the hierarchical query result is nested as a Tree table for join operation.</p>
 
-<p>I find another slow solution from the other, it’s easy to understand but with less efficiency as too many join operations to perform for getting the result.</p>
+<p>I find another slow solution from the other, it&#39;s easy to understand but with less efficiency as too many join operations to perform for getting the result.</p>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql">  <span class="k">SELECT</span>    <span class="n">AC</span><span class="p">.</span><span class="k">Table_Name</span><span class="p">,</span>      <span class="c1">--Source</span>
+          <span class="n">ACC</span><span class="p">.</span><span class="k">Column_Name</span><span class="p">,</span>  <span class="c1">--Source</span>
+          <span class="n">AIC</span><span class="p">.</span><span class="k">Table_Name</span><span class="p">,</span>       <span class="c1">--Ref</span>
+          <span class="n">AIC</span><span class="p">.</span><span class="k">Column_Name</span><span class="p">,</span>  <span class="c1">--Ref</span>
+          <span class="n">AC</span><span class="p">.</span><span class="k">Constraint_Name</span><span class="p">,</span>   <span class="c1">--Source</span>
+          <span class="n">AC</span><span class="p">.</span><span class="n">R_Constraint_Name</span>  <span class="c1">--Ref</span>
+  <span class="k">FROM</span>    <span class="n">All_Constraints</span> <span class="n">AC</span><span class="p">,</span>
+            <span class="n">All_Cons_Columns</span> <span class="n">ACC</span><span class="p">,</span>
+            <span class="n">All_Ind_Columns</span> <span class="n">AIC</span><span class="p">,</span>
+            <span class="p">(</span>
+            <span class="k">SELECT</span>  <span class="k">Constraint_Name</span>
+            <span class="k">FROM</span>    <span class="n">All_Constraints</span>
+            <span class="k">WHERE</span>   <span class="k">Table_Name</span> <span class="o">=</span> <span class="k">UPPER</span><span class="p">(</span><span class="n">szTableName</span><span class="p">)</span>
+            <span class="k">AND</span> <span class="n">Constraint_Type</span> <span class="o">=</span> <span class="s1">&#39;P&#39;</span>
+            <span class="p">)</span> <span class="n">TMP</span>
+  <span class="k">WHERE</span> <span class="n">AC</span><span class="p">.</span><span class="k">Constraint_Name</span> <span class="o">=</span> <span class="n">ACC</span><span class="p">.</span><span class="k">Constraint_Name</span>
+  <span class="k">AND</span>     <span class="n">AC</span><span class="p">.</span><span class="k">Table_Name</span> <span class="o">=</span> <span class="n">ACC</span><span class="p">.</span><span class="k">Table_Name</span>
+  <span class="k">AND</span>     <span class="n">AC</span><span class="p">.</span><span class="n">R_Constraint_Name</span> <span class="o">=</span> <span class="n">AIC</span><span class="p">.</span><span class="n">Index_Name</span>
+  <span class="k">AND</span>     <span class="n">AC</span><span class="p">.</span><span class="n">R_Constraint_Name</span> <span class="o">=</span> <span class="n">TMP</span><span class="p">.</span><span class="k">Constraint_Name</span>
+  <span class="k">AND</span>     <span class="n">AC</span><span class="p">.</span><span class="n">Constraint_Type</span> <span class="o">=</span> <span class="s1">&#39;R&#39;</span>
+  <span class="k">AND</span>     <span class="n">ACC</span><span class="p">.</span><span class="k">Position</span> <span class="o">=</span> <span class="n">AIC</span><span class="p">.</span><span class="n">Column_Position</span>
+  <span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">;</span>
+</code></pre></div>
+<p>But these two solutions are buggy if there is <strong>self referential constraint</strong> among those tables. Therefore, make sure there is no tables has foreign keys refer to itself or using <strong><em>&quot;ON DELETE CASCADE</em></strong> to avoid the problem.</p>
 
-<p><code>sql
-  SELECT	AC.Table_Name,		--Source
-  	      ACC.Column_Name,	--Source
-  	      AIC.Table_Name,		--Ref
-  	      AIC.Column_Name,	--Ref
-  	      AC.Constraint_Name,	--Source
-  	      AC.R_Constraint_Name	--Ref
-  FROM	  All_Constraints AC,
-        	All_Cons_Columns ACC,
-        	All_Ind_Columns AIC,
-        	(
-        	SELECT	Constraint_Name
-        	FROM	All_Constraints
-        	WHERE	Table_Name = UPPER(szTableName)
-        	AND	Constraint_Type = 'P'
-        	) TMP
-  WHERE	AC.Constraint_Name = ACC.Constraint_Name
-  AND	  AC.Table_Name = ACC.Table_Name
-  AND	  AC.R_Constraint_Name = AIC.Index_Name
-  AND	  AC.R_Constraint_Name = TMP.Constraint_Name
-  AND	  AC.Constraint_Type = 'R'
-  AND	  ACC.Position = AIC.Column_Position
-  ORDER BY 1, 2, 3, 4, 5, 6;
-</code></p>
+<p><strong><em>Reference</em></strong></p>
 
-<p>But these two solutions are buggy if there is <strong>self referential constraint</strong> among those tables. Therefore, make sure there is no tables has foreign keys refer to itself or using <strong><em>“ON DELETE CASCADE</em></strong> to avoid the problem.</p>
-
-<p><strong><em>Reference</em></strong>
-&gt; https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022</p>
+<blockquote>
+<p><a href="https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022">https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022</a></p>
+</blockquote>
 
 
   <!-- POST NAVIGATION -->

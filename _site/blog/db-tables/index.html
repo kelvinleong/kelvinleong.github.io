@@ -176,25 +176,20 @@ ga('send', 'pageview');
   <h1 class="postTitle">Oracle Significant Tables</h1>
   <p class="meta">August 20, 2015 | <span class="time">0</span> Minute Read</p>
 
-  <h4 id="oracle-sql-difference-between-usertables-alltables-and-dbatables">[Oracle SQL] Difference between USER_TABLES, ALL_TABLES and DBA_TABLES</h4>
-<hr />
+  <h4 id="oracle-sql-difference-between-user_tables-all_tables-and-dba_tables">[Oracle SQL] Difference between USER_TABLES, ALL_TABLES and DBA_TABLES</h4>
+
+<hr>
 
 <p>User_tables are those owned by the specified user(schema).</p>
 
-<p>For example, an oracle database user log in with the identity “USER” and execute the following sql:</p>
-
-<p><code>sql
-SELECT * FROM user_tables;
-</code></p>
-
-<p>All the retrieved tables are owned by user “USER” only.</p>
+<p>For example, an oracle database user log in with the identity &quot;USER&quot; and execute the following sql:</p>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">user_tables</span><span class="p">;</span>
+</code></pre></div>
+<p>All the retrieved tables are owned by user &quot;USER&quot; only.</p>
 
 <p>And if execute the following sql:</p>
-
-<p><code>sql
-SELECT * FROM all_tables;
-</code></p>
-
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">all_tables</span><span class="p">;</span>
+</code></pre></div>
 <p>Now, the retrieved tables are owned by user USER and those granted to USER.</p>
 
 <p>DBA_tables, contains all the tables in the database.</p>

@@ -179,7 +179,7 @@ ga('send', 'pageview');
   <p>I accidentally encountered the following hibernate system exception after I modified the xml file.</p>
 
 <blockquote>
-  <p><strong><em>hibernateSystemException Don’t change the reference to a collection with cascade=”all-delete-orphan”</em></strong></p>
+<p><strong><em>hibernateSystemException Don’t change the reference to a collection with cascade=”all-delete-orphan”</em></strong></p>
 </blockquote>
 
 <p>The explanation told nothing at all.. So I try google or stackOverflow, none of them provided a practical solution for me.</p>
@@ -187,27 +187,24 @@ ga('send', 'pageview');
 <p>Finally, I examined my xml carefully again and again, then suddenly I realize that one of the bean name is reused again.</p>
 
 <p>After I corrrect it, the exception disappared!</p>
-
-<p>```java</p>
-<bean id="tradingAccCredit" class="com.cmms.sharedlib.ControlGroup">
-    <property name="controls">
-    <util:list value-type="com.cmms.sharedlib.ClientMaint">
-            <ref bean="tradingLimitCM" />
-            <ref bean="expDtOfTradeLimitCM" />
-            <ref bean="tradingLoanLimitCM" /> // The bean name is used previously in another xml
-            <ref bean="expDtOfLoanLimitCM" />
-            <ref bean="creditRatingCM" />
-    </util:list>
-    </property>
-    <property name="userRoles">
-    <util:list value-type="com.cmms.sharedlib.ControlUserRole">
-    <ref bean="mo_editMode" />
-    <ref bean="mom_editMode" />
-    </util:list>
-    </property>
-</bean>
-<p>```</p>
-
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">&lt;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;tradingAccCredit&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;com.cmms.sharedlib.ControlGroup&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;controls&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nl">util:</span><span class="n">list</span> <span class="n">value</span><span class="o">-</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;com.cmms.sharedlib.ClientMaint&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">ref</span> <span class="n">bean</span><span class="o">=</span><span class="s">&quot;tradingLimitCM&quot;</span> <span class="o">/&gt;</span>
+            <span class="o">&lt;</span><span class="n">ref</span> <span class="n">bean</span><span class="o">=</span><span class="s">&quot;expDtOfTradeLimitCM&quot;</span> <span class="o">/&gt;</span>
+            <span class="o">&lt;</span><span class="n">ref</span> <span class="n">bean</span><span class="o">=</span><span class="s">&quot;tradingLoanLimitCM&quot;</span> <span class="o">/&gt;</span> <span class="c1">// The bean name is used previously in another xml</span>
+            <span class="o">&lt;</span><span class="n">ref</span> <span class="n">bean</span><span class="o">=</span><span class="s">&quot;expDtOfLoanLimitCM&quot;</span> <span class="o">/&gt;</span>
+            <span class="o">&lt;</span><span class="n">ref</span> <span class="n">bean</span><span class="o">=</span><span class="s">&quot;creditRatingCM&quot;</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="nl">util:</span><span class="n">list</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;userRoles&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nl">util:</span><span class="n">list</span> <span class="n">value</span><span class="o">-</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;com.cmms.sharedlib.ControlUserRole&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">ref</span> <span class="n">bean</span><span class="o">=</span><span class="s">&quot;mo_editMode&quot;</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="n">ref</span> <span class="n">bean</span><span class="o">=</span><span class="s">&quot;mom_editMode&quot;</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="nl">util:</span><span class="n">list</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">bean</span><span class="o">&gt;</span>
+</code></pre></div>
 <p>To sum up, make sure the bean names are unique.</p>
 
 
