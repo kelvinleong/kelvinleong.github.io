@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <title>Explore PDF</title>
+    <title>JavaFX Concurrency</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
@@ -20,7 +20,7 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/assets/css/style.css">
     <!--[if IE 8]><link rel="stylesheet" href="/assets/css/ie.css"><![endif]-->
-    <link rel="canonical" href="http://kelvinleong.github.io/blog/PDF-Exploration/">
+    <link rel="canonical" href="http://kelvinleong.github.io/blog/JavaFX-Concurrency/:about/:contact/">
 
     <!-- Modernizr -->
     <script src="/assets/js/modernizr.custom.15390.js" type="text/javascript"></script>
@@ -48,7 +48,7 @@ ga('send', 'pageview');
          <nav class="nav-collapse">
              <ul class="noList">
                  
-                 <li class="element first  ">
+                 <li class="element first current ">
                      <a href="/index.html">Home</a>
                  </li> 
                  
@@ -173,61 +173,72 @@ ga('send', 'pageview');
       <div class="container">
           <div class="post">
   
-  <h1 class="postTitle">Explore PDF</h1>
-  <p class="meta">October 06, 2015 | <span class="time">3</span> Minute Read</p>
+  <h1 class="postTitle">JavaFX Concurrency</h1>
+  <p class="meta">August 30, 2015 | <span class="time">1</span> Minute Read</p>
 
-  <blockquote>
-<p><em>This article is to illustrate and explore the popular encoding format &quot;PDF&quot;</em></p>
-</blockquote>
+  <h4 id="java-differences-between-platform-runlater-amp-task-serivce-in-javafx">[Java] Differences between Platform.runlater() &amp; Task/Serivce in JavaFx</h4>
 
-<p>Background: I was asked to develop an application to extract a pdf and convert those traditional Chinese to simplified. Sounds easy, ahuh?
-At first, I think it&#39;s not that difficult until I really get suck into the &quot;notorious&quot; format...So, to begin with, let&#39;s look at the brief
-of what is a PDF.</p>
-
-<h4 id="1-what-is-the-pdf">1. What is the PDF?</h4>
+<hr>
 
 <blockquote>
-<p><strong><em>Portable Document Format (PDF) is a file format used to present documents in a manner independent of application software, hardware and operating systems.[2] Each PDF file encapsulates a complete description of a fixed-layout flat document, including the text, fonts, graphics and other information needed to display it. [From <a href="http://www.wikiwand.com/en/Portable_Document_Format">WikiPedia</a>]</em></strong></p>
+<p>Repost from: <a href="http://stackoverflow.com/questions/13784333/platform-runlater-and-task-javafx">http://stackoverflow.com/questions/13784333/platform-runlater-and-task-javafx</a></p>
 </blockquote>
 
-<p>Basically, the PDF is designed as a universal reading format so that the document can be viewed in various kinds of devices. Therefore, it&#39;s not expected to &quot;edit&quot; a pdf document as per the &quot;universal read&quot; design principle. But, if you are ambitious enough (just like me), you would forcibly process a PDF and make some kinds of modification on that with the help of an Apache project <a href="https://pdfbox.apache.org/">&quot;PDFBox&quot;</a> . Fortunately, PDFBox is a powerful lib for processing a pdf document. There are apis for pdf extraction and parse. What&#39;s more, it is open source! So I can even customize the lib to suit for my needs. But I would say it&#39;s a little bit mess of the PDFBox source code, I mean the source code it&#39;s rather in a complicated nature as I read. Well, that will be another post to talk about the PDFBox.</p>
+<p>Use Platform.runLater(...) for quick and simple operations and Task for complex and big operations .</p>
 
-<p>Since there is no way to overwrite the PDF document, the only way to replace the traditional chinese characters is to re-write the content to a new file with substitution, a &quot;copy-and-replace&quot; solution. It seems that the strategy is reasonable and straightforward. But as you explore more in the PDF structure and its format encoding, you will find it&#39;s a nightmare to simplify the solution as &quot;copy-and-replace&quot;. To sum up, you have to pay if you insist to edit the PDF!!! Then I will talk about the PDF structure.</p>
+<p>Use case for Platform.runLater(...)
+Use case for Task: Task Example in Ensemble App
+Example: Why Can&#39;t we use Platform.runLater(...) for long calculations (Taken from below reference).</p>
 
-<h4 id="2-pdf-structure">2. PDF Structure</h4>
+<p>Problem: Background thread which just counts from 0 to 1 million and update progress bar in UI.</p>
 
-<p>Significantly, a PDF document is composed of 3 key elements images, text and graphics   (symbols/lines/arrows/etc). So if you want completely rewrite the a pdf, you&#39;ll have to extract all the information of those elements and use them to recover in the new file.</p>
+<p><li>Code using Platform.runLater(...):</li></p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="n">ProgressBar</span> <span class="n">bar</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ProgressBar</span><span class="o">();</span>
+<span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="nf">Runnable</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">1000000</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+        <span class="n">Platform</span><span class="o">.</span><span class="na">runLater</span><span class="o">(</span><span class="k">new</span> <span class="nf">Runnable</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+                <span class="n">bar</span><span class="o">.</span><span class="na">setProgress</span><span class="o">(</span><span class="n">counter</span><span class="o">/</span><span class="mf">1000000.0</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+</code></pre></div>
+<p>This is a hideous hunk of code, a crime against nature (and programming in general). First, you’ll lose brain cells just looking at this double nesting of Runnables. Second, it is going to swamp the event queue with little Runnables — a million of them in fact. Clearly, we needed some API to make it easier to write background workers which then communicate back with the UI.</p>
 
-<h5 id="2-1-text">2.1 Text</h5>
+<p><li>Code using Task :</li></p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Task</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Task</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;()</span> <span class="o">{</span>
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="n">Void</span> <span class="nf">call</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">1000000</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">max</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">updateProgress</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">max</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">};</span>
 
+<span class="n">ProgressBar</span> <span class="n">bar</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ProgressBar</span><span class="o">();</span>
+<span class="n">bar</span><span class="o">.</span><span class="na">progressProperty</span><span class="o">().</span><span class="na">bind</span><span class="o">(</span><span class="n">task</span><span class="o">.</span><span class="na">progressProperty</span><span class="o">());</span>
+<span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="n">task</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+</code></pre></div>
 <blockquote>
-<p><strong><em>Text in PDF is represented by text elements in page content streams. A text element specifies that characters should be drawn at certain positions. The characters are specified using the encoding of a selected font resource.</em></strong></p>
+<p>it suffers from none of the flaws exhibited in the previous code</p>
 </blockquote>
 
-<p>So to edit a text, you have to deal with two aspects, one is the font and the other is &quot;encoding&quot;. English and ASCII characters are easy to handle in this case as the font and encoding would not be complicated for those characters. But for chinese characters, it&#39;s a catastrophe.</p>
-
-<p>Let&#39;s say I have parsed the text position and get all the information. The first step is to detect what is &quot;character&quot; inside, whether a English letter or chinese character. Fortunately, pdfBox provide api to retrieve the Unicode of that particular character. Assume that a traditional chinese character &quot;檔&quot; is found and wanna change it to simplified &quot;档&quot;. Again the nightmare occurs, you will have to specify a font which contains simplified chinese charaset and then put the corresponding Unicode to the font writer and then write it out.</p>
-
-<h5 id="2-2-images-amp-symbols">2.2 Images &amp; symbols</h5>
-
-<p>The most complicated part would be to process images &amp; symbols as their nature of complication. Unfortunately, the meta-data would hardly retrieved which causing the information loss. Frankly speaking, you&#39;ll have no way to recover the images and symbols in a complete similarity as the previous document. So that&#39;s why I have to give up my continuation of developing the application. It&#39;s in vain to develop such an application that only provide a similar but never the same document in terms of structure.</p>
-
-<p><strong><em>References:</em></strong></p>
-
-<blockquote>
-<p><a href="http://ccckmit.wikidot.com/pdf:streamcoding">http://ccckmit.wikidot.com/pdf:streamcoding</a></p>
-</blockquote>
+<p><strong><em>Reference</em></strong> : <a href="http://fxexperience.com/2011/07/worker-threading-in-javafx-2-0/">Worker Threading in JavaFX 2.0</a></p>
 
 
   <!-- POST NAVIGATION -->
   <div class="postNav clearfix">
     
-      <a class="prev" href="/blog/hibernate-system-exception/"><span>&laquo;&nbsp;Hibernate System Exception</span>
+      <a class="prev" href="/blog/java-comparable/:about/index.html:contact/index.html"><span>&laquo;&nbsp;Java Comparator</span>
       
     </a>
     
     
-      <a class="next" href="/blog/JVM-Introduction/"><span>Java Garbage Collection&nbsp;&raquo;</span>
+      <a class="next" href="/blog/Encoding-and-CharSets/:about/index.html:contact/index.html"><span>细说字符集(CharSet)和字符编码(Encoding)&nbsp;&raquo;</span>
       
       </a>
     

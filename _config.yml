@@ -4,7 +4,7 @@ description: Long Form Jekyll theme built with SASS / COMPASS / SUSY
 url: http://kelvinleong.github.io
 baseurl: ""
 paginate_path: "blog/page:num/"
-permalink: blog/:title/
+permalink: blog/:title/:about/index.html:contact/index.html
 
 markdown: redcarpet
 highlighter: pygments
@@ -17,10 +17,8 @@ navigation:
    url: /index.html
  - title: About
    url: /about.html
-   permalink: about/index.html
  - title: Contact
    url: /contact.html
-   permalink: contact/index.html
 
 social:
    github: kelvinleong

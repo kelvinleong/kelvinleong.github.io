@@ -5,8 +5,8 @@
     <description>Long Form Jekyll theme built with SASS / COMPASS / SUSY</description>
     <link>http://kelvinleong.github.io/</link>
     <atom:link href="http://kelvinleong.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 09 Feb 2016 00:38:54 +0800</pubDate>
-    <lastBuildDate>Tue, 09 Feb 2016 00:38:54 +0800</lastBuildDate>
+    <pubDate>Tue, 09 Feb 2016 00:42:33 +0800</pubDate>
+    <lastBuildDate>Tue, 09 Feb 2016 00:42:33 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       
@@ -153,8 +153,8 @@
 </description>
         
         <pubDate>Thu, 24 Dec 2015 22:27:00 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/Multithreading-in-java/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/Multithreading-in-java/</guid>
+        <link>http://kelvinleong.github.io/blog/Multithreading-in-java/:about/index.html:contact/index.html</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/blog/Multithreading-in-java/:about/index.html:contact/index.html</guid>
         
         
         <category>multithreading</category>
@@ -263,8 +263,8 @@
 </description>
         
         <pubDate>Mon, 30 Nov 2015 23:53:00 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/Find-Referenced-Tables/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/Find-Referenced-Tables/</guid>
+        <link>http://kelvinleong.github.io/blog/Find-Referenced-Tables/:about/index.html:contact/index.html</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/blog/Find-Referenced-Tables/:about/index.html:contact/index.html</guid>
         
         
         <category>oracle</category>
@@ -322,8 +322,8 @@
 </description>
         
         <pubDate>Mon, 30 Nov 2015 23:53:00 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/Find-All-Referenced-Tables/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/Find-All-Referenced-Tables/</guid>
+        <link>http://kelvinleong.github.io/blog/Find-All-Referenced-Tables/:about/index.html:contact/index.html</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/blog/Find-All-Referenced-Tables/:about/index.html:contact/index.html</guid>
         
         
         <category>jvm</category>
@@ -379,8 +379,8 @@
 </description>
         
         <pubDate>Tue, 10 Nov 2015 23:53:00 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/JVM-Introduction/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/JVM-Introduction/</guid>
+        <link>http://kelvinleong.github.io/blog/JVM-Introduction/:about/index.html:contact/index.html</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/blog/JVM-Introduction/:about/index.html:contact/index.html</guid>
         
         
         <category>java</category>
@@ -440,8 +440,8 @@ of what is a PDF.&lt;/p&gt;
 </description>
         
         <pubDate>Tue, 06 Oct 2015 23:53:00 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/PDF-Exploration/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/PDF-Exploration/</guid>
+        <link>http://kelvinleong.github.io/blog/PDF-Exploration/:about/index.html:contact/index.html</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/blog/PDF-Exploration/:about/index.html:contact/index.html</guid>
         
         
         <category>pdf</category>
@@ -488,8 +488,8 @@ of what is a PDF.&lt;/p&gt;
 </description>
         
         <pubDate>Wed, 16 Sep 2015 04:24:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/hibernate-system-exception/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/hibernate-system-exception/</guid>
+        <link>http://kelvinleong.github.io/blog/hibernate-system-exception/:about/index.html:contact/index.html</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/blog/hibernate-system-exception/:about/index.html:contact/index.html</guid>
         
         
         <category>java</category>
@@ -628,8 +628,8 @@ of what is a PDF.&lt;/p&gt;
 </description>
         
         <pubDate>Wed, 16 Sep 2015 04:24:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/Encoding-and-CharSets/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/Encoding-and-CharSets/</guid>
+        <link>http://kelvinleong.github.io/blog/Encoding-and-CharSets/:about/index.html:contact/index.html</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/blog/Encoding-and-CharSets/:about/index.html:contact/index.html</guid>
         
         
         <category>encoding</category>
@@ -700,8 +700,8 @@ Example: Why Can&amp;#39;t we use Platform.runLater(...) for long calculations (
 </description>
         
         <pubDate>Sun, 30 Aug 2015 04:15:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/JavaFX-Concurrency/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/JavaFX-Concurrency/</guid>
+        <link>http://kelvinleong.github.io/blog/JavaFX-Concurrency/:about/index.html:contact/index.html</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/blog/JavaFX-Concurrency/:about/index.html:contact/index.html</guid>
         
         
         <category>java</category>
@@ -757,8 +757,8 @@ a negative integer, zero, or a positive integer as the first argument is less th
 </description>
         
         <pubDate>Sat, 29 Aug 2015 07:24:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/java-comparable/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/java-comparable/</guid>
+        <link>http://kelvinleong.github.io/blog/java-comparable/:about/index.html:contact/index.html</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/blog/java-comparable/:about/index.html:contact/index.html</guid>
         
         
         <category>java</category>
@@ -795,8 +795,8 @@ a negative integer, zero, or a positive integer as the first argument is less th
 </description>
         
         <pubDate>Thu, 20 Aug 2015 07:24:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/mvn-client/</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/mvn-client/</guid>
+        <link>http://kelvinleong.github.io/blog/mvn-client/:about/index.html:contact/index.html</link>
+        <guid isPermaLink="true">http://kelvinleong.github.io/blog/mvn-client/:about/index.html:contact/index.html</guid>
         
         
         <category>java</category>
