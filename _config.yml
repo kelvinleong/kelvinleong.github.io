@@ -1,15 +1,14 @@
 title: Kelvin
 description: Long Form Jekyll theme built with SASS / COMPASS / SUSY
 
-url: http://kelvinleong.github.io
+url: 127.0.0.1-
 baseurl: ""
 paginate_path: "blog/page:num/"
-permalink: blog/:title/:about/index.html:contact/index.html
+permalink: blog/:title/
 
-markdown: redcarpet
-highlighter: pygments
-redcarpet:
-    extensions: ["no_intra_emphasis","fenced_code_blocks", "autolink", "tables", "strikethrough","with_toc_data"]
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 paginate: 7
 
 navigation:
@@ -24,5 +23,7 @@ social:
    github: kelvinleong
    facebook: kelvin.Y.H.Leung
    email: kelvin_liang@outlook.com
+
+gems: [jekyll-paginate, jekyll-gist]
 
 google_analytics: "UA-58263416-1"

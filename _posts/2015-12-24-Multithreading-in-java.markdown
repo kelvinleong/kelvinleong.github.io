@@ -17,14 +17,14 @@ Basically, there are two ways to create threads in Java programming. One is to "
 
 With implements Runnable:
 
-```java
+~~~java
 public class ThreadB implements Runnable {
     public void run() {
         //Code
     }
 }
 //Started with a "new Thread(threadB).start()" call
-```
+~~~
 Or, with extends Thread:
 
 ```java
@@ -68,27 +68,27 @@ Java Synchronization is better option where we want to allow only one thread to 
 
 Syntax to use synchronized method:
 
-```java
+~~~java
 public class MyObject {
   synchronized someMethod(object reference expression) {   
     //code block   
   }  
 }
-```
+~~~
 
 With the ***synchronized*** keyword, it can be guaranteed that only one thread can access method "someMethod()" which is to lock an object for any shared resources. But there is performance tradeoff by simply using synchronized keyword. Suppose you have 50 lines of code in your method, but you want to synchronize only 5 lines. Therefore, synchronized block is an alternative to solve the problem.
 
 Syntax to use synchronized block
 
-```java
+~~~java
 synchronized (object reference expression) {   
   //code block   
 }
-```
+~~~
 
 Actually, the synchronized method is equivalent to the following code snippet:
 
-```java
+~~~java
 public class MyObject {
   void someMethod(object reference expression) {  
     synchronized(this){
@@ -96,7 +96,7 @@ public class MyObject {
     }
   }  
 }
-```
+~~~
 
 For further details read the following:
 http://www.javatpoint.com/synchronization-in-java
@@ -105,7 +105,7 @@ http://www.javatpoint.com/synchronization-in-java
 
 Inter-thread communication is important in multithreading programming. Let's say there is a scenario that ThreadA is waiting for ThreadB completing its execution to continue its job. One of the solution is to create a status tracker which allows one or more threads to wait until a set of operations being performed in other threads completes.
 
-```java
+~~~java
 public class StatusTracker {
 	public enum STATUS {
 		PENDING,
@@ -141,13 +141,14 @@ public class StatusTracker {
 		}
 	}
 }
-```
+~~~
 
 By invoking ***await(STATUS.COMPLETED)*** in ThreadA, it will release the lock and wait for the notification invoked by ***signal(STATUS.COMPLETED)*** in ThreadB.
 
 For the further leanring of CountDownLatch, read:
-https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CountDownLatch.html
+<https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CountDownLatch.html>
 
 ***Reference***
->https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022
->http://www.javatpoint.com/multithreading-in-java
+
+> <https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022>
+> <http://www.javatpoint.com/multithreading-in-java>

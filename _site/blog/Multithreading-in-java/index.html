@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Multithreading in Java</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
+
+    <!-- Come and get me RSS readers -->
+    <link rel="alternate" type="application/rss+xml" title="Kelvin" href="127.0.0.1-/feed.xml" />
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!--[if IE 8]><link rel="stylesheet" href="/assets/css/ie.css"><![endif]-->
+    <link rel="canonical" href="127.0.0.1-/blog/Multithreading-in-java/">
+
+    <!-- Modernizr -->
+    <script src="/assets/js/modernizr.custom.15390.js" type="text/javascript"></script>
+
+     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-58263416-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+ 
+</head>
+
+
+<body>
+
+    <div class="header">
+     <div class="container">
+         <h1 class="logo"><a href="/">Kelvin</a></h1>
+         <nav class="nav-collapse">
+             <ul class="noList">
+                 
+                 <li class="element first  ">
+                     <a href="/index.html">Home</a>
+                 </li> 
+                 
+                 <li class="element   ">
+                     <a href="/about.html">About</a>
+                 </li> 
+                 
+                 <li class="element   last">
+                     <a href="/contact.html">Contact</a>
+                 </li> 
+                 
+                 <li> <a href="https://github.com/brianmaierjr/long-haul" target="_blank">GitHub</a></li>
+                 <li><a href="https://github.com/brianmaierjr/long-haul/archive/master.zip">Download Theme</a></li>
+             </ul>
+         </nav>
+     </div>
+ </div><!-- end .header -->
+
+
+   <div class="content">
+      <div class="sidebar">
+        <div class="widget-wrapper">
+<h3 class="widget-title">Archive</h3>
+<ul>
+
+    
+    
+        <li><a href="/archive.html#December2015">December 2015</a></li>
+        
+    
+
+    
+    
+        <li><a href="/archive.html#November2015">November 2015</a></li>
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        <li><a href="/archive.html#October2015">October 2015</a></li>
+        
+    
+
+    
+    
+        <li><a href="/archive.html#September2015">September 2015</a></li>
+        
+    
+
+    
+    
+
+    
+    
+        <li><a href="/archive.html#August2015">August 2015</a></li>
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+</ul>
+</div>
+
+<div class="widget-wrapper">
+<h3 class="widget-title">Categories</h3>
+<ul>
+  
+    
+     <li><a href="/categories.html#Theme-ref">
+     Theme</span>
+     </a></li>
+    
+     <li><a href="/categories.html#Database-ref">
+     Database</span>
+     </a></li>
+    
+     <li><a href="/categories.html#Java-ref">
+     Java</span>
+     </a></li>
+    
+     <li><a href="/categories.html#Encoding-ref">
+     Encoding</span>
+     </a></li>
+    
+     <li><a href="/categories.html#PDF-ref">
+     PDF</span>
+     </a></li>
+    
+     <li><a href="/categories.html#JVM-ref">
+     JVM</span>
+     </a></li>
+    
+     <li><a href="/categories.html#Oracle-ref">
+     Oracle</span>
+     </a></li>
+    
+     <li><a href="/categories.html#Multithreading-ref">
+     Multithreading</span>
+     </a></li>
+    
+  
+</ul>
+</div>
+
+      </div>
+      <div class="container">
+          <div class="post">
+  
+  <h1 class="postTitle">Multithreading in Java</h1>
+  <p class="meta">December 24, 2015 | <span class="time">5</span> Minute Read</p>
+
+  <p><em>This passage is to demonstrate the usage of thread and some concrete examples in practice.</em></p>
+
+<blockquote>
+  <p>Threads allow multiple activities to proceed concurrently. Concurrent programming is harder than single-threaded programming, because more things can go wrong, and failures can be hard to reproduce. But you can’t avoid concurrency. It is inherent in much of what we do, and a requirement if you are to obtain good performance from multicore processors, which are now commonplace. This chapter contains advice to help you write clear, correct, well-documented concurrent programs.</p>
+</blockquote>
+
+<p>This is the preface copied from “Effective Java”, of course, concurrent programming is somehow a nightmare for developer particularly when production issues occur. Multithreading is known as notoriously hard to debug and reproduce the error. But as stated, multithreading empower the performance by making good use of multicore processors. Therefore, it’s inevitable for a programmer to take the challenges on multithreading programming.</p>
+
+<h3 id="how-to-create-a-thread-in-java">How to create a thread in Java?</h3>
+
+<p>Basically, there are two ways to create threads in Java programming. One is to “implement Runnable” and the other is to “extends Thread”.</p>
+
+<p>With implements Runnable:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadB</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">//Code</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1">//Started with a "new Thread(threadB).start()" call</span>
+</code></pre>
+</div>
+<p>Or, with extends Thread:</p>
+
+<p>```java
+public class ThreadA extends Thread {
+    public ThreadA() {
+         super(“ThreadA”);
+    }</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>public void run() {
+    //Code
+} } //Started with a "threadA.start()" call ``` This hierarchy can be shown in the following diagram.
+</code></pre>
+</div>
+
+<p><img src="/resources/multithreading/thread-runnable-erp.png" alt="Alt text" /></p>
+
+<p>As shown in the code example, both two methods actually embed the thread body in run() method but the semantic difference is that ThreadB implement the interface run() of Runnable while ThreadA override the method in Thread object. In practice, creating thread using ThreadA is straightforward for beginner to go but ThreadB is actually the preferred method to create a thread. The reason is that <strong><em>“implements Runnable”</em></strong> is more flexible as multi inheritance is not supported in Java. Say, you want to customize a timer control to update the time every 2 seconds by extending an implemented timer class. By this way, you cannot use “extend Thread” method due to the single inheritance restrict in Java.Instead, you can only make the timer to <strong><em>“implements Runnable”</em></strong> and override the run() method to specialize the thread’s behavior.</p>
+
+<h3 id="start-a-thread">Start a thread</h3>
+
+<p>Thread should be started by invoking the native method start() to begin execution.The Java Virtual Machine then calls the run method of this thread to go.Directly invoking the run() method from main thread, the run() method goes onto the current call stack rather than at the beginning of a new call stack i.e., run() will serve as a function call instead by direct invoking.</p>
+
+<p><strong>start()</strong> method of Thread class is used to start a newly created thread. It performs following tasks:</p>
+
+<ul>
+  <li>
+    <p>A new thread starts(with new callstack).</p>
+  </li>
+  <li>
+    <p>The thread moves from New state to the Runnable state.</p>
+  </li>
+  <li>
+    <p>When the thread gets a chance to execute, its target run() method will run.</p>
+  </li>
+</ul>
+
+<p>To further understand the pitfall, read the following passage.
+http://tutorials.jenkov.com/java-concurrency/creating-and-starting-threads.html#common-pitfall</p>
+
+<h3 id="data-concurrency">Data concurrency</h3>
+
+<p>Synchronization in java is the capability to control the access of multiple threads to any shared resource.</p>
+
+<p>Java Synchronization is better option where we want to allow only one thread to access the shared resource.</p>
+
+<p>Syntax to use synchronized method:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyObject</span> <span class="o">{</span>
+  <span class="kd">synchronized</span> <span class="n">someMethod</span><span class="o">(</span><span class="n">object</span> <span class="n">reference</span> <span class="n">expression</span><span class="o">)</span> <span class="o">{</span>   
+    <span class="c1">//code block   </span>
+  <span class="o">}</span>  
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>With the <strong><em>synchronized</em></strong> keyword, it can be guaranteed that only one thread can access method “someMethod()” which is to lock an object for any shared resources. But there is performance tradeoff by simply using synchronized keyword. Suppose you have 50 lines of code in your method, but you want to synchronize only 5 lines. Therefore, synchronized block is an alternative to solve the problem.</p>
+
+<p>Syntax to use synchronized block</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">synchronized</span> <span class="o">(</span><span class="n">object</span> <span class="n">reference</span> <span class="n">expression</span><span class="o">)</span> <span class="o">{</span>   
+  <span class="c1">//code block   </span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>Actually, the synchronized method is equivalent to the following code snippet:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyObject</span> <span class="o">{</span>
+  <span class="kt">void</span> <span class="n">someMethod</span><span class="o">(</span><span class="n">object</span> <span class="n">reference</span> <span class="n">expression</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="kd">synchronized</span><span class="o">(</span><span class="k">this</span><span class="o">){</span>
+      <span class="c1">//code block   </span>
+    <span class="o">}</span>
+  <span class="o">}</span>  
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>For further details read the following:
+http://www.javatpoint.com/synchronization-in-java</p>
+
+<h3 id="inter-thread-communication">Inter-Thread Communication</h3>
+
+<p>Inter-thread communication is important in multithreading programming. Let’s say there is a scenario that ThreadA is waiting for ThreadB completing its execution to continue its job. One of the solution is to create a status tracker which allows one or more threads to wait until a set of operations being performed in other threads completes.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StatusTracker</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">enum</span> <span class="n">STATUS</span> <span class="o">{</span>
+		<span class="n">PENDING</span><span class="o">,</span>
+		<span class="n">COMPLETED</span>
+	<span class="o">}</span>		
+
+	<span class="kd">private</span> <span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">STATUS</span><span class="o">,</span> <span class="n">CountDownLatch</span><span class="o">&gt;</span> <span class="n">signalLatchMap</span> <span class="o">=</span>
+				  			<span class="k">new</span> <span class="n">ConcurrentHashMap</span><span class="o">&lt;</span><span class="n">STATUS</span><span class="o">,</span> <span class="n">CountDownLatch</span><span class="o">&gt;();</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">status</span><span class="o">;</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="n">await</span><span class="o">(</span><span class="n">STATUS</span> <span class="n">signal</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">try</span> <span class="o">{</span>
+
+			<span class="n">CountDownLatch</span> <span class="n">signalLatch</span> <span class="o">=</span> <span class="n">signalLatchMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">signal</span><span class="o">);</span>
+			<span class="k">if</span> <span class="o">(</span><span class="n">signalLatch</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+				<span class="n">signalLatch</span><span class="o">.</span><span class="na">await</span><span class="o">();</span>
+				<span class="n">signalLatchMap</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">signal</span><span class="o">);</span>
+			<span class="o">}</span>
+			<span class="k">else</span> <span class="o">{</span>
+				<span class="n">signalLatch</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CountDownLatch</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+				<span class="n">signalLatchMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">signal</span><span class="o">,</span> <span class="n">signalLatch</span><span class="o">);</span>
+				<span class="n">signalLatch</span><span class="o">.</span><span class="na">await</span><span class="o">();</span>
+				<span class="n">signalLatchMap</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">signal</span><span class="o">);</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+		<span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="n">signal</span><span class="o">(</span><span class="n">STATUS</span> <span class="n">signal</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">CountDownLatch</span> <span class="n">signalLatch</span> <span class="o">=</span> <span class="n">signalLatchMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">signal</span><span class="o">);</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">signalLatch</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>
+			<span class="n">signalLatch</span><span class="o">.</span><span class="na">countDown</span><span class="o">();</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>By invoking <strong><em>await(STATUS.COMPLETED)</em></strong> in ThreadA, it will release the lock and wait for the notification invoked by <strong><em>signal(STATUS.COMPLETED)</em></strong> in ThreadB.</p>
+
+<p>For the further leanring of CountDownLatch, read:
+<a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CountDownLatch.html">https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CountDownLatch.html</a></p>
+
+<p><strong><em>Reference</em></strong></p>
+
+<blockquote>
+  <p><a href="https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022">https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022</a>
+<a href="http://www.javatpoint.com/multithreading-in-java">http://www.javatpoint.com/multithreading-in-java</a></p>
+</blockquote>
+
+
+  <!-- POST NAVIGATION -->
+  <div class="postNav clearfix">
+    
+      <a class="prev" href="/blog/Find-Referenced-Tables/"><span>&laquo;&nbsp;Find tables that reference a particular column in a table </span>
+      
+    </a>
+    
+    
+  </div>
+</div>
+
+      </div>
+   </div><!-- end .content -->
+
+   <div class="footer">
+   <div class="container">
+      <p class="copy">&copy; 2016 <a href="">Kelvin Liang</a> Powered by <a href="http://jekyllrb.com">Jekyll</a></p>
+
+      <div class="footer-links">
+         <ul class="noList">
+            
+            <li><a href="https://www.facebook.com/kelvin.Y.H.Leung">
+                  <svg id="facebook-square" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 30px; width: 30px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M82.667,1H17.335C8.351,1,1,8.351,1,17.336v65.329c0,8.99,7.351,16.335,16.334,16.335h65.332 C91.652,99.001,99,91.655,99,82.665V17.337C99,8.353,91.652,1.001,82.667,1L82.667,1z M84.318,50H68.375v42.875H50V50h-8.855V35.973 H50v-9.11c0-12.378,5.339-19.739,19.894-19.739h16.772V22.3H72.967c-4.066-0.007-4.57,2.12-4.57,6.078l-0.023,7.594H86.75 l-2.431,14.027V50z"></path>
+                  </svg>
+            </a></li>
+            
+            
+            
+            <li><a href="https://github.com/kelvinleong">
+                  <svg id="github" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 30px; width: 30px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M79.099,79.099 c-3.782,3.782-8.184,6.75-13.083,8.823c-1.245,0.526-2.509,0.989-3.79,1.387v-7.344c0-3.86-1.324-6.699-3.972-8.517 c1.659-0.16,3.182-0.383,4.57-0.67c1.388-0.287,2.855-0.702,4.402-1.245c1.547-0.543,2.935-1.189,4.163-1.938 c1.228-0.75,2.409-1.723,3.541-2.919s2.082-2.552,2.847-4.067s1.372-3.334,1.818-5.455c0.446-2.121,0.67-4.458,0.67-7.01 c0-4.945-1.611-9.155-4.833-12.633c1.467-3.828,1.308-7.991-0.478-12.489l-1.197-0.143c-0.829-0.096-2.321,0.255-4.474,1.053 c-2.153,0.798-4.57,2.105-7.249,3.924c-3.797-1.053-7.736-1.579-11.82-1.579c-4.115,0-8.039,0.526-11.772,1.579 c-1.69-1.149-3.294-2.097-4.809-2.847c-1.515-0.75-2.727-1.26-3.637-1.532c-0.909-0.271-1.754-0.439-2.536-0.503 c-0.782-0.064-1.284-0.079-1.507-0.048c-0.223,0.031-0.383,0.064-0.478,0.096c-1.787,4.53-1.946,8.694-0.478,12.489 c-3.222,3.477-4.833,7.688-4.833,12.633c0,2.552,0.223,4.889,0.67,7.01c0.447,2.121,1.053,3.94,1.818,5.455 c0.765,1.515,1.715,2.871,2.847,4.067s2.313,2.169,3.541,2.919c1.228,0.751,2.616,1.396,4.163,1.938 c1.547,0.543,3.014,0.957,4.402,1.245c1.388,0.287,2.911,0.511,4.57,0.67c-2.616,1.787-3.924,4.626-3.924,8.517v7.487 c-1.445-0.43-2.869-0.938-4.268-1.53c-4.899-2.073-9.301-5.041-13.083-8.823c-3.782-3.782-6.75-8.184-8.823-13.083 C9.934,60.948,8.847,55.56,8.847,50s1.087-10.948,3.231-16.016c2.073-4.899,5.041-9.301,8.823-13.083s8.184-6.75,13.083-8.823 C39.052,9.934,44.44,8.847,50,8.847s10.948,1.087,16.016,3.231c4.9,2.073,9.301,5.041,13.083,8.823 c3.782,3.782,6.75,8.184,8.823,13.083c2.143,5.069,3.23,10.457,3.23,16.016s-1.087,10.948-3.231,16.016 C85.848,70.915,82.88,75.317,79.099,79.099L79.099,79.099z"></path>
+                  </svg>
+            </a></li>
+            
+            
+         </ul>
+      </div>
+   </div>
+</div><!-- end .footer -->
+
+   <!-- Add jQuery and other scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src=""><\/script>')</script>
+<script src="/assets/js/dropcap.min.js"></script>
+<script src="/assets/js/responsive-nav.min.js"></script>
+<script src="/assets/js/scripts.js"></script>
+<link rel="stylesheet" href="/assets/js/plugins/prettify.css">
+<script src="/assets/js/plugins/prettify.js"></script>
+<script type="text/javascript">
+  $(function(){
+    $("pre").addClass("prettyprint");
+    prettyPrint();
+  });
+</script>
+
+
+</body>
+
+</html>

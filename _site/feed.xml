@@ -3,11 +3,11 @@
   <channel>
     <title>Kelvin</title>
     <description>Long Form Jekyll theme built with SASS / COMPASS / SUSY</description>
-    <link>http://kelvinleong.github.io/</link>
-    <atom:link href="http://kelvinleong.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 09 Feb 2016 00:42:33 +0800</pubDate>
-    <lastBuildDate>Tue, 09 Feb 2016 00:42:33 +0800</lastBuildDate>
-    <generator>Jekyll v2.5.3</generator>
+    <link>127.0.0.1-/</link>
+    <atom:link href="127.0.0.1-/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 21 Feb 2016 00:36:28 +0800</pubDate>
+    <lastBuildDate>Sun, 21 Feb 2016 00:36:28 +0800</lastBuildDate>
+    <generator>Jekyll v3.1.1</generator>
     
       
       <item>
@@ -15,40 +15,42 @@
         <description>&lt;p&gt;&lt;em&gt;This passage is to demonstrate the usage of thread and some concrete examples in practice.&lt;/em&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Threads allow multiple activities to proceed concurrently. Concurrent programming is harder than single-threaded programming, because more things can go wrong, and failures can be hard to reproduce. But you can’t avoid concurrency. It is inherent in much of what we do, and a requirement if you are to obtain good performance from multicore processors, which are now commonplace. This chapter contains advice to help you write clear, correct, well-documented concurrent programs.&lt;/p&gt;
+  &lt;p&gt;Threads allow multiple activities to proceed concurrently. Concurrent programming is harder than single-threaded programming, because more things can go wrong, and failures can be hard to reproduce. But you can’t avoid concurrency. It is inherent in much of what we do, and a requirement if you are to obtain good performance from multicore processors, which are now commonplace. This chapter contains advice to help you write clear, correct, well-documented concurrent programs.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;This is the preface copied from &amp;quot;Effective Java&amp;quot;, of course, concurrent programming is somehow a nightmare for developer particularly when production issues occur. Multithreading is known as notoriously hard to debug and reproduce the error. But as stated, multithreading empower the performance by making good use of multicore processors. Therefore, it&amp;#39;s inevitable for a programmer to take the challenges on multithreading programming.&lt;/p&gt;
+&lt;p&gt;This is the preface copied from “Effective Java”, of course, concurrent programming is somehow a nightmare for developer particularly when production issues occur. Multithreading is known as notoriously hard to debug and reproduce the error. But as stated, multithreading empower the performance by making good use of multicore processors. Therefore, it’s inevitable for a programmer to take the challenges on multithreading programming.&lt;/p&gt;
 
 &lt;h3 id=&quot;how-to-create-a-thread-in-java&quot;&gt;How to create a thread in Java?&lt;/h3&gt;
 
-&lt;p&gt;Basically, there are two ways to create threads in Java programming. One is to &amp;quot;implement Runnable&amp;quot; and the other is to &amp;quot;extends Thread&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Basically, there are two ways to create threads in Java programming. One is to “implement Runnable” and the other is to “extends Thread”.&lt;/p&gt;
 
 &lt;p&gt;With implements Runnable:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ThreadB&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Runnable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ThreadB&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Runnable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;c1&quot;&gt;//Code&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//Started with a &amp;quot;new Thread(threadB).start()&amp;quot; call&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;c1&quot;&gt;//Started with a &quot;new Thread(threadB).start()&quot; call&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;Or, with extends Thread:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ThreadA&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ThreadA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-         &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;ThreadA&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;//Code&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//Started with a &amp;quot;threadA.start()&amp;quot; call&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This hierarchy can be shown in the following diagram.&lt;/p&gt;
+&lt;p&gt;```java
+public class ThreadA extends Thread {
+    public ThreadA() {
+         super(“ThreadA”);
+    }&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/resources/multithreading/thread-runnable-erp.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public void run() {
+    //Code
+} } //Started with a &quot;threadA.start()&quot; call ``` This hierarchy can be shown in the following diagram.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;As shown in the code example, both two methods actually embed the thread body in run() method but the semantic difference is that ThreadB implement the interface run() of Runnable while ThreadA override the method in Thread object. In practice, creating thread using ThreadA is straightforward for beginner to go but ThreadB is actually the preferred method to create a thread. The reason is that &lt;strong&gt;&lt;em&gt;&amp;quot;implements Runnable&amp;quot;&lt;/em&gt;&lt;/strong&gt; is more flexible as multi inheritance is not supported in Java. Say, you want to customize a timer control to update the time every 2 seconds by extending an implemented timer class. By this way, you cannot use &amp;quot;extend Thread&amp;quot; method due to the single inheritance restrict in Java.Instead, you can only make the timer to &lt;strong&gt;&lt;em&gt;&amp;quot;implements Runnable&amp;quot;&lt;/em&gt;&lt;/strong&gt; and override the run() method to specialize the thread&amp;#39;s behavior.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/resources/multithreading/thread-runnable-erp.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As shown in the code example, both two methods actually embed the thread body in run() method but the semantic difference is that ThreadB implement the interface run() of Runnable while ThreadA override the method in Thread object. In practice, creating thread using ThreadA is straightforward for beginner to go but ThreadB is actually the preferred method to create a thread. The reason is that &lt;strong&gt;&lt;em&gt;“implements Runnable”&lt;/em&gt;&lt;/strong&gt; is more flexible as multi inheritance is not supported in Java. Say, you want to customize a timer control to update the time every 2 seconds by extending an implemented timer class. By this way, you cannot use “extend Thread” method due to the single inheritance restrict in Java.Instead, you can only make the timer to &lt;strong&gt;&lt;em&gt;“implements Runnable”&lt;/em&gt;&lt;/strong&gt; and override the run() method to specialize the thread’s behavior.&lt;/p&gt;
 
 &lt;h3 id=&quot;start-a-thread&quot;&gt;Start a thread&lt;/h3&gt;
 
@@ -57,13 +59,19 @@
 &lt;p&gt;&lt;strong&gt;start()&lt;/strong&gt; method of Thread class is used to start a newly created thread. It performs following tasks:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;A new thread starts(with new callstack).&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The thread moves from New state to the Runnable state.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;When the thread gets a chance to execute, its target run() method will run.&lt;/p&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;A new thread starts(with new callstack).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The thread moves from New state to the Runnable state.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;When the thread gets a chance to execute, its target run() method will run.&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;To further understand the pitfall, read the following passage.
-&lt;a href=&quot;http://tutorials.jenkov.com/java-concurrency/creating-and-starting-threads.html#common-pitfall&quot;&gt;http://tutorials.jenkov.com/java-concurrency/creating-and-starting-threads.html#common-pitfall&lt;/a&gt;&lt;/p&gt;
+http://tutorials.jenkov.com/java-concurrency/creating-and-starting-threads.html#common-pitfall&lt;/p&gt;
 
 &lt;h3 id=&quot;data-concurrency&quot;&gt;Data concurrency&lt;/h3&gt;
 
@@ -72,70 +80,82 @@
 &lt;p&gt;Java Synchronization is better option where we want to allow only one thread to access the shared resource.&lt;/p&gt;
 
 &lt;p&gt;Syntax to use synchronized method:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;someMethod&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reference&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;   
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;someMethod&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reference&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;   
     &lt;span class=&quot;c1&quot;&gt;//code block   &lt;/span&gt;
   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;With the &lt;strong&gt;&lt;em&gt;synchronized&lt;/em&gt;&lt;/strong&gt; keyword, it can be guaranteed that only one thread can access method &amp;quot;someMethod()&amp;quot; which is to lock an object for any shared resources. But there is performance tradeoff by simply using synchronized keyword. Suppose you have 50 lines of code in your method, but you want to synchronize only 5 lines. Therefore, synchronized block is an alternative to solve the problem.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;With the &lt;strong&gt;&lt;em&gt;synchronized&lt;/em&gt;&lt;/strong&gt; keyword, it can be guaranteed that only one thread can access method “someMethod()” which is to lock an object for any shared resources. But there is performance tradeoff by simply using synchronized keyword. Suppose you have 50 lines of code in your method, but you want to synchronize only 5 lines. Therefore, synchronized block is an alternative to solve the problem.&lt;/p&gt;
 
 &lt;p&gt;Syntax to use synchronized block&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reference&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;   
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reference&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;   
   &lt;span class=&quot;c1&quot;&gt;//code block   &lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;Actually, the synchronized method is equivalent to the following code snippet:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;someMethod&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reference&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;someMethod&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reference&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  
     &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
       &lt;span class=&quot;c1&quot;&gt;//code block   &lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;For further details read the following:
-&lt;a href=&quot;http://www.javatpoint.com/synchronization-in-java&quot;&gt;http://www.javatpoint.com/synchronization-in-java&lt;/a&gt;&lt;/p&gt;
+http://www.javatpoint.com/synchronization-in-java&lt;/p&gt;
 
 &lt;h3 id=&quot;inter-thread-communication&quot;&gt;Inter-Thread Communication&lt;/h3&gt;
 
-&lt;p&gt;Inter-thread communication is important in multithreading programming. Let&amp;#39;s say there is a scenario that ThreadA is waiting for ThreadB completing its execution to continue its job. One of the solution is to create a status tracker which allows one or more threads to wait until a set of operations being performed in other threads completes.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;StatusTracker&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;STATUS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;PENDING&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;COMPLETED&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;       
+&lt;p&gt;Inter-thread communication is important in multithreading programming. Let’s say there is a scenario that ThreadA is waiting for ThreadB completing its execution to continue its job. One of the solution is to create a status tracker which allows one or more threads to wait until a set of operations being performed in other threads completes.&lt;/p&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ConcurrentMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;STATUS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CountDownLatch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signalLatchMap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
-                            &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ConcurrentHashMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;STATUS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CountDownLatch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;();&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;StatusTracker&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;STATUS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;PENDING&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;COMPLETED&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;		
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;await&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;STATUS&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ConcurrentMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;STATUS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CountDownLatch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signalLatchMap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+				  			&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ConcurrentHashMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;STATUS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CountDownLatch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;();&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
-            &lt;span class=&quot;n&quot;&gt;CountDownLatch&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signalLatchMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;await&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;signalLatchMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CountDownLatch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;signalLatchMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;await&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;signalLatchMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;await&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;STATUS&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;STATUS&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;CountDownLatch&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signalLatchMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;countDown&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;CountDownLatch&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signalLatchMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;await&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;signalLatchMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CountDownLatch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;signalLatchMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;await&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;signalLatchMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;STATUS&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;CountDownLatch&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signalLatchMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;signalLatch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;countDown&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;By invoking &lt;strong&gt;&lt;em&gt;await(STATUS.COMPLETED)&lt;/em&gt;&lt;/strong&gt; in ThreadA, it will release the lock and wait for the notification invoked by &lt;strong&gt;&lt;em&gt;signal(STATUS.COMPLETED)&lt;/em&gt;&lt;/strong&gt; in ThreadB.&lt;/p&gt;
 
 &lt;p&gt;For the further leanring of CountDownLatch, read:
@@ -144,20 +164,21 @@
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022&quot;&gt;https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022&lt;/a&gt;
+  &lt;p&gt;&lt;a href=&quot;https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022&quot;&gt;https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022&lt;/a&gt;
 &lt;a href=&quot;http://www.javatpoint.com/multithreading-in-java&quot;&gt;http://www.javatpoint.com/multithreading-in-java&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
         
           <description>&lt;p&gt;&lt;em&gt;This passage is to demonstrate the usage of thread and some concrete examples in practice.&lt;/em&gt;&lt;/p&gt;
+
 </description>
         
         <pubDate>Thu, 24 Dec 2015 22:27:00 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/Multithreading-in-java/:about/index.html:contact/index.html</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/Multithreading-in-java/:about/index.html:contact/index.html</guid>
+        <link>127.0.0.1-/blog/Multithreading-in-java/</link>
+        <guid isPermaLink="true">127.0.0.1-/blog/Multithreading-in-java/</guid>
         
         
-        <category>multithreading</category>
+        <category>Multithreading</category>
         
       </item>
       
@@ -165,109 +186,119 @@
       
       <item>
         <title>Find tables that reference a particular column in a table </title>
-        <description>&lt;p&gt;Scenario: &lt;em&gt;An requirement states &amp;quot;to delete the data from a table which is referenced by different tables&amp;quot;.&lt;/em&gt;&lt;/p&gt;
+        <description>&lt;p&gt;Scenario: &lt;em&gt;An requirement states “to delete the data from a table which is referenced by different tables”.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Well, to delete records in Oracle Database is believed to be an simple job by the following command &lt;em&gt;&amp;quot;Delete FROM table_name&amp;quot;&lt;/em&gt;. But the prerequisite is that the table should not be referenced by any other tables otherwise it may cause the &amp;quot;foreign key violation&amp;quot; while trying to delete the table.&lt;/p&gt;
+&lt;p&gt;Well, to delete records in Oracle Database is believed to be an simple job by the following command &lt;em&gt;“Delete FROM table_name”&lt;/em&gt;. But the prerequisite is that the table should not be referenced by any other tables otherwise it may cause the “foreign key violation” while trying to delete the table.&lt;/p&gt;
 
 &lt;p&gt;Before that, we should have an explicit view on how the reference constraints is maintained in Oracle. The key system table is &lt;strong&gt;&lt;em&gt;ALL_CONSTRAINTS&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;ALL_CONSTRAINTS&lt;/strong&gt; describes constraint definitions on tables accessible to the current user.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;ALL_CONSTRAINTS&lt;/strong&gt; describes constraint definitions on tables accessible to the current user.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;table&gt;&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align: left&quot;&gt;Column&lt;/th&gt;
-&lt;th style=&quot;text-align: left&quot;&gt;Descriptions&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align: left&quot;&gt;CONSTRAINT_TYPE&lt;/td&gt;
-&lt;td style=&quot;text-align: left&quot;&gt;&lt;ul&gt;&lt;li&gt;C (check constraint on a table)&lt;/li&gt;&lt;li&gt;P (primary key)&lt;/li&gt;&lt;li&gt;U (unique key)&lt;/li&gt;&lt;li&gt;R (referential integrity)&lt;/li&gt;&lt;li&gt;V (with check option, on a view)&lt;/li&gt;&lt;li&gt;O (with read only, on a view)&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align: left&quot;&gt;R_CONSTRAINT_NAME&lt;/td&gt;
-&lt;td style=&quot;text-align: left&quot;&gt;Name of the unique constraint definition for referenced table&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align: left&quot;&gt;CONSTRAINT_NAME&lt;/td&gt;
-&lt;td style=&quot;text-align: left&quot;&gt;Name of the constraint definition&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Column&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Descriptions&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;CONSTRAINT_TYPE&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;C (check constraint on a table)&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;P (primary key)&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;U (unique key)&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;R (referential integrity)&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;V (with check option, on a view)&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;O (with read only, on a view)&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;R_CONSTRAINT_NAME&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Name of the unique constraint definition for referenced table&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;CONSTRAINT_NAME&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Name of the constraint definition&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;There is a hierarchical structure in this table that &lt;em&gt;R_CONSTRAINT_NAME&lt;/em&gt; indicating the foreign key constraint of the table would be the &lt;em&gt;CONSTRAINT_NAME&lt;/em&gt; of a table it refers to (note, foreign key must refer to a primary key). By this relationship, we can create a hierarchical query to find out the table name, primary constraint name and its referenced tables name and the foreign key constraint name.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;  &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CONSTRAINT_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-         &lt;span class=&quot;k&quot;&gt;TABLE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-         &lt;span class=&quot;n&quot;&gt;CONSTRAINT_TYPE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-         &lt;span class=&quot;n&quot;&gt;R_CONSTRAINT_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-         &lt;span class=&quot;k&quot;&gt;LEVEL&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LVL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ALL_CONSTRAINTS&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WITH&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;szTableName&amp;#39;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CONSTRAINT_TYPE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;P&amp;#39;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;CONNECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;PRIOR&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CONSTRAINT_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;R_CONSTRAINT_NAME&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sql
+  SELECT CONSTRAINT_NAME,
+         TABLE_NAME,
+         CONSTRAINT_TYPE,
+         R_CONSTRAINT_NAME,
+         LEVEL (LVL)
+  FROM ALL_CONSTRAINTS
+  START WITH TABLE_NAME = &#39;szTableName&#39; AND CONSTRAINT_TYPE = &#39;P&#39;
+  CONNECT BY PRIOR CONSTRAINT_NAME = R_CONSTRAINT_NAME
+&lt;/code&gt;&lt;/p&gt;
+
 &lt;p&gt;To further find out the corresponding primary and foreign key columns, we can use the above result to join with table &lt;strong&gt;&lt;em&gt;ALL_IND_COLUMNS&lt;/em&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;em&gt;ALL_CONS_COLUMNS&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;TABLE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-       &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;COLUMN_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-       &lt;span class=&quot;n&quot;&gt;ACC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;COLUMN_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-       &lt;span class=&quot;n&quot;&gt;TREE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;TABLE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-       &lt;span class=&quot;n&quot;&gt;TREE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CONSTRAINT_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-       &lt;span class=&quot;n&quot;&gt;TREE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LVL&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;ALL_IND_COLUMNS&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;ALL_CONS_COLUMNS&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CONSTRAINT_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CONSTRAINT_TYPE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;R_CONSTRAINT_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LEVEL&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LVL&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ALL_CONSTRAINTS&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WITH&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;szTableName&amp;#39;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CONSTRAINT_TYPE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;P&amp;#39;&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;CONNECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;PRIOR&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CONSTRAINT_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;R_CONSTRAINT_NAME&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Tree&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CONSTRAINT_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TREE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CONSTRAINT_NAME&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;INDEX_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TREE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R_CONSTRAINT_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sql
+SELECT AIC.TABLE_NAME,
+       AIC.COLUMN_NAME,
+       ACC.COLUMN_NAME,
+       TREE.TABLE_NAME,
+       TREE.CONSTRAINT_NAME,
+       TREE.LVL
+FROM
+      ALL_IND_COLUMNS AIC,
+      ALL_CONS_COLUMNS ACC,
+      (
+      SELECT CONSTRAINT_NAME, TABLE_NAME, CONSTRAINT_TYPE, R_CONSTRAINT_NAME, LEVEL LVL
+      FROM ALL_CONSTRAINTS
+      START WITH TABLE_NAME = &#39;szTableName&#39; AND CONSTRAINT_TYPE = &#39;P&#39;
+      CONNECT BY PRIOR CONSTRAINT_NAME = R_CONSTRAINT_NAME
+      )Tree
+WHERE ACC.CONSTRAINT_NAME = TREE.CONSTRAINT_NAME
+AND   AIC.INDEX_NAME = TREE.R_CONSTRAINT_NAME;
+&lt;/code&gt;&lt;/p&gt;
+
 &lt;p&gt;As shown, the hierarchical query result is nested as a Tree table for join operation.&lt;/p&gt;
 
-&lt;p&gt;I find another slow solution from the other, it&amp;#39;s easy to understand but with less efficiency as too many join operations to perform for getting the result.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;  &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Table_Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;      &lt;span class=&quot;c1&quot;&gt;--Source&lt;/span&gt;
-          &lt;span class=&quot;n&quot;&gt;ACC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Column_Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;--Source&lt;/span&gt;
-          &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Table_Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;       &lt;span class=&quot;c1&quot;&gt;--Ref&lt;/span&gt;
-          &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Column_Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;--Ref&lt;/span&gt;
-          &lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Constraint_Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;--Source&lt;/span&gt;
-          &lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R_Constraint_Name&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;--Ref&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;All_Constraints&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;All_Cons_Columns&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;All_Ind_Columns&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;Constraint_Name&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;All_Constraints&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;Table_Name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;UPPER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;szTableName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Constraint_Type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;P&amp;#39;&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TMP&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Constraint_Name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Constraint_Name&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Table_Name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Table_Name&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R_Constraint_Name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Index_Name&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R_Constraint_Name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TMP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Constraint_Name&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Constraint_Type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;R&amp;#39;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;ACC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Position&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Column_Position&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;But these two solutions are buggy if there is &lt;strong&gt;self referential constraint&lt;/strong&gt; among those tables. Therefore, make sure there is no tables has foreign keys refer to itself or using &lt;strong&gt;&lt;em&gt;&amp;quot;ON DELETE CASCADE&lt;/em&gt;&lt;/strong&gt; to avoid the problem.&lt;/p&gt;
+&lt;p&gt;I find another slow solution from the other, it’s easy to understand but with less efficiency as too many join operations to perform for getting the result.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sql
+  SELECT	AC.Table_Name,		--Source
+  	      ACC.Column_Name,	--Source
+  	      AIC.Table_Name,		--Ref
+  	      AIC.Column_Name,	--Ref
+  	      AC.Constraint_Name,	--Source
+  	      AC.R_Constraint_Name	--Ref
+  FROM	  All_Constraints AC,
+        	All_Cons_Columns ACC,
+        	All_Ind_Columns AIC,
+        	(
+        	SELECT	Constraint_Name
+        	FROM	All_Constraints
+        	WHERE	Table_Name = UPPER(szTableName)
+        	AND	Constraint_Type = &#39;P&#39;
+        	) TMP
+  WHERE	AC.Constraint_Name = ACC.Constraint_Name
+  AND	  AC.Table_Name = ACC.Table_Name
+  AND	  AC.R_Constraint_Name = AIC.Index_Name
+  AND	  AC.R_Constraint_Name = TMP.Constraint_Name
+  AND	  AC.Constraint_Type = &#39;R&#39;
+  AND	  ACC.Position = AIC.Column_Position
+  ORDER BY 1, 2, 3, 4, 5, 6;
+&lt;/code&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022&quot;&gt;https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;But these two solutions are buggy if there is &lt;strong&gt;self referential constraint&lt;/strong&gt; among those tables. Therefore, make sure there is no tables has foreign keys refer to itself or using &lt;strong&gt;&lt;em&gt;“ON DELETE CASCADE&lt;/em&gt;&lt;/strong&gt; to avoid the problem.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;
+&amp;gt; https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022&lt;/p&gt;
 </description>
         
-          <description>&lt;p&gt;Scenario: &lt;em&gt;An requirement states &amp;quot;to delete the data from a table which is referenced by different tables&amp;quot;.&lt;/em&gt;&lt;/p&gt;
+          <description>&lt;p&gt;Scenario: &lt;em&gt;An requirement states “to delete the data from a table which is referenced by different tables”.&lt;/em&gt;&lt;/p&gt;
+
 </description>
         
         <pubDate>Mon, 30 Nov 2015 23:53:00 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/Find-Referenced-Tables/:about/index.html:contact/index.html</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/Find-Referenced-Tables/:about/index.html:contact/index.html</guid>
+        <link>127.0.0.1-/blog/Find-Referenced-Tables/</link>
+        <guid isPermaLink="true">127.0.0.1-/blog/Find-Referenced-Tables/</guid>
         
         
-        <category>oracle</category>
+        <category>Oracle</category>
         
       </item>
       
@@ -276,57 +307,57 @@
       <item>
         <title>Monitor the application in JVisualVm</title>
         <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;This article is to illustrate how to monitor the application with the help of JVisualVm&lt;/em&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;em&gt;This article is to illustrate how to monitor the application with the help of JVisualVm&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;I am developing a JavaFx test tool for back-end server APIs validity checking. In practice, I found the application is easy to hang after running for a while. Therefore, I use the JVisualVm to monitor the application and find out what&amp;#39;s going wrong there.&lt;/p&gt;
+&lt;p&gt;I am developing a JavaFx test tool for back-end server APIs validity checking. In practice, I found the application is easy to hang after running for a while. Therefore, I use the JVisualVm to monitor the application and find out what’s going wrong there.&lt;/p&gt;
 
-&lt;p&gt;Let&amp;#39;s go more details.&lt;/p&gt;
+&lt;p&gt;Let’s go more details.&lt;/p&gt;
 
-&lt;h4 id=&quot;1-how-to-install-jvisualvm&quot;&gt;1. How to Install JVisualVM ?&lt;/h4&gt;
+&lt;h4 id=&quot;how-to-install-jvisualvm-&quot;&gt;1. How to Install JVisualVM ?&lt;/h4&gt;
+&lt;p&gt;JVisualVm is a standard part of Sun’s JDK distribution since JDK 6 Update. To begin the tour following &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/technotes/guides/visualvm/intro.html&quot;&gt;this link&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;JVisualVm is a standard part of Sun&amp;#39;s JDK distribution since JDK 6 Update. To begin the tour following &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/technotes/guides/visualvm/intro.html&quot;&gt;this link&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;2-to-monitor-your-application&quot;&gt;2. To monitor your application&lt;/h4&gt;
-
-&lt;p&gt;It&amp;#39;s convenient to use JVisualVM to monitor your application. Just click the application&amp;#39;s name on the &amp;quot;Applications&amp;quot; list view on the left. You can see the CPU/Heap/Classes/Threads usage diagrams by clicking the &amp;quot;Monitor&amp;quot; tab for further exploration.
-&lt;img src=&quot;/resources/jvisualvm/monitor.PNG&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;to-monitor-your-application&quot;&gt;2. To monitor your application&lt;/h4&gt;
+&lt;p&gt;It’s convenient to use JVisualVM to monitor your application. Just click the application’s name on the “Applications” list view on the left. You can see the CPU/Heap/Classes/Threads usage diagrams by clicking the “Monitor” tab for further exploration.
+&lt;img src=&quot;/resources/jvisualvm/monitor.PNG&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;By monitoring the threads, I found a big problem that every time I open one of the UI, which is for history review, it creates a new thread and after closing the UI, the tread still keeps alive and never exit (as shown in the following figure). That would cause a MOM disaster if the ui is frequently in use.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/resources/jvisualvm/thread-trace.jpg&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/resources/jvisualvm/thread-trace.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;So, I check carefully in the source of the UI, I found a thread is always created to read the data from a blocking queue periodically during initialization of the UI. But the problem is the thread is embedded with a while(true) loop which will never exit so that even its parent UI died, the thread will not be killed but continue the dead loop. Therefore, I use a poison pill to message the thread to stop.Concretely, that is by changing the &amp;quot;poison pill&amp;quot; (a default true volatile boolean value) to false while on close method of the UI is invoked thus the thread will terminate itself by leaving the dead loop (refer to the following sampe codes). Then I assign a name to the thread and trace it in JVisualVm. As expected, the thread exit after I close the UI (see the following figure), thus solving the problem!&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;   &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;volatile&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;p&gt;So, I check carefully in the source of the UI, I found a thread is always created to read the data from a blocking queue periodically during initialization of the UI. But the problem is the thread is embedded with a while(true) loop which will never exit so that even its parent UI died, the thread will not be killed but continue the dead loop. Therefore, I use a poison pill to message the thread to stop.Concretely, that is by changing the “poison pill” (a default true volatile boolean value) to false while on close method of the UI is invoked thus the thread will terminate itself by leaving the dead loop (refer to the following sampe codes). Then I assign a name to the thread and trace it in JVisualVm. As expected, the thread exit after I close the UI (see the following figure), thus solving the problem!&lt;/p&gt;
 
-   &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-           &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                   &lt;span class=&quot;c1&quot;&gt;//Do something there&lt;/span&gt;
-           &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;p&gt;```java
+   private volatile boolean stop = true;&lt;/p&gt;
 
-   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;/resources/jvisualvm/thread-trace-1.jpg&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;p&gt;@Override
+   public void run() {
+           while(!stop) {
+                   //Do something there
+           }&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;}&lt;/p&gt;
 
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.javaworld.com/article/2072322/from-jconsole-to-visualvm.html&quot;&gt;http://www.javaworld.com/article/2072322/from-jconsole-to-visualvm.html&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/jvisualvm/thread-trace-1.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;
+&amp;gt; http://www.javaworld.com/article/2072322/from-jconsole-to-visualvm.html&lt;/p&gt;
 </description>
         
           <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;This article is to illustrate how to monitor the application with the help of JVisualVm&lt;/em&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;em&gt;This article is to illustrate how to monitor the application with the help of JVisualVm&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
+
 </description>
         
         <pubDate>Mon, 30 Nov 2015 23:53:00 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/Find-All-Referenced-Tables/:about/index.html:contact/index.html</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/Find-All-Referenced-Tables/:about/index.html:contact/index.html</guid>
+        <link>127.0.0.1-/blog/Find-All-Referenced-Tables/</link>
+        <guid isPermaLink="true">127.0.0.1-/blog/Find-All-Referenced-Tables/</guid>
         
         
-        <category>jvm</category>
+        <category>JVM</category>
         
       </item>
       
@@ -335,55 +366,61 @@
       <item>
         <title>Java Garbage Collection</title>
         <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;This article is to illustrate and explore the mechanism of Garbage Collection&lt;/em&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;em&gt;This article is to illustrate and explore the mechanism of Garbage Collection&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Garbage collection is a big topic for Java programmer and it always occurs in the interview (I was challenged several times) ! So in this passage, I will try to illustrate how Garbage Collection works with the Hotspot JVM.&lt;/p&gt;
 
-&lt;p&gt;Java&amp;#39;s automatic garbage collection nicely frees programmers from worrying about memory management. Think about C++ programming, every time you new something, you have to cater for the delete appropriately. However, in java, you just new an object as you want without concerning to free them at all. But the convenience is not free and exactly JVM is responsible to collect the unreferenced objects(or so called &amp;quot;garbage&amp;quot;). That&amp;#39;s why the interviewer like to challenge interviewee on this topic.&lt;/p&gt;
+&lt;p&gt;Java’s automatic garbage collection nicely frees programmers from worrying about memory management. Think about C++ programming, every time you new something, you have to cater for the delete appropriately. However, in java, you just new an object as you want without concerning to free them at all. But the convenience is not free and exactly JVM is responsible to collect the unreferenced objects(or so called “garbage”). That’s why the interviewer like to challenge interviewee on this topic.&lt;/p&gt;
 
 &lt;p&gt;First, how does Garbage Collection works?&lt;/p&gt;
 
 &lt;p&gt;Java implements something called a generational garbage collector based upon the generational hypothesis assumption, which states that &lt;strong&gt;&lt;em&gt;the majority of objects that are created are quickly discarded&lt;/em&gt;&lt;/strong&gt;, and objects that are not quickly collected are likely to be around for a while.&lt;/p&gt;
 
-&lt;p&gt;Let&amp;#39;s have a look at the structure of Hotspot heap&lt;/p&gt;
+&lt;p&gt;Let’s have a look at the structure of Hotspot heap&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/resources/Slide5.PNG&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/resources/Slide5.PNG&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;As you can see from the diagram, the heap is divided into 3 parts, young , tenured and permanent generation respectively.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;The Young Generation is where all new objects are allocated and aged. When the young generation fills up, this causes a minor garbage collection. Minor collections can be optimized assuming a high object mortality rate. A young generation full of dead objects is collected very quickly. Some surviving objects are aged and eventually move to the old generation. More specifically,&lt;/p&gt;
+  &lt;li&gt;
+    &lt;p&gt;The Young Generation is where all new objects are allocated and aged. When the young generation fills up, this causes a minor garbage collection. Minor collections can be optimized assuming a high object mortality rate. A young generation full of dead objects is collected very quickly. Some surviving objects are aged and eventually move to the old generation. More specifically,&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Eden Space - Objects start out here. Most objects are created and destroyed in the Eden Space. Here, the GC does Minors GCs, which are optimized garbage collections. When a Minor GC is performed, any references to objects that are still needed are migrated to one of the survivors spaces (S0 or S1).&lt;/li&gt;
-&lt;li&gt;Survivor Space (S0 and S1) - Objects that survive Eden end up here. There are two of these, and only one is in use at any given time (unless we have a serious memory leak). One is designated as empty, and the other as live, alternating with every GC cycle.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The Old Generation is used to store long surviving objects. Typically, a threshold is set for young generation object and when that age is met, the object gets moved to the old generation. Eventually the old generation needs to be collected. This event is called a major garbage collection.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The Permanent generation contains metadata required by the JVM to describe the classes and methods used in the application. The permanent generation is populated by the JVM at runtime based on classes in use by the application. In addition, Java SE library classes and methods may be stored here.&lt;/p&gt;&lt;/li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Eden Space - Objects start out here. Most objects are created and destroyed in the Eden Space. Here, the GC does Minors GCs, which are optimized garbage collections. When a Minor GC is performed, any references to objects that are still needed are migrated to one of the survivors spaces (S0 or S1).&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Survivor Space (S0 and S1) - Objects that survive Eden end up here. There are two of these, and only one is in use at any given time (unless we have a serious memory leak). One is designated as empty, and the other as live, alternating with every GC cycle.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The Old Generation is used to store long surviving objects. Typically, a threshold is set for young generation object and when that age is met, the object gets moved to the old generation. Eventually the old generation needs to be collected. This event is called a major garbage collection.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The Permanent generation contains metadata required by the JVM to describe the classes and methods used in the application. The permanent generation is populated by the JVM at runtime based on classes in use by the application. In addition, Java SE library classes and methods may be stored here.&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html&quot;&gt;http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.toptal.com/java/hunting-memory-leaks-in-java&quot;&gt;http://www.toptal.com/java/hunting-memory-leaks-in-java&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;
+&amp;gt;* http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html
+&amp;gt;* http://www.toptal.com/java/hunting-memory-leaks-in-java&lt;/p&gt;
 </description>
         
           <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;This article is to illustrate and explore the mechanism of Garbage Collection&lt;/em&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;em&gt;This article is to illustrate and explore the mechanism of Garbage Collection&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
+
 </description>
         
         <pubDate>Tue, 10 Nov 2015 23:53:00 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/JVM-Introduction/:about/index.html:contact/index.html</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/JVM-Introduction/:about/index.html:contact/index.html</guid>
+        <link>127.0.0.1-/blog/JVM-Introduction/</link>
+        <guid isPermaLink="true">127.0.0.1-/blog/JVM-Introduction/</guid>
         
         
-        <category>java</category>
+        <category>Java</category>
         
       </item>
       
@@ -392,107 +429,57 @@
       <item>
         <title>Explore PDF</title>
         <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;This article is to illustrate and explore the popular encoding format &amp;quot;PDF&amp;quot;&lt;/em&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;em&gt;This article is to illustrate and explore the popular encoding format “PDF”&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Background: I was asked to develop an application to extract a pdf and convert those traditional Chinese to simplified. Sounds easy, ahuh?
-At first, I think it&amp;#39;s not that difficult until I really get suck into the &amp;quot;notorious&amp;quot; format...So, to begin with, let&amp;#39;s look at the brief
+At first, I think it’s not that difficult until I really get suck into the “notorious” format…So, to begin with, let’s look at the brief
 of what is a PDF.&lt;/p&gt;
 
-&lt;h4 id=&quot;1-what-is-the-pdf&quot;&gt;1. What is the PDF?&lt;/h4&gt;
+&lt;h4 id=&quot;what-is-the-pdf&quot;&gt;1. What is the PDF?&lt;/h4&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Portable Document Format (PDF) is a file format used to present documents in a manner independent of application software, hardware and operating systems.[2] Each PDF file encapsulates a complete description of a fixed-layout flat document, including the text, fonts, graphics and other information needed to display it. [From &lt;a href=&quot;http://www.wikiwand.com/en/Portable_Document_Format&quot;&gt;WikiPedia&lt;/a&gt;]&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;&lt;em&gt;Portable Document Format (PDF) is a file format used to present documents in a manner independent of application software, hardware and operating systems.[2] Each PDF file encapsulates a complete description of a fixed-layout flat document, including the text, fonts, graphics and other information needed to display it. [From &lt;a href=&quot;http://www.wikiwand.com/en/Portable_Document_Format&quot;&gt;WikiPedia&lt;/a&gt;]&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Basically, the PDF is designed as a universal reading format so that the document can be viewed in various kinds of devices. Therefore, it&amp;#39;s not expected to &amp;quot;edit&amp;quot; a pdf document as per the &amp;quot;universal read&amp;quot; design principle. But, if you are ambitious enough (just like me), you would forcibly process a PDF and make some kinds of modification on that with the help of an Apache project &lt;a href=&quot;https://pdfbox.apache.org/&quot;&gt;&amp;quot;PDFBox&amp;quot;&lt;/a&gt; . Fortunately, PDFBox is a powerful lib for processing a pdf document. There are apis for pdf extraction and parse. What&amp;#39;s more, it is open source! So I can even customize the lib to suit for my needs. But I would say it&amp;#39;s a little bit mess of the PDFBox source code, I mean the source code it&amp;#39;s rather in a complicated nature as I read. Well, that will be another post to talk about the PDFBox.&lt;/p&gt;
+&lt;p&gt;Basically, the PDF is designed as a universal reading format so that the document can be viewed in various kinds of devices. Therefore, it’s not expected to “edit” a pdf document as per the “universal read” design principle. But, if you are ambitious enough (just like me), you would forcibly process a PDF and make some kinds of modification on that with the help of an Apache project &lt;a href=&quot;https://pdfbox.apache.org/&quot;&gt;“PDFBox”&lt;/a&gt; . Fortunately, PDFBox is a powerful lib for processing a pdf document. There are apis for pdf extraction and parse. What’s more, it is open source! So I can even customize the lib to suit for my needs. But I would say it’s a little bit mess of the PDFBox source code, I mean the source code it’s rather in a complicated nature as I read. Well, that will be another post to talk about the PDFBox.&lt;/p&gt;
 
-&lt;p&gt;Since there is no way to overwrite the PDF document, the only way to replace the traditional chinese characters is to re-write the content to a new file with substitution, a &amp;quot;copy-and-replace&amp;quot; solution. It seems that the strategy is reasonable and straightforward. But as you explore more in the PDF structure and its format encoding, you will find it&amp;#39;s a nightmare to simplify the solution as &amp;quot;copy-and-replace&amp;quot;. To sum up, you have to pay if you insist to edit the PDF!!! Then I will talk about the PDF structure.&lt;/p&gt;
+&lt;p&gt;Since there is no way to overwrite the PDF document, the only way to replace the traditional chinese characters is to re-write the content to a new file with substitution, a “copy-and-replace” solution. It seems that the strategy is reasonable and straightforward. But as you explore more in the PDF structure and its format encoding, you will find it’s a nightmare to simplify the solution as “copy-and-replace”. To sum up, you have to pay if you insist to edit the PDF!!! Then I will talk about the PDF structure.&lt;/p&gt;
 
-&lt;h4 id=&quot;2-pdf-structure&quot;&gt;2. PDF Structure&lt;/h4&gt;
+&lt;h4 id=&quot;pdf-structure&quot;&gt;2. PDF Structure&lt;/h4&gt;
 
-&lt;p&gt;Significantly, a PDF document is composed of 3 key elements images, text and graphics   (symbols/lines/arrows/etc). So if you want completely rewrite the a pdf, you&amp;#39;ll have to extract all the information of those elements and use them to recover in the new file.&lt;/p&gt;
+&lt;p&gt;Significantly, a PDF document is composed of 3 key elements images, text and graphics   (symbols/lines/arrows/etc). So if you want completely rewrite the a pdf, you’ll have to extract all the information of those elements and use them to recover in the new file.&lt;/p&gt;
 
-&lt;h5 id=&quot;2-1-text&quot;&gt;2.1 Text&lt;/h5&gt;
+&lt;h5 id=&quot;text&quot;&gt;2.1 Text&lt;/h5&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Text in PDF is represented by text elements in page content streams. A text element specifies that characters should be drawn at certain positions. The characters are specified using the encoding of a selected font resource.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;&lt;em&gt;Text in PDF is represented by text elements in page content streams. A text element specifies that characters should be drawn at certain positions. The characters are specified using the encoding of a selected font resource.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;So to edit a text, you have to deal with two aspects, one is the font and the other is &amp;quot;encoding&amp;quot;. English and ASCII characters are easy to handle in this case as the font and encoding would not be complicated for those characters. But for chinese characters, it&amp;#39;s a catastrophe.&lt;/p&gt;
+&lt;p&gt;So to edit a text, you have to deal with two aspects, one is the font and the other is “encoding”. English and ASCII characters are easy to handle in this case as the font and encoding would not be complicated for those characters. But for chinese characters, it’s a catastrophe.&lt;/p&gt;
 
-&lt;p&gt;Let&amp;#39;s say I have parsed the text position and get all the information. The first step is to detect what is &amp;quot;character&amp;quot; inside, whether a English letter or chinese character. Fortunately, pdfBox provide api to retrieve the Unicode of that particular character. Assume that a traditional chinese character &amp;quot;檔&amp;quot; is found and wanna change it to simplified &amp;quot;档&amp;quot;. Again the nightmare occurs, you will have to specify a font which contains simplified chinese charaset and then put the corresponding Unicode to the font writer and then write it out.&lt;/p&gt;
+&lt;p&gt;Let’s say I have parsed the text position and get all the information. The first step is to detect what is “character” inside, whether a English letter or chinese character. Fortunately, pdfBox provide api to retrieve the Unicode of that particular character. Assume that a traditional chinese character “檔” is found and wanna change it to simplified “档”. Again the nightmare occurs, you will have to specify a font which contains simplified chinese charaset and then put the corresponding Unicode to the font writer and then write it out.&lt;/p&gt;
 
-&lt;h5 id=&quot;2-2-images-amp-symbols&quot;&gt;2.2 Images &amp;amp; symbols&lt;/h5&gt;
+&lt;h5 id=&quot;images--symbols&quot;&gt;2.2 Images &amp;amp; symbols&lt;/h5&gt;
 
-&lt;p&gt;The most complicated part would be to process images &amp;amp; symbols as their nature of complication. Unfortunately, the meta-data would hardly retrieved which causing the information loss. Frankly speaking, you&amp;#39;ll have no way to recover the images and symbols in a complete similarity as the previous document. So that&amp;#39;s why I have to give up my continuation of developing the application. It&amp;#39;s in vain to develop such an application that only provide a similar but never the same document in terms of structure.&lt;/p&gt;
+&lt;p&gt;The most complicated part would be to process images &amp;amp; symbols as their nature of complication. Unfortunately, the meta-data would hardly retrieved which causing the information loss. Frankly speaking, you’ll have no way to recover the images and symbols in a complete similarity as the previous document. So that’s why I have to give up my continuation of developing the application. It’s in vain to develop such an application that only provide a similar but never the same document in terms of structure.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;http://ccckmit.wikidot.com/pdf:streamcoding&quot;&gt;http://ccckmit.wikidot.com/pdf:streamcoding&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/strong&gt;
+&amp;gt; http://ccckmit.wikidot.com/pdf:streamcoding&lt;/p&gt;
 </description>
         
           <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;This article is to illustrate and explore the popular encoding format &amp;quot;PDF&amp;quot;&lt;/em&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;em&gt;This article is to illustrate and explore the popular encoding format “PDF”&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
+
 </description>
         
         <pubDate>Tue, 06 Oct 2015 23:53:00 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/PDF-Exploration/:about/index.html:contact/index.html</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/PDF-Exploration/:about/index.html:contact/index.html</guid>
+        <link>127.0.0.1-/blog/PDF-Exploration/</link>
+        <guid isPermaLink="true">127.0.0.1-/blog/PDF-Exploration/</guid>
         
         
-        <category>pdf</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Hibernate System Exception</title>
-        <description>&lt;p&gt;I accidentally encountered the following hibernate system exception after I modified the xml file.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;hibernateSystemException Don’t change the reference to a collection with cascade=”all-delete-orphan”&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The explanation told nothing at all.. So I try google or stackOverflow, none of them provided a practical solution for me.&lt;/p&gt;
-
-&lt;p&gt;Finally, I examined my xml carefully again and again, then suddenly I realize that one of the bean name is reused again.&lt;/p&gt;
-
-&lt;p&gt;After I corrrect it, the exception disappared!&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;tradingAccCredit&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;com.cmms.sharedlib.ControlGroup&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;property&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;controls&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;util:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;com.cmms.sharedlib.ClientMaint&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;tradingLimitCM&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;expDtOfTradeLimitCM&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;tradingLoanLimitCM&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// The bean name is used previously in another xml&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;expDtOfLoanLimitCM&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;creditRatingCM&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;util:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;property&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;property&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;userRoles&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;util:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;com.cmms.sharedlib.ControlUserRole&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;mo_editMode&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;mom_editMode&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;util:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;property&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;To sum up, make sure the bean names are unique.&lt;/p&gt;
-</description>
-        
-          <description>&lt;p&gt;I accidentally encountered the following hibernate system exception after I modified the xml file.&lt;/p&gt;
-</description>
-        
-        <pubDate>Wed, 16 Sep 2015 04:24:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/hibernate-system-exception/:about/index.html:contact/index.html</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/hibernate-system-exception/:about/index.html:contact/index.html</guid>
-        
-        
-        <category>java</category>
+        <category>PDF</category>
         
       </item>
       
@@ -501,19 +488,21 @@ of what is a PDF.&lt;/p&gt;
       <item>
         <title>细说字符集(CharSet)和字符编码(Encoding)</title>
         <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;本文将阐述字符集（CharSet）、字符编码(Encoding)之间的关系，以及浅谈集中常用的中文字符集和编码&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;&lt;em&gt;本文将阐述字符集（CharSet）、字符编码(Encoding)之间的关系，以及浅谈集中常用的中文字符集和编码&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;概述： 中文的乱码现象，以及繁简中文的乱码现象在以中文主导的地区时有发生，而解决乱码的根本，就必须要明白电脑是
+&lt;blockquote&gt;
+  &lt;p&gt;概述： 中文的乱码现象，以及繁简中文的乱码现象在以中文主导的地区时有发生，而解决乱码的根本，就必须要明白电脑是
 到底是如何存放和编排我们日常所见的字符，本文将深入探讨，并对有关的名词给予深入的解释，希望之后再遇到有关的编码的问题，
 能够游刃有余。&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;hr&gt;
+&lt;hr /&gt;
 
-&lt;h4 id=&quot;1-什么是字符集（charset）？&quot;&gt;1. 什么是字符集（CharSet）？&lt;/h4&gt;
+&lt;h4 id=&quot;charset&quot;&gt;1. 什么是字符集（CharSet）？&lt;/h4&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;charset is the set of characters you can use&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;&lt;em&gt;charset is the set of characters you can use&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;在英文资料中，与字符集（CharSet）可以同意的词汇有 &lt;strong&gt;&lt;em&gt;character set, character map, codeset or code page&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
@@ -527,33 +516,21 @@ of what is a PDF.&lt;/p&gt;
 着计算机不断发展壮大带来的问题，首先当时字符集标准的制定者没有意识到要建立一种标准通用的准则，特别是当初计算机只在英文和欧洲语系
 的国家流行（相对来说，英文和拉丁字母数量少，编码容易）。然而他们没有意识到，随着科技发展，电脑已经深入到各个国家和民族当中，自然
 每个民族都希望自己的语言能被电脑识别，因为各个国家语言的字符集都相继推出，这也导致字符集不断壮大。既然如此，可否制定一个通用编码
-原则，让每个后来创建的字符集按照制定的方式来编码，这样不就解决了不统一的问题了吗？事实上，
-&lt;emcode&gt;Unicode&lt;/emcode&gt;就是种想法的实践者，它对世界上大部分的文字系统进行了整理、编码，使得电脑可以用更为简单的方式来呈现和
+原则，让每个后来创建的字符集按照制定的方式来编码，这样不就解决了不统一的问题了吗？事实上，&lt;/p&gt;
+&lt;emcode&gt;Unicode&lt;/emcode&gt;
+&lt;p&gt;就是种想法的实践者，它对世界上大部分的文字系统进行了整理、编码，使得电脑可以用更为简单的方式来呈现和
 处理文字，这样只要电脑预先装载好unicode的字符集，就不用特地再安装简体字符集也可以在任何电脑上显示出简体汉字。
 例如&lt;emcode&gt;欢&lt;/emcode&gt;，以下是其在简体字符集和Unicode字符集中的编码。&lt;/p&gt;
 
-&lt;table&gt;&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align: center&quot;&gt;字符集&lt;/th&gt;
-&lt;th style=&quot;text-align: center&quot;&gt;(&amp;quot;欢&amp;quot;)编码值Hex Value&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align: center&quot;&gt;GBK&lt;/td&gt;
-&lt;td style=&quot;text-align: center&quot;&gt;0xBB66&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align: center&quot;&gt;Unicode&lt;/td&gt;
-&lt;td style=&quot;text-align: center&quot;&gt;0x6B22&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
-
-&lt;hr&gt;
-
-&lt;h4 id=&quot;2-什么是字符编码（encoding）&quot;&gt;2. 什么是字符编码（Encoding）?&lt;/h4&gt;
+&lt;p&gt;|  字符集       | (“欢”)编码值Hex Value         |
+|:————:|:—————————-:|
+|  GBK         | 0xBB66                       |
+|  Unicode     | 0x6B22                       |
+——-
+####2. 什么是字符编码（Encoding）?&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;encoding is the way these characters are stored into memory&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;&lt;em&gt;encoding is the way these characters are stored into memory&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;读到这里，大家应该有个印象，字符集是某一种字符的集合，要找到某个字符，那首先就应该找到改字符所在的字符集，那么下一步就应该是如何从
@@ -570,69 +547,120 @@ of what is a PDF.&lt;/p&gt;
 上文的例子可以看到，按照该方式存储文字，每个字符都需要3个bytes来存储，这对复杂语言来说可能没什么问题，但是对于英文来说，本来1个字节就能存的东西，现在
 要用3个字节来存储，自然是是带来数据的冗余，因此字符编码的引进就是为了能够正确存储字符，又能节省该字符在内存占用空间。&lt;/p&gt;
 
-&lt;hr&gt;
+&lt;hr /&gt;
 
-&lt;h4 id=&quot;3-utf-8和unicode的关系&quot;&gt;3. UTF-8和Unicode的关系?&lt;/h4&gt;
+&lt;h4 id=&quot;utf-8unicode&quot;&gt;3. UTF-8和Unicode的关系?&lt;/h4&gt;
 
 &lt;p&gt;看完上面两个概念解释，那么解释UTF-8和Unicode的关系就比较简单了。Unicode就是上文中提到的编码字符集，而UTF-8就是字符编码，即Unicode规则字库的一种实现形式。随着互联网的发展，对同一字库集的要求越来越迫切，Unicode标准也就自然而然的出现。它几乎涵盖了各个国家语言可能出现的符号和文字，并将为他们编号。详见：Unicode on Wikipedia。Unicode的编号从0000开始一直到10FFFF共分为16个Plane，每个Plane中有65536个字符。而UTF-8则只实现了第一个Plane，可见UTF-8虽然是一个当今接受度最广的字符集编码，但是它并没有涵盖整个Unicode的字库。&lt;/p&gt;
 
-&lt;h4 id=&quot;4-utf8编码&quot;&gt;4.UTF8编码&lt;/h4&gt;
-
+&lt;h4 id=&quot;utf8&quot;&gt;4.UTF8编码&lt;/h4&gt;
 &lt;p&gt;上一节已经介绍了有关utf-8的编码知识，下面具体解释下，到底什么UTF-8编码。&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;UTF-8编码为变长编码。最小编码单位（code unit）为一个字节。一个字节的前1-3个bit为描述性部分，后面为实际序号部分。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;&lt;em&gt;UTF-8编码为变长编码。最小编码单位（code unit）为一个字节。一个字节的前1-3个bit为描述性部分，后面为实际序号部分。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;li&gt;&lt;em&gt;如果一个字节的第一位为 0，那么代表当前字符为单字节字符，占用一个字节的空间。0之后的所有部分（7个bit）代表在Unicode中的序号。&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;如果一个字节以110开头，那么代表当前字符为双字节字符，占用2个字节的空间。110之后的所有部分（5个bit）加上后一个字节的除10外的部分（6个bit）代表在Unicode中的序号。且第二个字节以10开头&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;如果一个字节以1110开头，那么代表当前字符为三字节字符，占用2个字节的空间。110之后的所有部分（5个bit）加上后两个字节的除10外的部分（12个bit）代表在Unicode中的序号。且第二、第三个字节以10开头&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;如果一个字节以10开头，那么代表当前字节为多字节字符的第二个字节。10之后的所有部分（6个bit）和之前的部分一同组成在Unicode中的序号。&lt;/em&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;*如果一个字节的第一位为 0，那么代表当前字符为单字节字符，占用一个字节的空间。0之后的所有部分（7个bit）代表在Unicode中的序号。*&lt;/li&gt;
+&lt;li&gt;*如果一个字节以110开头，那么代表当前字符为双字节字符，占用2个字节的空间。110之后的所有部分（5个bit）加上后一个字节的除10外的部分（6个bit）代表在Unicode中的序号。且第二个字节以10开头*&lt;/li&gt;
+&lt;li&gt;*如果一个字节以1110开头，那么代表当前字符为三字节字符，占用2个字节的空间。110之后的所有部分（5个bit）加上后两个字节的除10外的部分（12个bit）代表在Unicode中的序号。且第二、第三个字节以10开头*&lt;/li&gt;
+&lt;li&gt;*如果一个字节以10开头，那么代表当前字节为多字节字符的第二个字节。10之后的所有部分（6个bit）和之前的部分一同组成在Unicode中的序号。*&lt;/li&gt;
 
 &lt;p&gt;举个例子，前面我们提到了“欢”字的Unicode是0x6B22，按照以上的规则，可以通过其Unicode得到相应的UTF-8 encoding。&lt;/p&gt;
 
-&lt;table&gt;&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align: center&quot;&gt;“欢”&lt;/th&gt;
-&lt;th style=&quot;text-align: center&quot;&gt;Binary Stream&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align: center&quot;&gt;Unicode&lt;/td&gt;
-&lt;td style=&quot;text-align: center&quot;&gt;0110 1010 0010 0010&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align: center&quot;&gt;UTF-8&lt;/td&gt;
-&lt;td style=&quot;text-align: center&quot;&gt;1110 0110 1010 1000 1010 0010&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;“欢”&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Binary Stream&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Unicode&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0110 1010 0010 0010&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;UTF-8&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1110 0110 1010 1000 1010 0010&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;hr&gt;
+&lt;hr /&gt;
 
-&lt;h4 id=&quot;5-乱码原由&quot;&gt;5.乱码原由&lt;/h4&gt;
-
+&lt;h4 id=&quot;section&quot;&gt;5.乱码原由&lt;/h4&gt;
 &lt;p&gt;在实际编程中，经常会出现乱码的现象。当我们理清了字符集、字符编码这些概念后，便知道其根本原因就是，我们错用某种字符编码去decode另外一种字符编码，最常见的错误就是，把一个UTF-8编码后的字符，用GBK去解码，
 这样，常常就会出现一些无法理解的符号或者其他离奇的汉字，以欢字为例，其utf-8的编码的二进制流是&lt;emcode&gt;“1110 0110 1010 1000 1010 0010”&lt;/emcode&gt;，若用gbk来解码，则会得到&lt;emcode&gt;“妯  ”&lt;/emcode&gt;，究其原因是，前面的两个字节&lt;emcode&gt;“E6(1110 0110) A8(1010 1000)”&lt;/emcode&gt; 恰对应“妯”字，而余下的一个字节，因为不是汉字，会被解码成某种符号。这样一来，欢子的utf8编码在gbk下就会被
 错误解码成，“妯”和一个特殊符号，于是成为了乱码。&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;http://cenalulu.github.io/linux/character-encoding/&quot;&gt;http://cenalulu.github.io/linux/character-encoding/&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference:&lt;/em&gt;&lt;/strong&gt;
+&amp;gt;http://cenalulu.github.io/linux/character-encoding/&lt;/p&gt;
 </description>
         
           <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;本文将阐述字符集（CharSet）、字符编码(Encoding)之间的关系，以及浅谈集中常用的中文字符集和编码&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;&lt;em&gt;本文将阐述字符集（CharSet）、字符编码(Encoding)之间的关系，以及浅谈集中常用的中文字符集和编码&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
+
 </description>
         
         <pubDate>Wed, 16 Sep 2015 04:24:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/Encoding-and-CharSets/:about/index.html:contact/index.html</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/Encoding-and-CharSets/:about/index.html:contact/index.html</guid>
+        <link>127.0.0.1-/blog/Encoding-and-CharSets/</link>
+        <guid isPermaLink="true">127.0.0.1-/blog/Encoding-and-CharSets/</guid>
         
         
-        <category>encoding</category>
+        <category>Encoding</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>Hibernate System Exception</title>
+        <description>&lt;p&gt;I accidentally encountered the following hibernate system exception after I modified the xml file.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;&lt;em&gt;hibernateSystemException Don’t change the reference to a collection with cascade=”all-delete-orphan”&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The explanation told nothing at all.. So I try google or stackOverflow, none of them provided a practical solution for me.&lt;/p&gt;
+
+&lt;p&gt;Finally, I examined my xml carefully again and again, then suddenly I realize that one of the bean name is reused again.&lt;/p&gt;
+
+&lt;p&gt;After I corrrect it, the exception disappared!&lt;/p&gt;
+
+&lt;p&gt;```java&lt;/p&gt;
+&lt;bean id=&quot;tradingAccCredit&quot; class=&quot;com.cmms.sharedlib.ControlGroup&quot;&gt;
+    &lt;property name=&quot;controls&quot;&gt;
+    &lt;util:list value-type=&quot;com.cmms.sharedlib.ClientMaint&quot;&gt;
+            &lt;ref bean=&quot;tradingLimitCM&quot; /&gt;
+            &lt;ref bean=&quot;expDtOfTradeLimitCM&quot; /&gt;
+            &lt;ref bean=&quot;tradingLoanLimitCM&quot; /&gt; // The bean name is used previously in another xml
+            &lt;ref bean=&quot;expDtOfLoanLimitCM&quot; /&gt;
+            &lt;ref bean=&quot;creditRatingCM&quot; /&gt;
+    &lt;/util:list&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;userRoles&quot;&gt;
+    &lt;util:list value-type=&quot;com.cmms.sharedlib.ControlUserRole&quot;&gt;
+    &lt;ref bean=&quot;mo_editMode&quot; /&gt;
+    &lt;ref bean=&quot;mom_editMode&quot; /&gt;
+    &lt;/util:list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;p&gt;To sum up, make sure the bean names are unique.&lt;/p&gt;
+</description>
+        
+          <description>&lt;p&gt;I accidentally encountered the following hibernate system exception after I modified the xml file.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 16 Sep 2015 04:24:58 +0800</pubDate>
+        <link>127.0.0.1-/blog/hibernate-system-exception/</link>
+        <guid isPermaLink="true">127.0.0.1-/blog/hibernate-system-exception/</guid>
+        
+        
+        <category>Java</category>
         
       </item>
       
@@ -640,71 +668,76 @@ of what is a PDF.&lt;/p&gt;
       
       <item>
         <title>JavaFX Concurrency</title>
-        <description>&lt;h4 id=&quot;java-differences-between-platform-runlater-amp-task-serivce-in-javafx&quot;&gt;[Java] Differences between Platform.runlater() &amp;amp; Task/Serivce in JavaFx&lt;/h4&gt;
-
-&lt;hr&gt;
+        <description>&lt;h4 id=&quot;java-differences-between-platformrunlater--taskserivce-in-javafx&quot;&gt;[Java] Differences between Platform.runlater() &amp;amp; Task/Serivce in JavaFx&lt;/h4&gt;
+&lt;hr /&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Repost from: &lt;a href=&quot;http://stackoverflow.com/questions/13784333/platform-runlater-and-task-javafx&quot;&gt;http://stackoverflow.com/questions/13784333/platform-runlater-and-task-javafx&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;Repost from: http://stackoverflow.com/questions/13784333/platform-runlater-and-task-javafx&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Use Platform.runLater(...) for quick and simple operations and Task for complex and big operations .&lt;/p&gt;
+&lt;p&gt;Use Platform.runLater(…) for quick and simple operations and Task for complex and big operations .&lt;/p&gt;
 
-&lt;p&gt;Use case for Platform.runLater(...)
+&lt;p&gt;Use case for Platform.runLater(…)
 Use case for Task: Task Example in Ensemble App
-Example: Why Can&amp;#39;t we use Platform.runLater(...) for long calculations (Taken from below reference).&lt;/p&gt;
+Example: Why Can’t we use Platform.runLater(…) for long calculations (Taken from below reference).&lt;/p&gt;
 
 &lt;p&gt;Problem: Background thread which just counts from 0 to 1 million and update progress bar in UI.&lt;/p&gt;
 
-&lt;p&gt;&lt;li&gt;Code using Platform.runLater(...):&lt;/li&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ProgressBar&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ProgressBar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Runnable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;Platform&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;runLater&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Runnable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setProgress&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1000000.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;li&gt;Code using Platform.runLater(...):&lt;/li&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;java
+final ProgressBar bar = new ProgressBar();
+new Thread(new Runnable() {
+    @Override public void run() {
+    for (int i=1; i&amp;lt;=1000000; i++) {
+        final int counter = i;
+        Platform.runLater(new Runnable() {
+            @Override public void run() {
+                bar.setProgress(counter/1000000.0);
+            }
+        });
+    }
+}).start();
+&lt;/code&gt;&lt;/p&gt;
+
 &lt;p&gt;This is a hideous hunk of code, a crime against nature (and programming in general). First, you’ll lose brain cells just looking at this double nesting of Runnables. Second, it is going to swamp the event queue with little Runnables — a million of them in fact. Clearly, we needed some API to make it easier to write background workers which then communicate back with the UI.&lt;/p&gt;
 
-&lt;p&gt;&lt;li&gt;Code using Task :&lt;/li&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;updateProgress&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
+&lt;li&gt;Code using Task :&lt;/li&gt;
 
-&lt;span class=&quot;n&quot;&gt;ProgressBar&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ProgressBar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;progressProperty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;progressProperty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;```java
+Task task = new Task&lt;void&gt;() {
+    @Override public Void call() {
+        static final int max = 1000000;
+        for (int i = 1; i &amp;lt;= max; i++) {
+            updateProgress(i, max);
+        }
+        return null;
+    }
+};&lt;/void&gt;&lt;/p&gt;
+
+&lt;p&gt;ProgressBar bar = new ProgressBar();
+bar.progressProperty().bind(task.progressProperty());
+new Thread(task).start();
+```&lt;/p&gt;
+
 &lt;blockquote&gt;
-&lt;p&gt;it suffers from none of the flaws exhibited in the previous code&lt;/p&gt;
+  &lt;p&gt;it suffers from none of the flaws exhibited in the previous code&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt; : &lt;a href=&quot;http://fxexperience.com/2011/07/worker-threading-in-javafx-2-0/&quot;&gt;Worker Threading in JavaFX 2.0&lt;/a&gt;&lt;/p&gt;
 </description>
         
-          <description>&lt;h4 id=&quot;java-differences-between-platform-runlater-amp-task-serivce-in-javafx&quot;&gt;[Java] Differences between Platform.runlater() &amp;amp; Task/Serivce in JavaFx&lt;/h4&gt;
+          <description>&lt;h4 id=&quot;java-differences-between-platformrunlater--taskserivce-in-javafx&quot;&gt;[Java] Differences between Platform.runlater() &amp;amp; Task/Serivce in JavaFx&lt;/h4&gt;
+&lt;hr /&gt;
 
-&lt;hr&gt;
 </description>
         
         <pubDate>Sun, 30 Aug 2015 04:15:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/JavaFX-Concurrency/:about/index.html:contact/index.html</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/JavaFX-Concurrency/:about/index.html:contact/index.html</guid>
+        <link>127.0.0.1-/blog/JavaFX-Concurrency/</link>
+        <guid isPermaLink="true">127.0.0.1-/blog/JavaFX-Concurrency/</guid>
         
         
-        <category>java</category>
+        <category>Java</category>
         
       </item>
       
@@ -713,55 +746,59 @@ Example: Why Can&amp;#39;t we use Platform.runLater(...) for long calculations (
       <item>
         <title>Java Comparator</title>
         <description>&lt;h4 id=&quot;java-sort-a-list&quot;&gt;[Java] Sort a List&lt;/h4&gt;
-
-&lt;hr&gt;
+&lt;hr /&gt;
 
 &lt;p&gt;In a project, I have to retrieved amounts of data with the following table structure.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;  &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Entity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Primary key&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;But each time, the data retrieved are not in numerical order. In order to maintain an ascending ordering to show in the UI, a comparator is needed.&lt;/p&gt;
 
-&lt;p&gt;Let&amp;#39;s say we have a list Entity and want to sort by its id.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Entity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;entityList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getEntityList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;java
+  class Entity{
+      int id; //Primary key
+      type fields;
+  }
+&lt;/code&gt;
+ But each time, the data retrieved are not in numerical order. In order to maintain an ascending ordering to show in the UI, a comparator is needed.&lt;/p&gt;
 
-    &lt;span class=&quot;n&quot;&gt;Collections&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;entityList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;comparator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-          &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-          &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;compare&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Entity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Entity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-              &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;o1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-          &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Let’s say we have a list Entity and want to sort by its id.&lt;/p&gt;
+
+&lt;p&gt;```java
+    List&lt;entity&gt; entityList = getEntityList();&lt;/entity&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Collections.sort(entityList, new comparator(){
+      @Override
+      public int compare(Entity o1, Entity o2){
+          return (o1.getId() - o2.getId());
+      }
+})  ```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;For a descending order, just change the position o1 and o2.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Parameters: &lt;strong&gt;&lt;em&gt;o1&lt;/em&gt;&lt;/strong&gt; - the first object to be compared.
+  &lt;p&gt;Parameters: &lt;strong&gt;&lt;em&gt;o1&lt;/em&gt;&lt;/strong&gt; - the first object to be compared.
 &lt;strong&gt;&lt;em&gt;o2&lt;/em&gt;&lt;/strong&gt; - the second object to be compared.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;Returns:
+&lt;blockquote&gt;
+  &lt;p&gt;Returns:
 a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Reference&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html&quot;&gt;https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;Reference
+&amp;gt;https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html&lt;/p&gt;
 </description>
         
           <description>&lt;h4 id=&quot;java-sort-a-list&quot;&gt;[Java] Sort a List&lt;/h4&gt;
+&lt;hr /&gt;
 
-&lt;hr&gt;
 </description>
         
         <pubDate>Sat, 29 Aug 2015 07:24:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/java-comparable/:about/index.html:contact/index.html</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/java-comparable/:about/index.html:contact/index.html</guid>
+        <link>127.0.0.1-/blog/java-comparable/</link>
+        <guid isPermaLink="true">127.0.0.1-/blog/java-comparable/</guid>
         
         
-        <category>java</category>
+        <category>Java</category>
         
       </item>
       
@@ -770,36 +807,38 @@ a negative integer, zero, or a positive integer as the first argument is less th
       <item>
         <title>Maven Client too old to build</title>
         <description>&lt;h4 id=&quot;maven-update-svn-version&quot;&gt;[maven] Update SVN version&lt;/h4&gt;
-
-&lt;hr&gt;
+&lt;hr /&gt;
 
 &lt;p&gt;In the .pom.xml file,  find the following plugin in.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;&amp;lt;groupId&amp;gt; com.google.code.maven-svn-revision-number-plugin&amp;lt;/groupId&amp;gt;&lt;/code&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;groupId&amp;gt; com.google.code.maven-svn-revision-number-plugin&amp;lt;/groupId&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Add the following dependency, which upgrade the svn version to 1.8 (my current version)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependencies&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.tmatesoft.svnkit&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;svnkit&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.8.10&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependencies&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+
+&lt;p&gt;```xml&lt;/p&gt;
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupid&gt;org.tmatesoft.svnkit&lt;/groupid&gt;
+        &lt;artifactid&gt;svnkit&lt;/artifactid&gt;
+        &lt;version&gt;1.8.10&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+&lt;p&gt;```&lt;/p&gt;
+</description>
         
           <description>&lt;h4 id=&quot;maven-update-svn-version&quot;&gt;[maven] Update SVN version&lt;/h4&gt;
+&lt;hr /&gt;
 
-&lt;hr&gt;
 </description>
         
         <pubDate>Thu, 20 Aug 2015 07:24:58 +0800</pubDate>
-        <link>http://kelvinleong.github.io/blog/mvn-client/:about/index.html:contact/index.html</link>
-        <guid isPermaLink="true">http://kelvinleong.github.io/blog/mvn-client/:about/index.html:contact/index.html</guid>
+        <link>127.0.0.1-/blog/mvn-client/</link>
+        <guid isPermaLink="true">127.0.0.1-/blog/mvn-client/</guid>
         
         
-        <category>java</category>
+        <category>Java</category>
         
       </item>
       
