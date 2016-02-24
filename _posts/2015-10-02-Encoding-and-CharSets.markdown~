@@ -87,5 +87,4 @@ categories: Encoding
 错误解码成，“妯”和一个特殊符号，于是成为了乱码。
 
 ***Reference:***
-
-> <http://cenalulu.github.io/linux/character-encoding/>
+>http://cenalulu.github.io/linux/character-encoding/

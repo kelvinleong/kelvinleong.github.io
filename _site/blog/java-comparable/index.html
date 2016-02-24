@@ -15,12 +15,12 @@
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
 
     <!-- Come and get me RSS readers -->
-    <link rel="alternate" type="application/rss+xml" title="Kelvin" href="127.0.0.1-/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Kelvin" href="127.0.0.1/feed.xml" />
     
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/assets/css/style.css">
     <!--[if IE 8]><link rel="stylesheet" href="/assets/css/ie.css"><![endif]-->
-    <link rel="canonical" href="127.0.0.1-/blog/java-comparable/">
+    <link rel="canonical" href="127.0.0.1/blog/java-comparable/">
 
     <!-- Modernizr -->
     <script src="/assets/js/modernizr.custom.15390.js" type="text/javascript"></script>
@@ -181,13 +181,13 @@ ga('send', 'pageview');
 
 <p>In a project, I have to retrieved amounts of data with the following table structure.</p>
 
-<p><code class="highlighter-rouge">java
-  class Entity{
-      int id; //Primary key
-      type fields;
-  }
-</code>
- But each time, the data retrieved are not in numerical order. In order to maintain an ascending ordering to show in the UI, a comparator is needed.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="kd">class</span> <span class="nc">Entity</span><span class="o">{</span>
+      <span class="kt">int</span> <span class="n">id</span><span class="o">;</span> <span class="c1">//Primary key</span>
+      <span class="n">type</span> <span class="n">fields</span><span class="o">;</span>
+  <span class="o">}</span>
+</code></pre>
+</div>
+<p>But each time, the data retrieved are not in numerical order. In order to maintain an ascending ordering to show in the UI, a comparator is needed.</p>
 
 <p>Let’s say we have a list Entity and want to sort by its id.</p>
 

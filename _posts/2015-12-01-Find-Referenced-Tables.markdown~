@@ -15,7 +15,7 @@ Before that, we should have an explicit view on how the reference constraints is
 
 |   Column           |         Descriptions         |
 |:-------------------|:-----------------------------|
-|  CONSTRAINT_TYPE   | * C (check constraint on a table)\\ * P (primary key)\\ * U (unique key)\\ * R (referential integrity)\\ * V (with check option, on a view)\\ * O (with read only, on a view)|
+|  CONSTRAINT_TYPE   | * C (check constraint on a table)\ * P (primary key)\ * U (unique key)\ * R (referential integrity)\ * V (with check option, on a view)\ * O (with read only, on a view)|
 |  R_CONSTRAINT_NAME | Name of the unique constraint definition for referenced table|
 |  CONSTRAINT_NAME   | Name of the constraint definition                            |
 

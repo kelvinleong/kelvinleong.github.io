@@ -15,12 +15,12 @@
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
 
     <!-- Come and get me RSS readers -->
-    <link rel="alternate" type="application/rss+xml" title="Kelvin" href="127.0.0.1-/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Kelvin" href="127.0.0.1/feed.xml" />
     
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/assets/css/style.css">
     <!--[if IE 8]><link rel="stylesheet" href="/assets/css/ie.css"><![endif]-->
-    <link rel="canonical" href="127.0.0.1-/blog/db-tables/">
+    <link rel="canonical" href="127.0.0.1/blog/db-tables/">
 
     <!-- Modernizr -->
     <script src="/assets/js/modernizr.custom.15390.js" type="text/javascript"></script>
@@ -176,24 +176,23 @@ ga('send', 'pageview');
   <h1 class="postTitle">Oracle Significant Tables</h1>
   <p class="meta">August 20, 2015 | <span class="time">0</span> Minute Read</p>
 
-  <h4 id="oracle-sql-difference-between-usertables-alltables-and-dbatables">[Oracle SQL] Difference between USER_TABLES, ALL_TABLES and DBA_TABLES</h4>
-<hr />
+  <h2 id="oracle-sql-difference-between-usertables-alltables-and-dbatables">####[Oracle SQL] Difference between USER_TABLES, ALL_TABLES and DBA_TABLES</h2>
 
 <p>User_tables are those owned by the specified user(schema).</p>
 
 <p>For example, an oracle database user log in with the identity “USER” and execute the following sql:</p>
 
-<p><code class="highlighter-rouge">sql
-SELECT * FROM user_tables;
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">user_tables</span><span class="p">;</span>
+</code></pre>
+</div>
 
 <p>All the retrieved tables are owned by user “USER” only.</p>
 
 <p>And if execute the following sql:</p>
 
-<p><code class="highlighter-rouge">sql
-SELECT * FROM all_tables;
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">all_tables</span><span class="p">;</span>
+</code></pre>
+</div>
 
 <p>Now, the retrieved tables are owned by user USER and those granted to USER.</p>
 

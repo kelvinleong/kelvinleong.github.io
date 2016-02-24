@@ -3,11 +3,11 @@
   <channel>
     <title>Kelvin</title>
     <description>Long Form Jekyll theme built with SASS / COMPASS / SUSY</description>
-    <link>127.0.0.1-/</link>
-    <atom:link href="127.0.0.1-/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 21 Feb 2016 00:36:28 +0800</pubDate>
-    <lastBuildDate>Sun, 21 Feb 2016 00:36:28 +0800</lastBuildDate>
-    <generator>Jekyll v3.1.1</generator>
+    <link>127.0.0.1/</link>
+    <atom:link href="127.0.0.1/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 23 Feb 2016 16:03:34 +0800</pubDate>
+    <lastBuildDate>Tue, 23 Feb 2016 16:03:34 +0800</lastBuildDate>
+    <generator>Jekyll v3.1.2</generator>
     
       
       <item>
@@ -36,17 +36,19 @@
 &lt;/div&gt;
 &lt;p&gt;Or, with extends Thread:&lt;/p&gt;
 
-&lt;p&gt;```java
-public class ThreadA extends Thread {
-    public ThreadA() {
-         super(“ThreadA”);
-    }&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ThreadA&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ThreadA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+         &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ThreadA&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public void run() {
-    //Code
-} } //Started with a &quot;threadA.start()&quot; call ``` This hierarchy can be shown in the following diagram.
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//Code&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//Started with a &quot;threadA.start()&quot; call&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;p&gt;This hierarchy can be shown in the following diagram.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/resources/multithreading/thread-runnable-erp.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
@@ -174,8 +176,8 @@ http://www.javatpoint.com/synchronization-in-java&lt;/p&gt;
 </description>
         
         <pubDate>Thu, 24 Dec 2015 22:27:00 +0800</pubDate>
-        <link>127.0.0.1-/blog/Multithreading-in-java/</link>
-        <guid isPermaLink="true">127.0.0.1-/blog/Multithreading-in-java/</guid>
+        <link>127.0.0.1/blog/Multithreading-in-java/</link>
+        <guid isPermaLink="true">127.0.0.1/blog/Multithreading-in-java/</guid>
         
         
         <category>Multithreading</category>
@@ -206,7 +208,7 @@ http://www.javatpoint.com/synchronization-in-java&lt;/p&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
       &lt;td style=&quot;text-align: left&quot;&gt;CONSTRAINT_TYPE&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;C (check constraint on a table)&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;P (primary key)&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;U (unique key)&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;R (referential integrity)&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;V (with check option, on a view)&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;O (with read only, on a view)&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;* C (check constraint on a table)\ * P (primary key)\ * U (unique key)\ * R (referential integrity)\ * V (with check option, on a view)\ * O (with read only, on a view)&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td style=&quot;text-align: left&quot;&gt;R_CONSTRAINT_NAME&lt;/td&gt;
@@ -221,67 +223,67 @@ http://www.javatpoint.com/synchronization-in-java&lt;/p&gt;
 
 &lt;p&gt;There is a hierarchical structure in this table that &lt;em&gt;R_CONSTRAINT_NAME&lt;/em&gt; indicating the foreign key constraint of the table would be the &lt;em&gt;CONSTRAINT_NAME&lt;/em&gt; of a table it refers to (note, foreign key must refer to a primary key). By this relationship, we can create a hierarchical query to find out the table name, primary constraint name and its referenced tables name and the foreign key constraint name.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sql
-  SELECT CONSTRAINT_NAME,
-         TABLE_NAME,
-         CONSTRAINT_TYPE,
-         R_CONSTRAINT_NAME,
-         LEVEL (LVL)
-  FROM ALL_CONSTRAINTS
-  START WITH TABLE_NAME = &#39;szTableName&#39; AND CONSTRAINT_TYPE = &#39;P&#39;
-  CONNECT BY PRIOR CONSTRAINT_NAME = R_CONSTRAINT_NAME
-&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CONSTRAINT_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+         &lt;span class=&quot;k&quot;&gt;TABLE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+         &lt;span class=&quot;n&quot;&gt;CONSTRAINT_TYPE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+         &lt;span class=&quot;n&quot;&gt;R_CONSTRAINT_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+         &lt;span class=&quot;k&quot;&gt;LEVEL&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LVL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ALL_CONSTRAINTS&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WITH&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;szTableName&#39;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CONSTRAINT_TYPE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;P&#39;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;CONNECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;PRIOR&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CONSTRAINT_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;R_CONSTRAINT_NAME&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;To further find out the corresponding primary and foreign key columns, we can use the above result to join with table &lt;strong&gt;&lt;em&gt;ALL_IND_COLUMNS&lt;/em&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;em&gt;ALL_CONS_COLUMNS&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sql
-SELECT AIC.TABLE_NAME,
-       AIC.COLUMN_NAME,
-       ACC.COLUMN_NAME,
-       TREE.TABLE_NAME,
-       TREE.CONSTRAINT_NAME,
-       TREE.LVL
-FROM
-      ALL_IND_COLUMNS AIC,
-      ALL_CONS_COLUMNS ACC,
-      (
-      SELECT CONSTRAINT_NAME, TABLE_NAME, CONSTRAINT_TYPE, R_CONSTRAINT_NAME, LEVEL LVL
-      FROM ALL_CONSTRAINTS
-      START WITH TABLE_NAME = &#39;szTableName&#39; AND CONSTRAINT_TYPE = &#39;P&#39;
-      CONNECT BY PRIOR CONSTRAINT_NAME = R_CONSTRAINT_NAME
-      )Tree
-WHERE ACC.CONSTRAINT_NAME = TREE.CONSTRAINT_NAME
-AND   AIC.INDEX_NAME = TREE.R_CONSTRAINT_NAME;
-&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;TABLE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;COLUMN_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;ACC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;COLUMN_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;TREE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;TABLE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;TREE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CONSTRAINT_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;TREE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LVL&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;ALL_IND_COLUMNS&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;ALL_CONS_COLUMNS&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CONSTRAINT_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CONSTRAINT_TYPE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;R_CONSTRAINT_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LEVEL&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LVL&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ALL_CONSTRAINTS&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WITH&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;szTableName&#39;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CONSTRAINT_TYPE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;P&#39;&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;CONNECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;PRIOR&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CONSTRAINT_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;R_CONSTRAINT_NAME&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Tree&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CONSTRAINT_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TREE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CONSTRAINT_NAME&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;INDEX_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TREE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R_CONSTRAINT_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;As shown, the hierarchical query result is nested as a Tree table for join operation.&lt;/p&gt;
 
 &lt;p&gt;I find another slow solution from the other, it’s easy to understand but with less efficiency as too many join operations to perform for getting the result.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sql
-  SELECT	AC.Table_Name,		--Source
-  	      ACC.Column_Name,	--Source
-  	      AIC.Table_Name,		--Ref
-  	      AIC.Column_Name,	--Ref
-  	      AC.Constraint_Name,	--Source
-  	      AC.R_Constraint_Name	--Ref
-  FROM	  All_Constraints AC,
-        	All_Cons_Columns ACC,
-        	All_Ind_Columns AIC,
-        	(
-        	SELECT	Constraint_Name
-        	FROM	All_Constraints
-        	WHERE	Table_Name = UPPER(szTableName)
-        	AND	Constraint_Type = &#39;P&#39;
-        	) TMP
-  WHERE	AC.Constraint_Name = ACC.Constraint_Name
-  AND	  AC.Table_Name = ACC.Table_Name
-  AND	  AC.R_Constraint_Name = AIC.Index_Name
-  AND	  AC.R_Constraint_Name = TMP.Constraint_Name
-  AND	  AC.Constraint_Type = &#39;R&#39;
-  AND	  ACC.Position = AIC.Column_Position
-  ORDER BY 1, 2, 3, 4, 5, 6;
-&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;	&lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Table_Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;		&lt;span class=&quot;c1&quot;&gt;--Source
+&lt;/span&gt;  	      &lt;span class=&quot;n&quot;&gt;ACC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Column_Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;--Source
+&lt;/span&gt;  	      &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Table_Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;		&lt;span class=&quot;c1&quot;&gt;--Ref
+&lt;/span&gt;  	      &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Column_Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;--Ref
+&lt;/span&gt;  	      &lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Constraint_Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;--Source
+&lt;/span&gt;  	      &lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R_Constraint_Name&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;--Ref
+&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;	  &lt;span class=&quot;n&quot;&gt;All_Constraints&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        	&lt;span class=&quot;n&quot;&gt;All_Cons_Columns&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        	&lt;span class=&quot;n&quot;&gt;All_Ind_Columns&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        	&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        	&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;	&lt;span class=&quot;k&quot;&gt;Constraint_Name&lt;/span&gt;
+        	&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;	&lt;span class=&quot;n&quot;&gt;All_Constraints&lt;/span&gt;
+        	&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;	&lt;span class=&quot;k&quot;&gt;Table_Name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;UPPER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;szTableName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        	&lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;	&lt;span class=&quot;n&quot;&gt;Constraint_Type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;P&#39;&lt;/span&gt;
+        	&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TMP&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;	&lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Constraint_Name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Constraint_Name&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;	  &lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Table_Name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Table_Name&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;	  &lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R_Constraint_Name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Index_Name&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;	  &lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R_Constraint_Name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TMP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Constraint_Name&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;	  &lt;span class=&quot;n&quot;&gt;AC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Constraint_Type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;R&#39;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;	  &lt;span class=&quot;n&quot;&gt;ACC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Position&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Column_Position&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;But these two solutions are buggy if there is &lt;strong&gt;self referential constraint&lt;/strong&gt; among those tables. Therefore, make sure there is no tables has foreign keys refer to itself or using &lt;strong&gt;&lt;em&gt;“ON DELETE CASCADE&lt;/em&gt;&lt;/strong&gt; to avoid the problem.&lt;/p&gt;
 
@@ -294,8 +296,8 @@ AND   AIC.INDEX_NAME = TREE.R_CONSTRAINT_NAME;
 </description>
         
         <pubDate>Mon, 30 Nov 2015 23:53:00 +0800</pubDate>
-        <link>127.0.0.1-/blog/Find-Referenced-Tables/</link>
-        <guid isPermaLink="true">127.0.0.1-/blog/Find-Referenced-Tables/</guid>
+        <link>127.0.0.1/blog/Find-Referenced-Tables/</link>
+        <guid isPermaLink="true">127.0.0.1/blog/Find-Referenced-Tables/</guid>
         
         
         <category>Oracle</category>
@@ -327,18 +329,18 @@ AND   AIC.INDEX_NAME = TREE.R_CONSTRAINT_NAME;
 
 &lt;p&gt;So, I check carefully in the source of the UI, I found a thread is always created to read the data from a blocking queue periodically during initialization of the UI. But the problem is the thread is embedded with a while(true) loop which will never exit so that even its parent UI died, the thread will not be killed but continue the dead loop. Therefore, I use a poison pill to message the thread to stop.Concretely, that is by changing the “poison pill” (a default true volatile boolean value) to false while on close method of the UI is invoked thus the thread will terminate itself by leaving the dead loop (refer to the following sampe codes). Then I assign a name to the thread and trace it in JVisualVm. As expected, the thread exit after I close the UI (see the following figure), thus solving the problem!&lt;/p&gt;
 
-&lt;p&gt;```java
-   private volatile boolean stop = true;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;volatile&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
-&lt;p&gt;@Override
-   public void run() {
-           while(!stop) {
-                   //Do something there
-           }&lt;/p&gt;
+   &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+           &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                   &lt;span class=&quot;c1&quot;&gt;//Do something there&lt;/span&gt;
+           &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-&lt;p&gt;}&lt;/p&gt;
+   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-&lt;p&gt;```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&quot;/resources/jvisualvm/thread-trace-1.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
@@ -353,8 +355,8 @@ AND   AIC.INDEX_NAME = TREE.R_CONSTRAINT_NAME;
 </description>
         
         <pubDate>Mon, 30 Nov 2015 23:53:00 +0800</pubDate>
-        <link>127.0.0.1-/blog/Find-All-Referenced-Tables/</link>
-        <guid isPermaLink="true">127.0.0.1-/blog/Find-All-Referenced-Tables/</guid>
+        <link>127.0.0.1/blog/Find-All-Referenced-Tables/</link>
+        <guid isPermaLink="true">127.0.0.1/blog/Find-All-Referenced-Tables/</guid>
         
         
         <category>JVM</category>
@@ -416,8 +418,8 @@ AND   AIC.INDEX_NAME = TREE.R_CONSTRAINT_NAME;
 </description>
         
         <pubDate>Tue, 10 Nov 2015 23:53:00 +0800</pubDate>
-        <link>127.0.0.1-/blog/JVM-Introduction/</link>
-        <guid isPermaLink="true">127.0.0.1-/blog/JVM-Introduction/</guid>
+        <link>127.0.0.1/blog/JVM-Introduction/</link>
+        <guid isPermaLink="true">127.0.0.1/blog/JVM-Introduction/</guid>
         
         
         <category>Java</category>
@@ -464,8 +466,11 @@ of what is a PDF.&lt;/p&gt;
 
 &lt;p&gt;The most complicated part would be to process images &amp;amp; symbols as their nature of complication. Unfortunately, the meta-data would hardly retrieved which causing the information loss. Frankly speaking, you’ll have no way to recover the images and symbols in a complete similarity as the previous document. So that’s why I have to give up my continuation of developing the application. It’s in vain to develop such an application that only provide a similar but never the same document in terms of structure.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/strong&gt;
-&amp;gt; http://ccckmit.wikidot.com/pdf:streamcoding&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;http://ccckmit.wikidot.com/pdf:streamcoding&quot;&gt;http://ccckmit.wikidot.com/pdf:streamcoding&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 </description>
         
           <description>&lt;blockquote&gt;
@@ -475,8 +480,8 @@ of what is a PDF.&lt;/p&gt;
 </description>
         
         <pubDate>Tue, 06 Oct 2015 23:53:00 +0800</pubDate>
-        <link>127.0.0.1-/blog/PDF-Exploration/</link>
-        <guid isPermaLink="true">127.0.0.1-/blog/PDF-Exploration/</guid>
+        <link>127.0.0.1/blog/PDF-Exploration/</link>
+        <guid isPermaLink="true">127.0.0.1/blog/PDF-Exploration/</guid>
         
         
         <category>PDF</category>
@@ -516,18 +521,30 @@ of what is a PDF.&lt;/p&gt;
 着计算机不断发展壮大带来的问题，首先当时字符集标准的制定者没有意识到要建立一种标准通用的准则，特别是当初计算机只在英文和欧洲语系
 的国家流行（相对来说，英文和拉丁字母数量少，编码容易）。然而他们没有意识到，随着科技发展，电脑已经深入到各个国家和民族当中，自然
 每个民族都希望自己的语言能被电脑识别，因为各个国家语言的字符集都相继推出，这也导致字符集不断壮大。既然如此，可否制定一个通用编码
-原则，让每个后来创建的字符集按照制定的方式来编码，这样不就解决了不统一的问题了吗？事实上，&lt;/p&gt;
-&lt;emcode&gt;Unicode&lt;/emcode&gt;
-&lt;p&gt;就是种想法的实践者，它对世界上大部分的文字系统进行了整理、编码，使得电脑可以用更为简单的方式来呈现和
-处理文字，这样只要电脑预先装载好unicode的字符集，就不用特地再安装简体字符集也可以在任何电脑上显示出简体汉字。
-例如&lt;emcode&gt;欢&lt;/emcode&gt;，以下是其在简体字符集和Unicode字符集中的编码。&lt;/p&gt;
+原则，让每个后来创建的字符集按照制定的方式来编码，这样不就解决了不统一的问题了吗？事实上，&lt;emcode&gt;Unicode&lt;/emcode&gt;就是种想法的实践者，它对世界上大部分的文字系统进行了整理、编码，使得电脑可以用更为简单的方式来呈现和处理文字，这样只要电脑预先装载好unicode的字符集，就不用特地再安装简体字符集也可以在任何电脑上显示出简体汉字。例如&lt;emcode&gt;欢&lt;/emcode&gt;，以下是其在简体字符集和Unicode字符集中的编码。&lt;/p&gt;
 
-&lt;p&gt;|  字符集       | (“欢”)编码值Hex Value         |
-|:————:|:—————————-:|
-|  GBK         | 0xBB66                       |
-|  Unicode     | 0x6B22                       |
-——-
-####2. 什么是字符编码（Encoding）?&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;字符集&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;(“欢”)编码值Hex Value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;GBK&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0xBB66&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Unicode&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0x6B22&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;encoding&quot;&gt;2. 什么是字符编码（Encoding）?&lt;/h4&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;strong&gt;&lt;em&gt;encoding is the way these characters are stored into memory&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
@@ -593,8 +610,11 @@ of what is a PDF.&lt;/p&gt;
 这样，常常就会出现一些无法理解的符号或者其他离奇的汉字，以欢字为例，其utf-8的编码的二进制流是&lt;emcode&gt;“1110 0110 1010 1000 1010 0010”&lt;/emcode&gt;，若用gbk来解码，则会得到&lt;emcode&gt;“妯  ”&lt;/emcode&gt;，究其原因是，前面的两个字节&lt;emcode&gt;“E6(1110 0110) A8(1010 1000)”&lt;/emcode&gt; 恰对应“妯”字，而余下的一个字节，因为不是汉字，会被解码成某种符号。这样一来，欢子的utf8编码在gbk下就会被
 错误解码成，“妯”和一个特殊符号，于是成为了乱码。&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference:&lt;/em&gt;&lt;/strong&gt;
-&amp;gt;http://cenalulu.github.io/linux/character-encoding/&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;http://cenalulu.github.io/linux/character-encoding/&quot;&gt;http://cenalulu.github.io/linux/character-encoding/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 </description>
         
           <description>&lt;blockquote&gt;
@@ -604,8 +624,8 @@ of what is a PDF.&lt;/p&gt;
 </description>
         
         <pubDate>Wed, 16 Sep 2015 04:24:58 +0800</pubDate>
-        <link>127.0.0.1-/blog/Encoding-and-CharSets/</link>
-        <guid isPermaLink="true">127.0.0.1-/blog/Encoding-and-CharSets/</guid>
+        <link>127.0.0.1/blog/Encoding-and-CharSets/</link>
+        <guid isPermaLink="true">127.0.0.1/blog/Encoding-and-CharSets/</guid>
         
         
         <category>Encoding</category>
@@ -628,25 +648,25 @@ of what is a PDF.&lt;/p&gt;
 
 &lt;p&gt;After I corrrect it, the exception disappared!&lt;/p&gt;
 
-&lt;p&gt;```java&lt;/p&gt;
-&lt;bean id=&quot;tradingAccCredit&quot; class=&quot;com.cmms.sharedlib.ControlGroup&quot;&gt;
-    &lt;property name=&quot;controls&quot;&gt;
-    &lt;util:list value-type=&quot;com.cmms.sharedlib.ClientMaint&quot;&gt;
-            &lt;ref bean=&quot;tradingLimitCM&quot; /&gt;
-            &lt;ref bean=&quot;expDtOfTradeLimitCM&quot; /&gt;
-            &lt;ref bean=&quot;tradingLoanLimitCM&quot; /&gt; // The bean name is used previously in another xml
-            &lt;ref bean=&quot;expDtOfLoanLimitCM&quot; /&gt;
-            &lt;ref bean=&quot;creditRatingCM&quot; /&gt;
-    &lt;/util:list&gt;
-    &lt;/property&gt;
-    &lt;property name=&quot;userRoles&quot;&gt;
-    &lt;util:list value-type=&quot;com.cmms.sharedlib.ControlUserRole&quot;&gt;
-    &lt;ref bean=&quot;mo_editMode&quot; /&gt;
-    &lt;ref bean=&quot;mom_editMode&quot; /&gt;
-    &lt;/util:list&gt;
-    &lt;/property&gt;
-&lt;/bean&gt;
-&lt;p&gt;```&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tradingAccCredit&quot;&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&quot;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;cmms&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sharedlib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ControlGroup&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;
+    &amp;lt;property name=&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;controls&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;
+    &amp;lt;util:list value-type=&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;cmms&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sharedlib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ClientMaint&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;
+            &amp;lt;ref bean=&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tradingLimitCM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; /&amp;gt;
+            &amp;lt;ref bean=&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expDtOfTradeLimitCM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; /&amp;gt;
+            &amp;lt;ref bean=&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tradingLoanLimitCM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; /&amp;gt; // The bean name is used previously in another xml
+            &amp;lt;ref bean=&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expDtOfLoanLimitCM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; /&amp;gt;
+            &amp;lt;ref bean=&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;creditRatingCM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; /&amp;gt;
+    &amp;lt;/util:list&amp;gt;
+    &amp;lt;/property&amp;gt;
+    &amp;lt;property name=&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userRoles&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;
+    &amp;lt;util:list value-type=&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;cmms&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sharedlib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ControlUserRole&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;
+    &amp;lt;ref bean=&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mo_editMode&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; /&amp;gt;
+    &amp;lt;ref bean=&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mom_editMode&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;util:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;property&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;To sum up, make sure the bean names are unique.&lt;/p&gt;
 </description>
@@ -656,8 +676,8 @@ of what is a PDF.&lt;/p&gt;
 </description>
         
         <pubDate>Wed, 16 Sep 2015 04:24:58 +0800</pubDate>
-        <link>127.0.0.1-/blog/hibernate-system-exception/</link>
-        <guid isPermaLink="true">127.0.0.1-/blog/hibernate-system-exception/</guid>
+        <link>127.0.0.1/blog/hibernate-system-exception/</link>
+        <guid isPermaLink="true">127.0.0.1/blog/hibernate-system-exception/</guid>
         
         
         <category>Java</category>
@@ -668,8 +688,7 @@ of what is a PDF.&lt;/p&gt;
       
       <item>
         <title>JavaFX Concurrency</title>
-        <description>&lt;h4 id=&quot;java-differences-between-platformrunlater--taskserivce-in-javafx&quot;&gt;[Java] Differences between Platform.runlater() &amp;amp; Task/Serivce in JavaFx&lt;/h4&gt;
-&lt;hr /&gt;
+        <description>&lt;h2 id=&quot;java-differences-between-platformrunlater--taskserivce-in-javafx&quot;&gt;####[Java] Differences between Platform.runlater() &amp;amp; Task/Serivce in JavaFx&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Repost from: http://stackoverflow.com/questions/13784333/platform-runlater-and-task-javafx&lt;/p&gt;
@@ -685,40 +704,40 @@ Example: Why Can’t we use Platform.runLater(…) for long calculations (Taken 
 
 &lt;li&gt;Code using Platform.runLater(...):&lt;/li&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;java
-final ProgressBar bar = new ProgressBar();
-new Thread(new Runnable() {
-    @Override public void run() {
-    for (int i=1; i&amp;lt;=1000000; i++) {
-        final int counter = i;
-        Platform.runLater(new Runnable() {
-            @Override public void run() {
-                bar.setProgress(counter/1000000.0);
-            }
-        });
-    }
-}).start();
-&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ProgressBar&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ProgressBar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Runnable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Platform&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;runLater&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Runnable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setProgress&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1000000.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;This is a hideous hunk of code, a crime against nature (and programming in general). First, you’ll lose brain cells just looking at this double nesting of Runnables. Second, it is going to swamp the event queue with little Runnables — a million of them in fact. Clearly, we needed some API to make it easier to write background workers which then communicate back with the UI.&lt;/p&gt;
 
 &lt;li&gt;Code using Task :&lt;/li&gt;
 
-&lt;p&gt;```java
-Task task = new Task&lt;void&gt;() {
-    @Override public Void call() {
-        static final int max = 1000000;
-        for (int i = 1; i &amp;lt;= max; i++) {
-            updateProgress(i, max);
-        }
-        return null;
-    }
-};&lt;/void&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;updateProgress&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
 
-&lt;p&gt;ProgressBar bar = new ProgressBar();
-bar.progressProperty().bind(task.progressProperty());
-new Thread(task).start();
-```&lt;/p&gt;
+&lt;span class=&quot;n&quot;&gt;ProgressBar&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ProgressBar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;progressProperty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;progressProperty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;it suffers from none of the flaws exhibited in the previous code&lt;/p&gt;
@@ -727,14 +746,13 @@ new Thread(task).start();
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt; : &lt;a href=&quot;http://fxexperience.com/2011/07/worker-threading-in-javafx-2-0/&quot;&gt;Worker Threading in JavaFX 2.0&lt;/a&gt;&lt;/p&gt;
 </description>
         
-          <description>&lt;h4 id=&quot;java-differences-between-platformrunlater--taskserivce-in-javafx&quot;&gt;[Java] Differences between Platform.runlater() &amp;amp; Task/Serivce in JavaFx&lt;/h4&gt;
-&lt;hr /&gt;
+          <description>&lt;h2 id=&quot;java-differences-between-platformrunlater--taskserivce-in-javafx&quot;&gt;####[Java] Differences between Platform.runlater() &amp;amp; Task/Serivce in JavaFx&lt;/h2&gt;
 
 </description>
         
         <pubDate>Sun, 30 Aug 2015 04:15:58 +0800</pubDate>
-        <link>127.0.0.1-/blog/JavaFX-Concurrency/</link>
-        <guid isPermaLink="true">127.0.0.1-/blog/JavaFX-Concurrency/</guid>
+        <link>127.0.0.1/blog/JavaFX-Concurrency/</link>
+        <guid isPermaLink="true">127.0.0.1/blog/JavaFX-Concurrency/</guid>
         
         
         <category>Java</category>
@@ -750,13 +768,13 @@ new Thread(task).start();
 
 &lt;p&gt;In a project, I have to retrieved amounts of data with the following table structure.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;java
-  class Entity{
-      int id; //Primary key
-      type fields;
-  }
-&lt;/code&gt;
- But each time, the data retrieved are not in numerical order. In order to maintain an ascending ordering to show in the UI, a comparator is needed.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Entity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Primary key&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;But each time, the data retrieved are not in numerical order. In order to maintain an ascending ordering to show in the UI, a comparator is needed.&lt;/p&gt;
 
 &lt;p&gt;Let’s say we have a list Entity and want to sort by its id.&lt;/p&gt;
 
@@ -794,8 +812,8 @@ a negative integer, zero, or a positive integer as the first argument is less th
 </description>
         
         <pubDate>Sat, 29 Aug 2015 07:24:58 +0800</pubDate>
-        <link>127.0.0.1-/blog/java-comparable/</link>
-        <guid isPermaLink="true">127.0.0.1-/blog/java-comparable/</guid>
+        <link>127.0.0.1/blog/java-comparable/</link>
+        <guid isPermaLink="true">127.0.0.1/blog/java-comparable/</guid>
         
         
         <category>Java</category>
@@ -817,15 +835,15 @@ a negative integer, zero, or a positive integer as the first argument is less th
 
 &lt;p&gt;Add the following dependency, which upgrade the svn version to 1.8 (my current version)&lt;/p&gt;
 
-&lt;p&gt;```xml&lt;/p&gt;
-&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupid&gt;org.tmatesoft.svnkit&lt;/groupid&gt;
-        &lt;artifactid&gt;svnkit&lt;/artifactid&gt;
-        &lt;version&gt;1.8.10&lt;/version&gt;
-    &lt;/dependency&gt;
-&lt;/dependencies&gt;
-&lt;p&gt;```&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependencies&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.tmatesoft.svnkit&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;svnkit&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.8.10&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependencies&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 </description>
         
           <description>&lt;h4 id=&quot;maven-update-svn-version&quot;&gt;[maven] Update SVN version&lt;/h4&gt;
@@ -834,8 +852,8 @@ a negative integer, zero, or a positive integer as the first argument is less th
 </description>
         
         <pubDate>Thu, 20 Aug 2015 07:24:58 +0800</pubDate>
-        <link>127.0.0.1-/blog/mvn-client/</link>
-        <guid isPermaLink="true">127.0.0.1-/blog/mvn-client/</guid>
+        <link>127.0.0.1/blog/mvn-client/</link>
+        <guid isPermaLink="true">127.0.0.1/blog/mvn-client/</guid>
         
         
         <category>Java</category>
