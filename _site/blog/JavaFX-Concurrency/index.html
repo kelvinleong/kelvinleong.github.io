@@ -174,9 +174,10 @@ ga('send', 'pageview');
           <div class="post">
   
   <h1 class="postTitle">JavaFX Concurrency</h1>
-  <p class="meta">August 30, 2015 | <span class="time">2</span> Minute Read</p>
+  <p class="meta">August 30, 2015 | <span class="time">1</span> Minute Read</p>
 
-  <h2 id="java-differences-between-platformrunlater--taskserivce-in-javafx">####[Java] Differences between Platform.runlater() &amp; Task/Serivce in JavaFx</h2>
+  <h4 id="java-differences-between-platformrunlater--taskserivce-in-javafx">[Java] Differences between Platform.runlater() &amp; Task/Serivce in JavaFx</h4>
+<hr />
 
 <blockquote>
   <p>Repost from: http://stackoverflow.com/questions/13784333/platform-runlater-and-task-javafx</p>
@@ -192,40 +193,40 @@ Example: Why Can’t we use Platform.runLater(…) for long calculations (Taken 
 
 <li>Code using Platform.runLater(...):</li>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">final</span> <span class="n">ProgressBar</span> <span class="n">bar</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ProgressBar</span><span class="o">();</span>
-<span class="k">new</span> <span class="nf">Thread</span><span class="p">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
-    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">run</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">1000000</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="kd">final</span> <span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-        <span class="n">Platform</span><span class="o">.</span><span class="na">runLater</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
-            <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">run</span><span class="o">()</span> <span class="o">{</span>
-                <span class="n">bar</span><span class="o">.</span><span class="na">setProgress</span><span class="o">(</span><span class="n">counter</span><span class="o">/</span><span class="mf">1000000.0</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">});</span>
-    <span class="o">}</span>
-<span class="o">}).</span><span class="na">start</span><span class="o">();</span>
-</code></pre>
-</div>
+<p><code class="highlighter-rouge">java
+final ProgressBar bar = new ProgressBar();
+new Thread(new Runnable() {
+    @Override public void run() {
+    for (int i=1; i&lt;=1000000; i++) {
+        final int counter = i;
+        Platform.runLater(new Runnable() {
+            @Override public void run() {
+                bar.setProgress(counter/1000000.0);
+            }
+        });
+    }
+}).start();
+</code></p>
 
 <p>This is a hideous hunk of code, a crime against nature (and programming in general). First, you’ll lose brain cells just looking at this double nesting of Runnables. Second, it is going to swamp the event queue with little Runnables — a million of them in fact. Clearly, we needed some API to make it easier to write background workers which then communicate back with the UI.</p>
 
 <li>Code using Task :</li>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Task</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Task</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;()</span> <span class="o">{</span>
-    <span class="nd">@Override</span> <span class="kd">public</span> <span class="n">Void</span> <span class="n">call</span><span class="o">()</span> <span class="o">{</span>
-        <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">1000000</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">max</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="n">updateProgress</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">max</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">};</span>
+<p>```java
+Task task = new Task<void>() {
+    @Override public Void call() {
+        static final int max = 1000000;
+        for (int i = 1; i &lt;= max; i++) {
+            updateProgress(i, max);
+        }
+        return null;
+    }
+};</void></p>
 
-<span class="n">ProgressBar</span> <span class="n">bar</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ProgressBar</span><span class="o">();</span>
-<span class="n">bar</span><span class="o">.</span><span class="na">progressProperty</span><span class="o">().</span><span class="na">bind</span><span class="o">(</span><span class="n">task</span><span class="o">.</span><span class="na">progressProperty</span><span class="o">());</span>
-<span class="k">new</span> <span class="nf">Thread</span><span class="p">(</span><span class="n">task</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
-</code></pre>
-</div>
+<p>ProgressBar bar = new ProgressBar();
+bar.progressProperty().bind(task.progressProperty());
+new Thread(task).start();
+```</p>
 
 <blockquote>
   <p>it suffers from none of the flaws exhibited in the previous code</p>

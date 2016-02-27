@@ -181,13 +181,13 @@ ga('send', 'pageview');
 
 <p>In a project, I have to retrieved amounts of data with the following table structure.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="kd">class</span> <span class="nc">Entity</span><span class="o">{</span>
-      <span class="kt">int</span> <span class="n">id</span><span class="o">;</span> <span class="c1">//Primary key</span>
-      <span class="n">type</span> <span class="n">fields</span><span class="o">;</span>
-  <span class="o">}</span>
-</code></pre>
-</div>
-<p>But each time, the data retrieved are not in numerical order. In order to maintain an ascending ordering to show in the UI, a comparator is needed.</p>
+<p><code class="highlighter-rouge">java
+  class Entity{
+      int id; //Primary key
+      type fields;
+  }
+</code>
+ But each time, the data retrieved are not in numerical order. In order to maintain an ascending ordering to show in the UI, a comparator is needed.</p>
 
 <p>Let’s say we have a list Entity and want to sort by its id.</p>
 

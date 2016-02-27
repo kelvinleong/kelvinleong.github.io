@@ -197,18 +197,18 @@ ga('send', 'pageview');
 
 <p>So, I check carefully in the source of the UI, I found a thread is always created to read the data from a blocking queue periodically during initialization of the UI. But the problem is the thread is embedded with a while(true) loop which will never exit so that even its parent UI died, the thread will not be killed but continue the dead loop. Therefore, I use a poison pill to message the thread to stop.Concretely, that is by changing the “poison pill” (a default true volatile boolean value) to false while on close method of the UI is invoked thus the thread will terminate itself by leaving the dead loop (refer to the following sampe codes). Then I assign a name to the thread and trace it in JVisualVm. As expected, the thread exit after I close the UI (see the following figure), thus solving the problem!</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>   <span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">stop</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+<p>```java
+   private volatile boolean stop = true;</p>
 
-   <span class="nd">@Override</span>
-   <span class="kd">public</span> <span class="kt">void</span> <span class="n">run</span><span class="o">()</span> <span class="o">{</span>
-           <span class="k">while</span><span class="o">(!</span><span class="n">stop</span><span class="o">)</span> <span class="o">{</span>
-                   <span class="c1">//Do something there</span>
-           <span class="o">}</span>
+<p>@Override
+   public void run() {
+           while(!stop) {
+                   //Do something there
+           }</p>
 
-   <span class="o">}</span>
+<p>}</p>
 
-</code></pre>
-</div>
+<p>```</p>
 
 <p><img src="/resources/jvisualvm/thread-trace-1.jpg" alt="Alt text" /></p>
 
