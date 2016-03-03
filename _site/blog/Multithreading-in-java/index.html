@@ -174,7 +174,7 @@ ga('send', 'pageview');
           <div class="post">
   
   <h1 class="postTitle">Multithreading in Java</h1>
-  <p class="meta">December 24, 2015 | <span class="time">5</span> Minute Read</p>
+  <p class="meta">December 24, 2015 | <span class="time">6</span> Minute Read</p>
 
   <p><em>This passage is to demonstrate the usage of thread and some concrete examples in practice.</em></p>
 
@@ -200,17 +200,19 @@ ga('send', 'pageview');
 </div>
 <p>Or, with extends Thread:</p>
 
-<p>```java
-public class ThreadA extends Thread {
-    public ThreadA() {
-         super(“ThreadA”);
-    }</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadA</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">ThreadA</span><span class="o">()</span> <span class="o">{</span>
+         <span class="kd">super</span><span class="o">(</span><span class="s">"ThreadA"</span><span class="o">);</span>
+    <span class="o">}</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>public void run() {
-    //Code
-} } //Started with a "threadA.start()" call ``` This hierarchy can be shown in the following diagram.
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">//Code</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1">//Started with a "threadA.start()" call</span>
 </code></pre>
 </div>
+<p>This hierarchy can be shown in the following diagram.</p>
 
 <p><img src="/resources/multithreading/thread-runnable-erp.png" alt="Alt text" /></p>
 

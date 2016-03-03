@@ -174,7 +174,7 @@ ga('send', 'pageview');
           <div class="post">
   
   <h1 class="postTitle">Hibernate System Exception</h1>
-  <p class="meta">September 16, 2015 | <span class="time">0</span> Minute Read</p>
+  <p class="meta">September 16, 2015 | <span class="time">1</span> Minute Read</p>
 
   <p>I accidentally encountered the following hibernate system exception after I modified the xml file.</p>
 
@@ -188,25 +188,25 @@ ga('send', 'pageview');
 
 <p>After I corrrect it, the exception disappared!</p>
 
-<p>```java</p>
-<bean id="tradingAccCredit" class="com.cmms.sharedlib.ControlGroup">
-    <property name="controls">
-    <util:list value-type="com.cmms.sharedlib.ClientMaint">
-            <ref bean="tradingLimitCM" />
-            <ref bean="expDtOfTradeLimitCM" />
-            <ref bean="tradingLoanLimitCM" /> // The bean name is used previously in another xml
-            <ref bean="expDtOfLoanLimitCM" />
-            <ref bean="creditRatingCM" />
-    </util:list>
-    </property>
-    <property name="userRoles">
-    <util:list value-type="com.cmms.sharedlib.ControlUserRole">
-    <ref bean="mo_editMode" />
-    <ref bean="mom_editMode" />
-    </util:list>
-    </property>
-</bean>
-<p>```</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">"tradingAccCredit"</span> <span class="kd">class</span><span class="err">="</span><span class="nc">com</span><span class="o">.</span><span class="na">cmms</span><span class="o">.</span><span class="na">sharedlib</span><span class="o">.</span><span class="na">ControlGroup</span><span class="s">"&gt;
+    &lt;property name="</span><span class="n">controls</span><span class="s">"&gt;
+    &lt;util:list value-type="</span><span class="n">com</span><span class="o">.</span><span class="na">cmms</span><span class="o">.</span><span class="na">sharedlib</span><span class="o">.</span><span class="na">ClientMaint</span><span class="s">"&gt;
+            &lt;ref bean="</span><span class="n">tradingLimitCM</span><span class="s">" /&gt;
+            &lt;ref bean="</span><span class="n">expDtOfTradeLimitCM</span><span class="s">" /&gt;
+            &lt;ref bean="</span><span class="n">tradingLoanLimitCM</span><span class="s">" /&gt; // The bean name is used previously in another xml
+            &lt;ref bean="</span><span class="n">expDtOfLoanLimitCM</span><span class="s">" /&gt;
+            &lt;ref bean="</span><span class="n">creditRatingCM</span><span class="s">" /&gt;
+    &lt;/util:list&gt;
+    &lt;/property&gt;
+    &lt;property name="</span><span class="n">userRoles</span><span class="s">"&gt;
+    &lt;util:list value-type="</span><span class="n">com</span><span class="o">.</span><span class="na">cmms</span><span class="o">.</span><span class="na">sharedlib</span><span class="o">.</span><span class="na">ControlUserRole</span><span class="s">"&gt;
+    &lt;ref bean="</span><span class="n">mo_editMode</span><span class="s">" /&gt;
+    &lt;ref bean="</span><span class="n">mom_editMode</span><span class="err">"</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="nl">util:</span><span class="n">list</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">bean</span><span class="o">&gt;</span>
+</code></pre>
+</div>
 
 <p>To sum up, make sure the bean names are unique.</p>
 

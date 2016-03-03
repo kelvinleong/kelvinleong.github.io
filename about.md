@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: noSidebarView
 title: Kelvin Y.Q.Liang
 ---
 
