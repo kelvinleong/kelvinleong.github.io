@@ -5,12 +5,12 @@ date:   2015-08-29 20:15:58
 categories: Java
 ---
 
-####[Java] Differences between Platform.runlater() & Task/Serivce in JavaFx
+#### [Java] Differences between Platform.runlater() & Task/Serivce in JavaFx
 ---
 
 >Repost from: http://stackoverflow.com/questions/13784333/platform-runlater-and-task-javafx
 
-Use Platform.runLater(...) for quick and simple operations and Task for complex and big operations .
+Use Platform.runLater(...) for quick and simple operations and Task for complex and big operations.
 
 Use case for Platform.runLater(...)
 Use case for Task: Task Example in Ensemble App
