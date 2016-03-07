@@ -5,7 +5,7 @@ date:   2015-08-19 23:24:58
 categories: Database
 ---
 
-####[Oracle SQL] Difference between USER_TABLES, ALL_TABLES and DBA_TABLES
+#### [Oracle SQL] Difference between USER_TABLES, ALL_TABLES and DBA_TABLES
 ---
 
 User_tables are those owned by the specified user(schema).

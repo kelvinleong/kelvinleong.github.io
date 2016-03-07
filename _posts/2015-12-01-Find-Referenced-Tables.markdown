@@ -15,13 +15,13 @@ Before that, we should have an explicit view on how the reference constraints is
 
 |   Column           |         Descriptions         |
 |:-------------------|:-----------------------------|
-|  CONSTRAINT_TYPE   | * C (check constraint on a table)\\ * P (primary key)\\ * U (unique key)\\ * R (referential integrity)\\ * V (with check option, on a view)\\ * O (with read only, on a view)|
+|  CONSTRAINT_TYPE   | <ul><li>*  C (check constraint on a table) </li><li>* P (primary key)</li><li>* U (unique key) </li><li>* R (referential integrity)</li><li>* V (with check option, on a view) * O (with read only, on a view)</li></ul>|
 |  R_CONSTRAINT_NAME | Name of the unique constraint definition for referenced table|
 |  CONSTRAINT_NAME   | Name of the constraint definition                            |
 
 There is a hierarchical structure in this table that *R_CONSTRAINT_NAME* indicating the foreign key constraint of the table would be the *CONSTRAINT_NAME* of a table it refers to (note, foreign key must refer to a primary key). By this relationship, we can create a hierarchical query to find out the table name, primary constraint name and its referenced tables name and the foreign key constraint name.
 
-```sql
+~~~sql
   SELECT CONSTRAINT_NAME,
          TABLE_NAME,
          CONSTRAINT_TYPE,
@@ -30,11 +30,11 @@ There is a hierarchical structure in this table that *R_CONSTRAINT_NAME* indicat
   FROM ALL_CONSTRAINTS
   START WITH TABLE_NAME = 'szTableName' AND CONSTRAINT_TYPE = 'P'
   CONNECT BY PRIOR CONSTRAINT_NAME = R_CONSTRAINT_NAME
-```
+~~~
 
 To further find out the corresponding primary and foreign key columns, we can use the above result to join with table ***ALL_IND_COLUMNS*** and ***ALL_CONS_COLUMNS***.
 
-```sql
+~~~sql
 SELECT AIC.TABLE_NAME,
        AIC.COLUMN_NAME,
        ACC.COLUMN_NAME,
@@ -52,13 +52,13 @@ FROM
       )Tree
 WHERE ACC.CONSTRAINT_NAME = TREE.CONSTRAINT_NAME
 AND   AIC.INDEX_NAME = TREE.R_CONSTRAINT_NAME;
-```
+~~~
 
 As shown, the hierarchical query result is nested as a Tree table for join operation.
 
 I find another slow solution from the other, it's easy to understand but with less efficiency as too many join operations to perform for getting the result.
 
-```sql
+~~~sql
   SELECT	AC.Table_Name,		--Source
   	      ACC.Column_Name,	--Source
   	      AIC.Table_Name,		--Ref
@@ -81,10 +81,10 @@ I find another slow solution from the other, it's easy to understand but with le
   AND	  AC.Constraint_Type = 'R'
   AND	  ACC.Position = AIC.Column_Position
   ORDER BY 1, 2, 3, 4, 5, 6;
-```
+~~~
 
-But these two solutions are buggy if there is **self referential constraint** among those tables. Therefore, make sure there is no tables has foreign keys refer to itself or using ***"ON DELETE CASCADE*** to avoid the problem.
+But these two solutions are buggy if there is **self referential constraint** among those tables. Therefore, make sure there is no tables has foreign keys refer to itself or using ***"ON DELETE CASCADE"*** to avoid the problem.
 
 
 ***Reference***
-> https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022
+> <https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022>

@@ -145,7 +145,7 @@ public class StatusTracker {
 
 By invoking ***await(STATUS.COMPLETED)*** in ThreadA, it will release the lock and wait for the notification invoked by ***signal(STATUS.COMPLETED)*** in ThreadB.
 
-For the further leanring of CountDownLatch, read:
+For the further learning of CountDownLatch, read:
 <https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CountDownLatch.html>
 
 ***Reference***

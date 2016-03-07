@@ -40,4 +40,4 @@ So, I check carefully in the source of the UI, I found a thread is always create
 ![Alt text](/resources/jvisualvm/thread-trace-1.jpg)
 
 ***Reference***
-> http://www.javaworld.com/article/2072322/from-jconsole-to-visualvm.html
+> <http://www.javaworld.com/article/2072322/from-jconsole-to-visualvm.html>

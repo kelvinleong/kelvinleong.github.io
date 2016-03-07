@@ -14,7 +14,7 @@ In the .pom.xml file,  find the following plugin in.
 
 Add the following dependency, which upgrade the svn version to 1.8 (my current version)
 
-```xml
+~~~xml
 <dependencies>
     <dependency>
         <groupId>org.tmatesoft.svnkit</groupId>
@@ -22,4 +22,4 @@ Add the following dependency, which upgrade the svn version to 1.8 (my current v
         <version>1.8.10</version>
     </dependency>
 </dependencies>
-```
+~~~
