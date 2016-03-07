@@ -15,7 +15,7 @@ Before that, we should have an explicit view on how the reference constraints is
 
 |   Column           |         Descriptions         |
 |:-------------------|:-----------------------------|
-|  CONSTRAINT_TYPE   | <ul><li>*  C (check constraint on a table) </li><li>* P (primary key)</li><li>* U (unique key) </li><li>* R (referential integrity)</li><li>* V (with check option, on a view) * O (with read only, on a view)</li></ul>|
+|  CONSTRAINT_TYPE   | <ul><li>C (check constraint on a table) </li><li>P (primary key)</li><li>U (unique key) </li><li>* R (referential integrity)</li><li>V (with check option, on a view)</li><li>O (with read only, on a view)</li></ul>|
 |  R_CONSTRAINT_NAME | Name of the unique constraint definition for referenced table|
 |  CONSTRAINT_NAME   | Name of the constraint definition                            |
 
@@ -87,4 +87,5 @@ But these two solutions are buggy if there is **self referential constraint** am
 
 
 ***Reference***
+
 > <https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022>

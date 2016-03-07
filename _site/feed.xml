@@ -5,8 +5,8 @@
     <description>Long Form Jekyll theme built with SASS / COMPASS / SUSY</description>
     <link>127.0.0.1/</link>
     <atom:link href="127.0.0.1/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 03 Mar 2016 23:01:03 +0800</pubDate>
-    <lastBuildDate>Thu, 03 Mar 2016 23:01:03 +0800</lastBuildDate>
+    <pubDate>Mon, 07 Mar 2016 23:44:44 +0800</pubDate>
+    <lastBuildDate>Mon, 07 Mar 2016 23:44:44 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       
@@ -160,7 +160,7 @@ http://www.javatpoint.com/synchronization-in-java&lt;/p&gt;
 
 &lt;p&gt;By invoking &lt;strong&gt;&lt;em&gt;await(STATUS.COMPLETED)&lt;/em&gt;&lt;/strong&gt; in ThreadA, it will release the lock and wait for the notification invoked by &lt;strong&gt;&lt;em&gt;signal(STATUS.COMPLETED)&lt;/em&gt;&lt;/strong&gt; in ThreadB.&lt;/p&gt;
 
-&lt;p&gt;For the further leanring of CountDownLatch, read:
+&lt;p&gt;For the further learning of CountDownLatch, read:
 &lt;a href=&quot;https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CountDownLatch.html&quot;&gt;https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CountDownLatch.html&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
@@ -208,7 +208,7 @@ http://www.javatpoint.com/synchronization-in-java&lt;/p&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
       &lt;td style=&quot;text-align: left&quot;&gt;CONSTRAINT_TYPE&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;* C (check constraint on a table)\ * P (primary key)\ * U (unique key)\ * R (referential integrity)\ * V (with check option, on a view)\ * O (with read only, on a view)&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;C (check constraint on a table) &amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;P (primary key)&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;U (unique key) &amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;* R (referential integrity)&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;V (with check option, on a view)&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;O (with read only, on a view)&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td style=&quot;text-align: left&quot;&gt;R_CONSTRAINT_NAME&lt;/td&gt;
@@ -285,10 +285,13 @@ http://www.javatpoint.com/synchronization-in-java&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;But these two solutions are buggy if there is &lt;strong&gt;self referential constraint&lt;/strong&gt; among those tables. Therefore, make sure there is no tables has foreign keys refer to itself or using &lt;strong&gt;&lt;em&gt;“ON DELETE CASCADE&lt;/em&gt;&lt;/strong&gt; to avoid the problem.&lt;/p&gt;
+&lt;p&gt;But these two solutions are buggy if there is &lt;strong&gt;self referential constraint&lt;/strong&gt; among those tables. Therefore, make sure there is no tables has foreign keys refer to itself or using &lt;strong&gt;&lt;em&gt;“ON DELETE CASCADE”&lt;/em&gt;&lt;/strong&gt; to avoid the problem.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;
-&amp;gt; https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022&quot;&gt;https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_1037.htm#i1576022&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 </description>
         
           <description>&lt;p&gt;Scenario: &lt;em&gt;An requirement states “to delete the data from a table which is referenced by different tables”.&lt;/em&gt;&lt;/p&gt;
@@ -345,7 +348,7 @@ http://www.javatpoint.com/synchronization-in-java&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/resources/jvisualvm/thread-trace-1.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;
-&amp;gt; http://www.javaworld.com/article/2072322/from-jconsole-to-visualvm.html&lt;/p&gt;
+&amp;gt; &lt;a href=&quot;http://www.javaworld.com/article/2072322/from-jconsole-to-visualvm.html&quot;&gt;http://www.javaworld.com/article/2072322/from-jconsole-to-visualvm.html&lt;/a&gt;&lt;/p&gt;
 </description>
         
           <description>&lt;blockquote&gt;
@@ -803,7 +806,7 @@ a negative integer, zero, or a positive integer as the first argument is less th
 &lt;/blockquote&gt;
 
 &lt;p&gt;Reference
-&amp;gt;https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html&lt;/p&gt;
+&amp;gt; &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html&quot;&gt;https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html&lt;/a&gt;&lt;/p&gt;
 </description>
         
           <description>&lt;h4 id=&quot;java-sort-a-list&quot;&gt;[Java] Sort a List&lt;/h4&gt;
