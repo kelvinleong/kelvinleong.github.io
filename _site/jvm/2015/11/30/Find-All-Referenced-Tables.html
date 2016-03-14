@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <title>Post Archive</title>
+    <title>Monitor the application in JVisualVm</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
@@ -20,7 +20,7 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/assets/css/style.css">
     <!--[if IE 8]><link rel="stylesheet" href="/assets/css/ie.css"><![endif]-->
-    <link rel="canonical" href="127.0.0.1/archive.html">
+    <link rel="canonical" href="127.0.0.1/jvm/2015/11/30/Find-All-Referenced-Tables.html">
 
     <!-- Modernizr -->
     <script src="/assets/js/modernizr.custom.15390.js" type="text/javascript"></script>
@@ -69,83 +69,173 @@ ga('send', 'pageview');
 
 
    <div class="content">
+      <div class="sidebar">
+        <div class="widget-wrapper">
+<h3 class="widget-title">Archive</h3>
+<ul>
+
+    
+    
+        <li><a href="/archive.html#March2016">March 2016</a></li>
+        
+    
+
+    
+    
+        <li><a href="/archive.html#December2015">December 2015</a></li>
+        
+    
+
+    
+    
+        <li><a href="/archive.html#November2015">November 2015</a></li>
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        <li><a href="/archive.html#October2015">October 2015</a></li>
+        
+    
+
+    
+    
+        <li><a href="/archive.html#September2015">September 2015</a></li>
+        
+    
+
+    
+    
+
+    
+    
+        <li><a href="/archive.html#August2015">August 2015</a></li>
+        
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+</ul>
+</div>
+
+<div class="widget-wrapper">
+<h3 class="widget-title">Categories</h3>
+<ul>
+  
+    
+     <li><a href="/categories.html#Theme-ref">
+     Theme</span>
+     </a></li>
+    
+     <li><a href="/categories.html#Database-ref">
+     Database</span>
+     </a></li>
+    
+     <li><a href="/categories.html#Java-ref">
+     Java</span>
+     </a></li>
+    
+     <li><a href="/categories.html#Encoding-ref">
+     Encoding</span>
+     </a></li>
+    
+     <li><a href="/categories.html#PDF-ref">
+     PDF</span>
+     </a></li>
+    
+     <li><a href="/categories.html#JVM-ref">
+     JVM</span>
+     </a></li>
+    
+     <li><a href="/categories.html#Oracle-ref">
+     Oracle</span>
+     </a></li>
+    
+     <li><a href="/categories.html#Multithreading-ref">
+     Multithreading</span>
+     </a></li>
+    
+  
+</ul>
+</div>
+
+      </div>
       <div class="container">
-          <h1 class="pageTitle">Archive</h1>
+          <div class="post">
+  
+  <h1 class="postTitle">Monitor the application in JVisualVm</h1>
+  <p class="meta">November 30, 2015 | <span class="time">2</span> Minute Read</p>
 
-<dl>
+  <blockquote>
+  <p><em>This article is to illustrate how to monitor the application with the help of JVisualVm</em></p>
+</blockquote>
+
+<p>I am developing a JavaFx test tool for back-end server APIs validity checking. In practice, I found the application is easy to hang after running for a while. Therefore, I use the JVisualVm to monitor the application and find out what’s going wrong there.</p>
+
+<p>Let’s go more details.</p>
+
+<h4 id="how-to-install-jvisualvm-">1. How to Install JVisualVM ?</h4>
+<p>JVisualVm is a standard part of Sun’s JDK distribution since JDK 6 Update. To begin the tour following <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/visualvm/intro.html">this link</a></p>
+
+<h4 id="to-monitor-your-application">2. To monitor your application</h4>
+<p>It’s convenient to use JVisualVM to monitor your application. Just click the application’s name on the “Applications” list view on the left. You can see the CPU/Heap/Classes/Threads usage diagrams by clicking the “Monitor” tab for further exploration.
+<img src="/resources/jvisualvm/monitor.PNG" alt="Alt text" /></p>
+
+<p>By monitoring the threads, I found a big problem that every time I open one of the UI, which is for history review, it creates a new thread and after closing the UI, the tread still keeps alive and never exit (as shown in the following figure). That would cause a MOM disaster if the ui is frequently in use.</p>
+
+<p><img src="/resources/jvisualvm/thread-trace.jpg" alt="Alt text" /></p>
+
+<p>So, I check carefully in the source of the UI, I found a thread is always created to read the data from a blocking queue periodically during initialization of the UI. But the problem is the thread is embedded with a while(true) loop which will never exit so that even its parent UI died, the thread will not be killed but continue the dead loop. Therefore, I use a poison pill to message the thread to stop.Concretely, that is by changing the “poison pill” (a default true volatile boolean value) to false while on close method of the UI is invoked thus the thread will terminate itself by leaving the dead loop (refer to the following sampe codes). Then I assign a name to the thread and trace it in JVisualVm. As expected, the thread exit after I close the UI (see the following figure), thus solving the problem!</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>   <span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">stop</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+
+   <span class="nd">@Override</span>
+   <span class="kd">public</span> <span class="kt">void</span> <span class="n">run</span><span class="o">()</span> <span class="o">{</span>
+           <span class="k">while</span><span class="o">(!</span><span class="n">stop</span><span class="o">)</span> <span class="o">{</span>
+                   <span class="c1">//Do something there</span>
+           <span class="o">}</span>
+
+   <span class="o">}</span>
+
+</code></pre>
+</div>
+
+<p><img src="/resources/jvisualvm/thread-trace-1.jpg" alt="Alt text" /></p>
+
+<p><strong><em>Reference</em></strong>
+&gt; <a href="http://www.javaworld.com/article/2072322/from-jconsole-to-visualvm.html">http://www.javaworld.com/article/2072322/from-jconsole-to-visualvm.html</a></p>
 
 
+  <!-- POST NAVIGATION -->
+  <div class="postNav clearfix">
+    
+      <a class="prev" href="/java/2015/11/10/JVM-Introduction.html"><span>&laquo;&nbsp;Java Garbage Collection</span>
+      
+    </a>
     
     
-        <dt id="March2016">March 2016</dt>
-        
+      <a class="next" href="/oracle/2015/11/30/Find-Referenced-Tables.html"><span>Find tables that reference a particular column in a table &nbsp;&raquo;</span>
+      
+      </a>
     
-    <dd><a href="/theme/2016/03/09/Jekyll-Update.html">Jekyll 3.0 Upgration</a></dd>
-
-    
-    
-        <dt id="December2015">December 2015</dt>
-        
-    
-    <dd><a href="/multithreading/2015/12/24/Multithreading-in-java.html">Multithreading in Java</a></dd>
-
-    
-    
-        <dt id="November2015">November 2015</dt>
-        
-    
-    <dd><a href="/oracle/2015/11/30/Find-Referenced-Tables.html">Find tables that reference a particular column in a table </a></dd>
-
-    
-    
-    <dd><a href="/jvm/2015/11/30/Find-All-Referenced-Tables.html">Monitor the application in JVisualVm</a></dd>
-
-    
-    
-    <dd><a href="/java/2015/11/10/JVM-Introduction.html">Java Garbage Collection</a></dd>
-
-    
-    
-        <dt id="October2015">October 2015</dt>
-        
-    
-    <dd><a href="/pdf/2015/10/06/PDF-Exploration.html">Explore PDF</a></dd>
-
-    
-    
-        <dt id="September2015">September 2015</dt>
-        
-    
-    <dd><a href="/encoding/2015/09/16/Encoding-and-CharSets.html">细说字符集(CharSet)和字符编码(Encoding)</a></dd>
-
-    
-    
-    <dd><a href="/java/2015/09/16/hibernate-system-exception.html">Hibernate System Exception</a></dd>
-
-    
-    
-        <dt id="August2015">August 2015</dt>
-        
-    
-    <dd><a href="/java/2015/08/30/JavaFX-Concurrency.html">JavaFX Concurrency</a></dd>
-
-    
-    
-    <dd><a href="/java/2015/08/29/java-comparable.html">Java Comparator</a></dd>
-
-    
-    
-    <dd><a href="/java/2015/08/20/mvn-client.html">Maven Client too old to build</a></dd>
-
-    
-    
-    <dd><a href="/database/2015/08/20/db-tables.html">Oracle Significant Tables</a></dd>
-
-    
-    
-    <dd><a href="/theme/2015/08/16/jellky-comments.html">Setup your Jekyll Theme on Github</a></dd>
-
-</dl>
+  </div>
+</div>
 
       </div>
    </div><!-- end .content -->

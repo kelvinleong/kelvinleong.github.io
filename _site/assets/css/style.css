@@ -303,9 +303,9 @@ img,video,audio,iframe,object{max-width:100%}
               width: inherit;
             }
 
-            /*.post{
-              width: 100%;
-            }*/
+            .post{
+              margin-left: 5%;
+            }
 
             .content{
               margin-top:50px;

@@ -5,9 +5,127 @@
     <description>Long Form Jekyll theme built with SASS / COMPASS / SUSY</description>
     <link>127.0.0.1/</link>
     <atom:link href="127.0.0.1/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 08 Mar 2016 00:09:30 +0800</pubDate>
-    <lastBuildDate>Tue, 08 Mar 2016 00:09:30 +0800</lastBuildDate>
+    <pubDate>Mon, 14 Mar 2016 23:45:14 +0800</pubDate>
+    <lastBuildDate>Mon, 14 Mar 2016 23:45:14 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      
+      <item>
+        <title>Jekyll 3.0 Upgration</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;GitHub Pages is now running the latest major version of Jekyll, Jekyll 3.0, and with it, many of the complexities associated with publishing have been further simplified, meaning it’s now easier and faster to publish beautiful sites for you and your projects.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;My github page is built on top of Jekyll 2.0, which runs well on my local testing while throwing out “404” errors while visited from the github domain. And the problems is due to github pages updating Jekyll to version 3.0 while my page is still running based on v2.0.&lt;/p&gt;
+
+&lt;p&gt;To solve the problem, what I have to do is simply upgrading the Jekyll version and re-deployed my repository.&lt;/p&gt;
+
+&lt;p&gt;Here are steps to go:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Update your ruby version to 2.0&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Jekylly 3.0 require ruby-2.0 environment. The quickest way of installing Ruby on Rails with rvm is to run the following commands as a regular user:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+\curl -sSL https://get.rvm.io | bash -s stable --rails
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Following a long installation procedure, all you need to do is source the rvm scripts by typing:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;source ~/.rvm/scripts/rvm
+rvm list / rvm list known
+rvm use ruby_version(ruby-2.0)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Update your Jekyll&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Well, just use the following command :&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ gem update jekyll
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Revise Jekyll configuration&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As announced, github pages will no longer support “redcarpet” markdown and “pygment” highlighter and change to “Kramdown” and “Rouge” respectively. Therefore, change the mardown and highlighter value in “_config.yaml” file to continue.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+paginate: 7
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In Jekyll 3 and above, relative permalinks have been deprecated. Removing the following line from your _config.yml file:
+&lt;code class=&quot;highlighter-rouge&quot;&gt;
+relative_permalinks: true
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Besides that, I got the following problems that “Deprecation: You appear to have pagination turned on, but you haven’t included the jekyll-paginate gem.” Ensure you have “gems: [jekyll-paginate, jekyll-gist]” in the _config.yaml file. As well, ensure you have jekyll-paginate and jekyll-gist installed using the following command:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ gem install jekyll-paginate
+$ gem install jekyll-gist
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Enable remote access Jekyll page thru local network&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Try jekyll serve –host=0.0.0.0 when you invoke Jekyll on the command line.&lt;/p&gt;
+
+&lt;p&gt;That will make Jekyll’s HTTP server bind to all available IPs, rather than just to localhost.&lt;/p&gt;
+
+&lt;p&gt;You can also add this to your _config.yml with host: 0.0.0.0. GitHub will simply ignore this when you push, so it’s safe to use if you don’t mind having your work openly accessible on your network.&lt;/p&gt;
+
+&lt;p&gt;Without &lt;strong&gt;&lt;em&gt;–host=0.0.0.0 Jekyll&lt;/em&gt;&lt;/strong&gt; will output something like this when you start up:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ jekyll serve
+[...]
+Server address: http://127.0.0.1:4000/
+Server running... press ctrl-c to stop.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;But with &lt;strong&gt;&lt;em&gt;–host=0.0.0.0&lt;/em&gt;&lt;/strong&gt; (or host: 0.0.0.0 in _config.yml) you’ll notice that it’s listening on all interfaces (represented by 0.0.0.0) rather than just listening on the loopback interface (represented by 127.0.0.1)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ jekyll serve --host=0.0.0.0
+[...]
+Server address: http://0.0.0.0:4000/
+Server running... press ctrl-c to stop.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Reference:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://jekyllrb.com/docs/upgrading/2-to-3/&quot;&gt;https://jekyllrb.com/docs/upgrading/2-to-3/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        
+          <description>&lt;blockquote&gt;
+  &lt;p&gt;GitHub Pages is now running the latest major version of Jekyll, Jekyll 3.0, and with it, many of the complexities associated with publishing have been further simplified, meaning it’s now easier and faster to publish beautiful sites for you and your projects.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        
+        <pubDate>Wed, 09 Mar 2016 23:24:05 +0800</pubDate>
+        <link>127.0.0.1/theme/2016/03/09/Jekyll-Update.html</link>
+        <guid isPermaLink="true">127.0.0.1/theme/2016/03/09/Jekyll-Update.html</guid>
+        
+        
+        <category>Theme</category>
+        
+      </item>
+      
     
       
       <item>
@@ -176,8 +294,8 @@ http://www.javatpoint.com/synchronization-in-java&lt;/p&gt;
 </description>
         
         <pubDate>Thu, 24 Dec 2015 22:27:00 +0800</pubDate>
-        <link>127.0.0.1/blog/Multithreading-in-java/</link>
-        <guid isPermaLink="true">127.0.0.1/blog/Multithreading-in-java/</guid>
+        <link>127.0.0.1/multithreading/2015/12/24/Multithreading-in-java.html</link>
+        <guid isPermaLink="true">127.0.0.1/multithreading/2015/12/24/Multithreading-in-java.html</guid>
         
         
         <category>Multithreading</category>
@@ -319,8 +437,8 @@ http://www.javatpoint.com/synchronization-in-java&lt;/p&gt;
 </description>
         
         <pubDate>Mon, 30 Nov 2015 23:53:00 +0800</pubDate>
-        <link>127.0.0.1/blog/Find-Referenced-Tables/</link>
-        <guid isPermaLink="true">127.0.0.1/blog/Find-Referenced-Tables/</guid>
+        <link>127.0.0.1/oracle/2015/11/30/Find-Referenced-Tables.html</link>
+        <guid isPermaLink="true">127.0.0.1/oracle/2015/11/30/Find-Referenced-Tables.html</guid>
         
         
         <category>Oracle</category>
@@ -378,8 +496,8 @@ http://www.javatpoint.com/synchronization-in-java&lt;/p&gt;
 </description>
         
         <pubDate>Mon, 30 Nov 2015 23:53:00 +0800</pubDate>
-        <link>127.0.0.1/blog/Find-All-Referenced-Tables/</link>
-        <guid isPermaLink="true">127.0.0.1/blog/Find-All-Referenced-Tables/</guid>
+        <link>127.0.0.1/jvm/2015/11/30/Find-All-Referenced-Tables.html</link>
+        <guid isPermaLink="true">127.0.0.1/jvm/2015/11/30/Find-All-Referenced-Tables.html</guid>
         
         
         <category>JVM</category>
@@ -446,8 +564,8 @@ http://www.javatpoint.com/synchronization-in-java&lt;/p&gt;
 </description>
         
         <pubDate>Tue, 10 Nov 2015 23:53:00 +0800</pubDate>
-        <link>127.0.0.1/blog/JVM-Introduction/</link>
-        <guid isPermaLink="true">127.0.0.1/blog/JVM-Introduction/</guid>
+        <link>127.0.0.1/java/2015/11/10/JVM-Introduction.html</link>
+        <guid isPermaLink="true">127.0.0.1/java/2015/11/10/JVM-Introduction.html</guid>
         
         
         <category>Java</category>
@@ -508,8 +626,8 @@ of what is a PDF.&lt;/p&gt;
 </description>
         
         <pubDate>Tue, 06 Oct 2015 23:53:00 +0800</pubDate>
-        <link>127.0.0.1/blog/PDF-Exploration/</link>
-        <guid isPermaLink="true">127.0.0.1/blog/PDF-Exploration/</guid>
+        <link>127.0.0.1/pdf/2015/10/06/PDF-Exploration.html</link>
+        <guid isPermaLink="true">127.0.0.1/pdf/2015/10/06/PDF-Exploration.html</guid>
         
         
         <category>PDF</category>
@@ -652,8 +770,8 @@ of what is a PDF.&lt;/p&gt;
 </description>
         
         <pubDate>Wed, 16 Sep 2015 04:24:58 +0800</pubDate>
-        <link>127.0.0.1/blog/Encoding-and-CharSets/</link>
-        <guid isPermaLink="true">127.0.0.1/blog/Encoding-and-CharSets/</guid>
+        <link>127.0.0.1/encoding/2015/09/16/Encoding-and-CharSets.html</link>
+        <guid isPermaLink="true">127.0.0.1/encoding/2015/09/16/Encoding-and-CharSets.html</guid>
         
         
         <category>Encoding</category>
@@ -704,8 +822,8 @@ of what is a PDF.&lt;/p&gt;
 </description>
         
         <pubDate>Wed, 16 Sep 2015 04:24:58 +0800</pubDate>
-        <link>127.0.0.1/blog/hibernate-system-exception/</link>
-        <guid isPermaLink="true">127.0.0.1/blog/hibernate-system-exception/</guid>
+        <link>127.0.0.1/java/2015/09/16/hibernate-system-exception.html</link>
+        <guid isPermaLink="true">127.0.0.1/java/2015/09/16/hibernate-system-exception.html</guid>
         
         
         <category>Java</category>
@@ -781,8 +899,8 @@ Example: Why Can’t we use Platform.runLater(…) for long calculations (Taken 
 </description>
         
         <pubDate>Sun, 30 Aug 2015 04:15:58 +0800</pubDate>
-        <link>127.0.0.1/blog/JavaFX-Concurrency/</link>
-        <guid isPermaLink="true">127.0.0.1/blog/JavaFX-Concurrency/</guid>
+        <link>127.0.0.1/java/2015/08/30/JavaFX-Concurrency.html</link>
+        <guid isPermaLink="true">127.0.0.1/java/2015/08/30/JavaFX-Concurrency.html</guid>
         
         
         <category>Java</category>
@@ -842,48 +960,8 @@ a negative integer, zero, or a positive integer as the first argument is less th
 </description>
         
         <pubDate>Sat, 29 Aug 2015 07:24:58 +0800</pubDate>
-        <link>127.0.0.1/blog/java-comparable/</link>
-        <guid isPermaLink="true">127.0.0.1/blog/java-comparable/</guid>
-        
-        
-        <category>Java</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Maven Client too old to build</title>
-        <description>&lt;h4 id=&quot;maven-update-svn-version&quot;&gt;[maven] Update SVN version&lt;/h4&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;In the .pom.xml file,  find the following plugin in.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;groupId&amp;gt; com.google.code.maven-svn-revision-number-plugin&amp;lt;/groupId&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Add the following dependency, which upgrade the svn version to 1.8 (my current version)&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependencies&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.tmatesoft.svnkit&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;svnkit&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.8.10&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependencies&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        
-          <description>&lt;h4 id=&quot;maven-update-svn-version&quot;&gt;[maven] Update SVN version&lt;/h4&gt;
-&lt;hr /&gt;
-
-</description>
-        
-        <pubDate>Thu, 20 Aug 2015 07:24:58 +0800</pubDate>
-        <link>127.0.0.1/blog/mvn-client/</link>
-        <guid isPermaLink="true">127.0.0.1/blog/mvn-client/</guid>
+        <link>127.0.0.1/java/2015/08/29/java-comparable.html</link>
+        <guid isPermaLink="true">127.0.0.1/java/2015/08/29/java-comparable.html</guid>
         
         
         <category>Java</category>
