@@ -19,13 +19,32 @@
   }
 }
 
+@media screen and (min-width:600px) and (max-width:800px) {
+  .sidebar{
+    margin-top: 5%;
+    width: 20%;
+  }
+
+  .post{
+    width: 80%;
+  }
+
+  #home .posts{
+    margin-left: 20%;
+  },
+  #home .pageTitle,
+  #home .pagination{
+    width:70%;
+    float:rihgt;
+    margin-right:2.12766%;
+    float:none;
+    margin:0 auto 1.5em
+  }
+  #home .pageTitle{margin:2rem auto 1em}
+}
+
 emcode {
-    font-size: 18px;
-    font-size: 1.000rem;
-    line-height: 1.33333;
-    margin-bottom: 0;
-    color: blue;
-    white-space: nowrap;
+    font-size: 18px;8
     margin: 0 2px;
     padding: 0 5px;
     border: 1px solid #ddd;
@@ -298,16 +317,7 @@ img,video,audio,iframe,object{max-width:100%}
             }
           .posts li h3{margin:0 0 .5em}
           @media only screen and (min-width: 800px)
-          {
-            .sidebar{
-              width: inherit;
-            }
-
-            .post{
-              margin-left: 5%;
-            }
-
-            .content{
+          {sidebarnt{
               margin-top:50px;
               padding-top:0;
               position:relative;

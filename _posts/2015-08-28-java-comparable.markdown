@@ -40,4 +40,5 @@ In a project, I have to retrieved amounts of data with the following table struc
 a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.
 
 Reference
+
 > <https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html>
