@@ -317,7 +317,7 @@ img,video,audio,iframe,object{max-width:100%}
             }
           .posts li h3{margin:0 0 .5em}
           @media only screen and (min-width: 800px)
-          {sidebarnt{
+          { .sidebar{
               margin-top:50px;
               padding-top:0;
               position:relative;
