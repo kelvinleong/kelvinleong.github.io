@@ -40,11 +40,12 @@ There is a hierarchical structure in this table that *R_CONSTRAINT_NAME* indicat
 To further find out the corresponding primary and foreign key columns, we can use the above result to join with table ***ALL_IND_COLUMNS*** and ***ALL_CONS_COLUMNS***.
 
 ~~~sql
-SELECT AIC.TABLE_NAME,
-       AIC.COLUMN_NAME,
-       ACC.COLUMN_NAME,
+SELECT TREE.CONSTRAINT_NAME,
        TREE.TABLE_NAME,
-       TREE.CONSTRAINT_NAME,
+       ACC.COLUMN_NAME,
+       TREE.R_CONSTRAINT_NAME,
+       AIC.TABLE_NAME,
+       AIC.COLUMN_NAME,
        TREE.LVL
 FROM
       ALL_IND_COLUMNS AIC,
@@ -52,11 +53,13 @@ FROM
       (
       SELECT CONSTRAINT_NAME, TABLE_NAME, CONSTRAINT_TYPE, R_CONSTRAINT_NAME, LEVEL LVL
       FROM ALL_CONSTRAINTS
-      START WITH TABLE_NAME = 'szTableName' AND CONSTRAINT_TYPE = 'P'
+      START WITH TABLE_NAME = 'BARG' AND CONSTRAINT_TYPE = 'P'
       CONNECT BY PRIOR CONSTRAINT_NAME = R_CONSTRAINT_NAME
       )Tree
 WHERE ACC.CONSTRAINT_NAME = TREE.CONSTRAINT_NAME
-AND   AIC.INDEX_NAME = TREE.R_CONSTRAINT_NAME;
+AND   AIC.INDEX_NAME = TREE.R_CONSTRAINT_NAME
+AND   AIC.COLUMN_POSITION = ACC.POSITION
+ORDER BY TREE.TABLE_NAME, TREE.LVL;
 ~~~
 
 As shown, the hierarchical query result is nested as a Tree table for join operation.
