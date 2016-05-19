@@ -4,7 +4,7 @@ description: Long Form Jekyll theme built with SASS / COMPASS / SUSY
 url: 127.0.0.1
 baseurl: ""
 paginate_path: "blog/page:num/"
-permalink: blog/:title/:about/index.html:contact/index.html
+#permalink: blog/:title/:about/index.html:contact/index.html
 
 kramdown:
   input: GFM
