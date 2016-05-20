@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <title>Hibernate System Exception</title>
+    <title></title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
@@ -20,7 +20,7 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/assets/css/style.css">
     <!--[if IE 8]><link rel="stylesheet" href="/assets/css/ie.css"><![endif]-->
-    <link rel="canonical" href="127.0.0.1/java/2015/09/16/hibernate-system-exception.html">
+    <link rel="canonical" href="127.0.0.1/blog/page3/">
 
     <!-- Modernizr -->
     <script src="/assets/js/modernizr.custom.15390.js" type="text/javascript"></script>
@@ -78,6 +78,9 @@ ga('send', 'pageview');
     
         <li><a href="/archive.html#May2016">May 2016</a></li>
         
+    
+
+    
     
 
     
@@ -183,57 +186,22 @@ ga('send', 'pageview');
 
       </div>
       <div class="container">
-          <div class="post">
-  
-  <h1 class="postTitle">Hibernate System Exception</h1>
-  <p class="meta">September 16, 2015 | <span class="time">1</span> Minute Read</p>
-
-  <p>I accidentally encountered the following hibernate system exception after I modified the xml file.</p>
-
-<blockquote>
-  <p><strong><em>hibernateSystemException Don’t change the reference to a collection with cascade=”all-delete-orphan”</em></strong></p>
-</blockquote>
-
-<p>The explanation told nothing at all.. So I try google or stackOverflow, none of them provided a practical solution for me.</p>
-
-<p>Finally, I examined my xml carefully again and again, then suddenly I realize that one of the bean name is reused again.</p>
-
-<p>After I corrrect it, the exception disappared!</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">"tradingAccCredit"</span> <span class="kd">class</span><span class="err">="</span><span class="nc">com</span><span class="o">.</span><span class="na">cmms</span><span class="o">.</span><span class="na">sharedlib</span><span class="o">.</span><span class="na">ControlGroup</span><span class="s">"&gt;
-    &lt;property name="</span><span class="n">controls</span><span class="s">"&gt;
-    &lt;util:list value-type="</span><span class="n">com</span><span class="o">.</span><span class="na">cmms</span><span class="o">.</span><span class="na">sharedlib</span><span class="o">.</span><span class="na">ClientMaint</span><span class="s">"&gt;
-            &lt;ref bean="</span><span class="n">tradingLimitCM</span><span class="s">" /&gt;
-            &lt;ref bean="</span><span class="n">expDtOfTradeLimitCM</span><span class="s">" /&gt;
-            &lt;ref bean="</span><span class="n">tradingLoanLimitCM</span><span class="s">" /&gt; // The bean name is used previously in another xml
-            &lt;ref bean="</span><span class="n">expDtOfLoanLimitCM</span><span class="s">" /&gt;
-            &lt;ref bean="</span><span class="n">creditRatingCM</span><span class="s">" /&gt;
-    &lt;/util:list&gt;
-    &lt;/property&gt;
-    &lt;property name="</span><span class="n">userRoles</span><span class="s">"&gt;
-    &lt;util:list value-type="</span><span class="n">com</span><span class="o">.</span><span class="na">cmms</span><span class="o">.</span><span class="na">sharedlib</span><span class="o">.</span><span class="na">ControlUserRole</span><span class="s">"&gt;
-    &lt;ref bean="</span><span class="n">mo_editMode</span><span class="s">" /&gt;
-    &lt;ref bean="</span><span class="n">mom_editMode</span><span class="err">"</span> <span class="o">/&gt;</span>
-    <span class="o">&lt;/</span><span class="nl">util:</span><span class="n">list</span><span class="o">&gt;</span>
-    <span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">bean</span><span class="o">&gt;</span>
-</code></pre>
-</div>
-
-<p>To sum up, make sure the bean names are unique.</p>
-
-
-  <!-- POST NAVIGATION -->
-  <div class="postNav clearfix">
+          <div class="home" id="home">
+  <h1 class="pageTitle">Recent Posts</h1>
+  <ul class="posts noList">
     
-      <a class="prev" href="/java/2015/08/30/JavaFX-Concurrency.html"><span>&laquo;&nbsp;JavaFX Concurrency</span>
-      
-    </a>
+      <li>
+        <span class="date">August 16, 2015</span>
+        <h3><a class="post-link" href="/theme/2015/08/16/jellky-comments.html">Setup your Jekyll Theme on Github</a></h3>
+        <p class="description">Requirements:Make sure your system has the following requirements.  Ruby (including development headers)  RubyGems  Linux, Unix, or Mac OS X  NodeJS, or another JavaScript runtime (for CoffeeScript support).For the installation details, please ref...</p>
+      </li>
     
+  </ul>
+  <!-- Pagination links -->
+  <div class="pagination">
     
-      <a class="next" href="/encoding/2015/09/16/Encoding-and-CharSets.html"><span>细说字符集(CharSet)和字符编码(Encoding)&nbsp;&raquo;</span>
-      
-      </a>
+      <a href="/blog/page2/" class="previous button__outline">Newer Posts</a> 
+    
     
   </div>
 </div>

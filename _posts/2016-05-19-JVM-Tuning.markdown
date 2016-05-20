@@ -1,13 +1,13 @@
 ---
 layout: post
 title:  "Garbage Collection Tuning"
-date:   2016-05-19 11:08:00
+date:   2016-05-09 11:08:00
 categories: Java
 ---
 
 We faced connection issue between database, a routing server, a gateway server and a external side server. The applications architecture is defined as following:
 
-[diagram to be inserted]
+![Alt text](/resources/jvm-tuning/architecture.png)
 
 From the diagram, we can tell that the connection issue would possibly happen in position (1), (2) and (3) but we cannot exactly distinguish where the disconnection problems occur without further information. To locate the issue, we are going to reproduce the case by doing some load tests in the UAT environment.
 
