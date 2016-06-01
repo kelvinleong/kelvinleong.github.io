@@ -1,15 +1,15 @@
 ---
 layout: post
-title:  "Find tables that reference a particular column in a table "
+title:  "Find all tables and its child tables referencing a given table "
 date:   2015-11-30 15:53:00
 categories: Oracle
 ---
 
 Scenario: *An requirement states "to delete the data from a table which is referenced by different tables".*
 
-Well, to delete records in Oracle Database is believed to be an simple job by the following command *"Delete FROM table_name"*. But the prerequisite is that the table should not be referenced by any other tables otherwise it may cause the "foreign key violation" while trying to delete the table.
+Well, to delete records in Database is believed to be an simple job by *"Delete FROM table_name"*. But the prerequisite is that the table should not be referenced by any other tables otherwise it may cause the "foreign key violation" while trying to delete the table. Particularly, a given tables with lots of child tables and so does these child tables, though it's a bad design. Then it would be a nightmare to delete specific records in the given table.
 
-Before that, we should have an explicit view on how the reference constraints is maintained in Oracle. The key system table is ***ALL_CONSTRAINTS***.
+Before going thru, we should have an clear view on how the reference constraints is maintained in Oracle. The key system table is ***ALL_CONSTRAINTS***.
 
 >**ALL_CONSTRAINTS** describes constraint definitions on tables accessible to the current user.
 
@@ -24,7 +24,7 @@ Before that, we should have an explicit view on how the reference constraints is
 |  R_CONSTRAINT_NAME | Name of the unique constraint definition for referenced table|
 |  CONSTRAINT_NAME   | Name of the constraint definition                            |
 
-There is a hierarchical structure in this table that *R_CONSTRAINT_NAME* indicating the foreign key constraint of the table would be the *CONSTRAINT_NAME* of a table it refers to (note, foreign key must refer to a primary key). By this relationship, we can create a hierarchical query to find out the table name, primary constraint name and its referenced tables name and the foreign key constraint name.
+There is a hierarchical structure in this table that *R_CONSTRAINT_NAME* indicating the foreign key constraint of the table would be the *CONSTRAINT_NAME* of a table it refers to (note, foreign key must refer to a primary key). By this relationship, we can create a hierarchical query to find out the referenced tables of a given table.
 
 ~~~sql
   SELECT CONSTRAINT_NAME,
@@ -53,7 +53,7 @@ FROM
       (
       SELECT CONSTRAINT_NAME, TABLE_NAME, CONSTRAINT_TYPE, R_CONSTRAINT_NAME, LEVEL LVL
       FROM ALL_CONSTRAINTS
-      START WITH TABLE_NAME = 'BARG' AND CONSTRAINT_TYPE = 'P'
+      START WITH TABLE_NAME = 'szTableName' AND CONSTRAINT_TYPE = 'P'
       CONNECT BY PRIOR CONSTRAINT_NAME = R_CONSTRAINT_NAME
       )Tree
 WHERE ACC.CONSTRAINT_NAME = TREE.CONSTRAINT_NAME
@@ -62,9 +62,9 @@ AND   AIC.COLUMN_POSITION = ACC.POSITION
 ORDER BY TREE.TABLE_NAME, TREE.LVL;
 ~~~
 
-As shown, the hierarchical query result is nested as a Tree table for join operation.
+As shown, the hierarchical query result is nested as a Tree table for join operation. This query provides a better performance compared with another solution mentioned in the the following section.
 
-I find another slow solution from the other, it's easy to understand but with less efficiency as too many join operations to perform for getting the result.
+Another solution for retrieving referenced tables of a given table.
 
 ~~~sql
   SELECT	AC.Table_Name,		--Source

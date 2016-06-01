@@ -15,7 +15,7 @@ This is the preface copied from "Effective Java", of course, concurrent programm
 
 Basically, there are two ways to create threads in Java programming. One is to "implement Runnable" and the other is to "extends Thread".
 
-With implements Runnable:
+By implements Runnable:
 
 ~~~java
 public class ThreadB implements Runnable {
@@ -43,11 +43,11 @@ This hierarchy can be shown in the following diagram.
 
 ![Alt text](/resources/multithreading/thread-runnable-erp.png)
 
-As shown in the code example, both two methods actually embed the thread body in run() method but the semantic difference is that ThreadB implement the interface run() of Runnable while ThreadA override the method in Thread object. In practice, creating thread using ThreadA is straightforward for beginner to go but ThreadB is actually the preferred method to create a thread. The reason is that ***"implements Runnable"*** is more flexible as multi inheritance is not supported in Java. Say, you want to customize a timer control to update the time every 2 seconds by extending an implemented timer class. By this way, you cannot use "extend Thread" method due to the single inheritance restrict in Java.Instead, you can only make the timer to ***"implements Runnable"*** and override the run() method to specialize the thread's behavior.
+As shown in the code example, both two methods actually embed the thread body in run() method but the semantic difference is that ThreadB implement the interface run() of Runnable while ThreadA override the method in Thread object. In practice, creating thread using ThreadA is straightforward for beginner to go but ThreadB is actually the preferred method to create a thread. The reason is that ***"implements Runnable"*** is more flexible as multi inheritance is not supported in Java. Say, you want to customize a timer control to update the time every 2 seconds by extending an implemented timer class. By this way, you cannot use "extend Thread" method due to the single inheritance restrict in Java. Instead, you can only make the timer to ***"implements Runnable"*** and override the run() method to customize the thread's behavior.
 
 ### Start a thread
 
-Thread should be started by invoking the native method start() to begin execution.The Java Virtual Machine then calls the run method of this thread to go.Directly invoking the run() method from main thread, the run() method goes onto the current call stack rather than at the beginning of a new call stack i.e., run() will serve as a function call instead by direct invoking.
+Thread should be started by invoking the native method start() to begin execution. The Java Virtual Machine then calls the run method of this thread to go. Directly calling the run() method from main thread, the run() method goes onto the current call stack rather than at the beginning of a new call stack i.e., directly calling run() method will serve as a function call instead of direct invoking.
 
 **start()** method of Thread class is used to start a newly created thread. It performs following tasks:
 
@@ -76,7 +76,7 @@ public class MyObject {
 }
 ~~~
 
-With the ***synchronized*** keyword, it can be guaranteed that only one thread can access method "someMethod()" which is to lock an object for any shared resources. But there is performance tradeoff by simply using synchronized keyword. Suppose you have 50 lines of code in your method, but you want to synchronize only 5 lines. Therefore, synchronized block is an alternative to solve the problem.
+With the ***synchronized*** keyword, it can be guaranteed that only one thread can access method "someMethod()" which is to lock an object for any shared resources.
 
 Syntax to use synchronized block
 
@@ -85,6 +85,8 @@ synchronized (object reference expression) {
   //code block   
 }
 ~~~
+
+But there is performance tradeoff by simply using synchronized keyword. Suppose you have 50 lines of code in your method, but the critical you really want to synchronize occupying only 5 lines. That would be risky to cause problems while locking the method for a long time. Therefore, synchronized block is an alternative to solve the problem.
 
 Actually, the synchronized method is equivalent to the following code snippet:
 
@@ -103,7 +105,7 @@ http://www.javatpoint.com/synchronization-in-java
 
 ### Inter-Thread Communication
 
-Inter-thread communication is important in multithreading programming. Let's say there is a scenario that ThreadA is waiting for ThreadB completing its execution to continue its job. One of the solution is to create a status tracker which allows one or more threads to wait until a set of operations being performed in other threads completes.
+Inter-thread communication is important in multithreading programming. Let's say ThreadA is waiting for ThreadB completing its execution to continue its job. One of the solution is to create a status tracker which allows one or more threads to wait until a set of operations being performed in other threads completes.
 
 ~~~java
 public class StatusTracker {

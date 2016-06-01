@@ -8,26 +8,26 @@ categories: Database
 #### [Oracle SQL] Difference between USER_TABLES, ALL_TABLES and DBA_TABLES
 ---
 
-User_tables are those owned by the specified user(schema).
+User_tables are those owned by specified user(schema).
 
-For example, an oracle database user log in with the identity "USER" and execute the following sql:
+For example, an oracle database user log in with the identity "USER" and execute the following query:
 
 ```sql
 SELECT * FROM user_tables;
 ```
 
-All the retrieved tables are owned by user "USER" only.
+Records are tables owned by user "USER".
 
-And if execute the following sql:
+And if execute the following query:
 
 ```sql
 SELECT * FROM all_tables;
 ```
 
-Now, the retrieved tables are owned by user USER and those granted to USER.
+Now, the retrieved records are tables owned by user USER and those granted to USER but owned by other users.
 
 DBA_tables, contains all the tables in the database.
 
-So the relation ship should be: DBA_tables > All_Tables > User_Tables.
+All three are views of the underlying SYS tables, but the USER_ and ALL_ views joing in your username/security info to limit the results
 
-For constraint/triggers/synonym, it is much the same.
+For constraint/triggers/synonym, it is more or less the same.

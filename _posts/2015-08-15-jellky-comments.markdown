@@ -7,7 +7,7 @@ categories: Theme
 
 ##### Requirements:
 
-Make sure your system has the following requirements.
+Make sure your system meet the following requirements.
 
 
 * ***Ruby (including development headers)***
@@ -22,6 +22,6 @@ For the installation details, please refer to:
 
 Note, it's recommended that to work on Unix/Linux though it's able to work on Windows (you have to cater for the compatiblity).
 
-If you want to add comments on your blog, please follow the below tutorial:
+If you want to add comment feature, please follow the below tutorial:
 
 ><http://www.tuicool.com/articles/Q32Mrmb>

@@ -5,15 +5,13 @@ date:   2015-09-15 20:24:58
 categories: Java
 ---
 
-I accidentally encountered the following hibernate system exception after I modified the xml file.
+The following hibernate system exception is raised after I modified the xml file.
 
 > ***hibernateSystemException Don’t change the reference to a collection with cascade=”all-delete-orphan”***
 
 The explanation told nothing at all.. So I try google or stackOverflow, none of them provided a practical solution for me.
 
-Finally, I examined my xml carefully again and again, then suddenly I realize that one of the bean name is reused again.
-
-After I corrrect it, the exception disappared!
+Finally, I checked the xml carefully again and again, then suddenly I realize that one of the bean name is reused again.
 
 ```java
 <bean id="tradingAccCredit" class="com.cmms.sharedlib.ControlGroup">
@@ -35,4 +33,4 @@ After I corrrect it, the exception disappared!
 </bean>
 ```
 
-To sum up, make sure the bean names are unique.
+To sum up, make sure the bean names are unique. Otherwise, spring will have confusions while registering the beans to the pool.

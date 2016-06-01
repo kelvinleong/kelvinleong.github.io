@@ -8,7 +8,7 @@ categories: Java
 #### [Java] Sort a List
 ----
 
-In a project, I have to retrieved amounts of data with the following table structure.
+In the recent work, I have to retrieved a list of data with the following data structure.
 
 ```java
   class Entity{
@@ -16,9 +16,9 @@ In a project, I have to retrieved amounts of data with the following table struc
       type fields;
   }
 ```
- But each time, the data retrieved are not in numerical order. In order to maintain an ascending ordering to show in the UI, a comparator is needed.
+ However, the data retrieved are not in sequential order sorted by the ID. In order to maintain an ascending ordering by ID to show in the UI, a comparator is introduced to help.
 
- Let's say we have a list Entity and want to sort by its id.
+ Let's say we have a list Entity and want to sort the list by its id. The following Java codes show the step.
 
  ```java
     List<Entity> entityList = getEntityList();
