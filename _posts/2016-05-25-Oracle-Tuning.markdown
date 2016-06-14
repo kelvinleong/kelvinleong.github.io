@@ -87,61 +87,62 @@ There are four separate threads here, and they are not sharing any variables—e
 It doesn’t turn out that way—when one particular thread writes the volatile value in its loop, the cache line for every other thread will get invalidated, and the memory values must be reloaded
 
 Let's see what happens if the *DataHolderLocal* (without volatile keyword) class is heavily used by multiple threads:
+
 ```java
 public class FalseSharing extends Thread{
-	private static class DataHolderLocal{
-		private  long l1 = 0;
-		private  long l2 = 0;
-		private  long l3 = 0;
-		private  long l4 = 0;
-	}
+  	private static class DataHolderLocal{
+  		private  long l1 = 0;
+  		private  long l2 = 0;
+  		private  long l3 = 0;
+  		private  long l4 = 0;
+  	}
 
-	private static DataHolder dh = new DataHolder();
-	private static DataHolderLocal dhLocal = new DataHolderLocal();
-	private static long loops;
+  	private static DataHolder dh = new DataHolder();
+  	private static DataHolderLocal dhLocal = new DataHolderLocal();
+  	private static long loops;
 
-	public FalseSharing(Runnable r){
-		super(r);
-	}
+  	public FalseSharing(Runnable r){
+  		super(r);
+  	}
 
-	public static void TestLocal() throws InterruptedException{
-		loops = 100000000;
-		FalseSharing[] tests = new FalseSharing[4];
+  	public static void TestLocal() throws InterruptedException{
+  		loops = 100000000;
+  		FalseSharing[] tests = new FalseSharing[4];
 
-		tests[0] = new FalseSharing(() -> {
-            for (long i = 0; i < loops; i++) {
-            	dhLocal.l1 += i;
-            }
-	    });
+  		tests[0] = new FalseSharing(() -> {
+              for (long i = 0; i < loops; i++) {
+              	dhLocal.l1 += i;
+              }
+  	    });
 
-	  tests[1] = new FalseSharing(() -> {
-	            for (long i = 0; i < loops; i++) {
-	            	dhLocal.l2 += i;
-	            }
-	    });
+  	  tests[1] = new FalseSharing(() -> {
+  	            for (long i = 0; i < loops; i++) {
+  	            	dhLocal.l2 += i;
+  	            }
+  	    });
 
-		tests[2] = new FalseSharing(() -> {
-            for (long i = 0; i < loops; i++) {
-            	dhLocal.l1 += i;
-            }
-	    });
+  		tests[2] = new FalseSharing(() -> {
+              for (long i = 0; i < loops; i++) {
+              	dhLocal.l1 += i;
+              }
+  	    });
 
-	  tests[3] = new FalseSharing(() -> {
-	            for (long i = 0; i < loops; i++) {
-	            	dhLocal.l2 += i;
-	            }
-	    });
+  	  tests[3] = new FalseSharing(() -> {
+  	            for (long i = 0; i < loops; i++) {
+  	            	dhLocal.l2 += i;
+  	            }
+  	    });
 
-	  long then = System.currentTimeMillis();
-    for (FalseSharing ct : tests) {
-        ct.start();
-    }
-    for (FalseSharing ct : tests) {
-        ct.join();
-    }
-    long now = System.currentTimeMillis();
-    System.out.println("Duration: " + (now - then) + " ms");
-	}
+  	  long then = System.currentTimeMillis();
+      for (FalseSharing ct : tests) {
+          ct.start();
+      }
+      for (FalseSharing ct : tests) {
+          ct.join();
+      }
+      long now = System.currentTimeMillis();
+      System.out.println("Duration: " + (now - then) + " ms");
+  	}
 }
 ```
 
@@ -149,7 +150,7 @@ The following Table shows the result:
 
 ----------------------------------------------------------------------
 |loops         | Elapsed Time(volatile) | Elapsed Time(wihout volatile)|
---------------|------------------------|------------------------------|
+|--------------|------------------------|------------------------------|
 |100000000     |     6173ms             |          142ms               |
 |1000000       |     607ms              |           30ms               |
 |10000         |     61ms               |           7ms                |
