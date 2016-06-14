@@ -146,12 +146,13 @@ public class FalseSharing extends Thread{
 ```
 
 The following Table shows the result:
+
 ----------------------------------------------------------------------
-loops         | Elapsed Time(volatile) | Elapsed Time(wihout volatile)|
+|loops         | Elapsed Time(volatile) | Elapsed Time(wihout volatile)|
 --------------|------------------------|------------------------------|
-100000000     |     6173ms             |          142ms               |
-1000000       |     607ms              |           30ms               |
-10000         |     61ms               |           7ms                |
+|100000000     |     6173ms             |          142ms               |
+|1000000       |     607ms              |           30ms               |
+|10000         |     61ms               |           7ms                |
 -----------------------------------------------------------------------
 
 The performance plunge dramatically due to involving volatile (or synchronzied) varaibles whereever any data value in the CPU cache is written, other caches that hold the same data range must be invalidated.
