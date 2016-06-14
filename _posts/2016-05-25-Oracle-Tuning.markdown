@@ -148,18 +148,17 @@ public class FalseSharing extends Thread{
 
 The following Table shows the result:
 
-------------------------------------------------------------------------
+
 |loops         | Elapsed Time(volatile) | Elapsed Time(wihout volatile)|
-------------------------------------------------------------------------
+|:-------------|:-----------------------|:-----------------------------|
 |100000000     |     6173ms             |          142ms               |
 |1000000       |     607ms              |           30ms               |
 |10000         |     61ms               |           7ms                |
-------------------------------------------------------------------------
+
 
 The performance plunge dramatically due to involving volatile (or synchronzied) varaibles whereever any data value in the CPU cache is written, other caches that hold the same data range must be invalidated.
 
 Quick Summary:
-
-* False sharing can have significant performance impact on code that frequently modifies volatile variables or exits synchronized blocks.
-* False sharing is difficult to detect. When a loop seems to be taking too long to occur, inspect the code to see if it matches the pattern where false sharing can occur.
-* False sharing is best avoided by moving the data to local variables and storing them later. Alternately, padding can sometimes can be used to move the conflicting variables to different cache lines.
+  * False sharing can have significant performance impact on code that frequently modifies volatile variables or exits synchronized blocks.
+  * False sharing is difficult to detect. When a loop seems to be taking too long to occur, inspect the code to see if it matches the pattern where false sharing can occur.
+  * False sharing is best avoided by moving the data to local variables and storing them later. Alternately, padding can sometimes can be used to move the conflicting variables to different cache lines.
