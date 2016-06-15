@@ -79,8 +79,17 @@ ga('send', 'pageview');
 
     
     
+        <li><a href="/archive.html#June2016">June 2016</a></li>
+        
+    
+
+    
+    
         <li><a href="/archive.html#May2016">May 2016</a></li>
         
+    
+
+    
     
 
     
@@ -191,7 +200,7 @@ ga('send', 'pageview');
   <h1 class="postTitle">Hibernate System Exception</h1>
   <p class="meta">September 16, 2015 | <span class="time">1</span> Minute Read</p>
 
-  <p>I accidentally encountered the following hibernate system exception after I modified the xml file.</p>
+  <p>The following hibernate system exception is raised after I modified the xml file.</p>
 
 <blockquote>
   <p><strong><em>hibernateSystemException Don’t change the reference to a collection with cascade=”all-delete-orphan”</em></strong></p>
@@ -199,9 +208,7 @@ ga('send', 'pageview');
 
 <p>The explanation told nothing at all.. So I try google or stackOverflow, none of them provided a practical solution for me.</p>
 
-<p>Finally, I examined my xml carefully again and again, then suddenly I realize that one of the bean name is reused again.</p>
-
-<p>After I corrrect it, the exception disappared!</p>
+<p>Finally, I checked the xml carefully again and again, then suddenly I realize that one of the bean name is reused again.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">"tradingAccCredit"</span> <span class="kd">class</span><span class="err">="</span><span class="nc">com</span><span class="o">.</span><span class="na">cmms</span><span class="o">.</span><span class="na">sharedlib</span><span class="o">.</span><span class="na">ControlGroup</span><span class="s">"&gt;
     &lt;property name="</span><span class="n">controls</span><span class="s">"&gt;
@@ -223,7 +230,7 @@ ga('send', 'pageview');
 </code></pre>
 </div>
 
-<p>To sum up, make sure the bean names are unique.</p>
+<p>To sum up, make sure the bean names are unique. Otherwise, spring will have confusions while registering the beans to the pool.</p>
 
 
   <!-- POST NAVIGATION -->

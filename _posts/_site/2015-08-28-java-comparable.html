@@ -1,0 +1,44 @@
+<h4 id="java-sort-a-list">[Java] Sort a List</h4>
+<hr />
+
+<p>In the recent work, I have to retrieved a list of data with the following data structure.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="kd">class</span> <span class="nc">Entity</span><span class="o">{</span>
+      <span class="kt">int</span> <span class="n">id</span><span class="o">;</span> <span class="c1">//Primary key</span>
+      <span class="n">type</span> <span class="n">fields</span><span class="o">;</span>
+  <span class="o">}</span>
+</code></pre>
+</div>
+<p>However, the data retrieved are not in sequential order sorted by the ID. In order to maintain an ascending ordering by ID to show in the UI, a comparator is introduced to help.</p>
+
+<p>Let’s say we have a list Entity and want to sort the list by its id. The following Java codes show the step.</p>
+
+<p>```java
+    List<entity> entityList = getEntityList();</entity></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Collections.sort(entityList, new comparator(){
+      @Override
+      public int compare(Entity o1, Entity o2){
+          return (o1.getId() - o2.getId());
+      }
+})  ```
+</code></pre>
+</div>
+
+<p>For a descending order, just change the position o1 and o2.</p>
+
+<blockquote>
+  <p>Parameters: <strong><em>o1</em></strong> - the first object to be compared.
+<strong><em>o2</em></strong> - the second object to be compared.</p>
+</blockquote>
+
+<blockquote>
+  <p>Returns:
+a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.</p>
+</blockquote>
+
+<p>Reference</p>
+
+<blockquote>
+  <p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html">https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html</a></p>
+</blockquote>

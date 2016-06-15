@@ -79,8 +79,17 @@ ga('send', 'pageview');
 
     
     
+        <li><a href="/archive.html#June2016">June 2016</a></li>
+        
+    
+
+    
+    
         <li><a href="/archive.html#May2016">May 2016</a></li>
         
+    
+
+    
     
 
     
@@ -189,12 +198,12 @@ ga('send', 'pageview');
           <div class="post">
   
   <h1 class="postTitle">Java Comparator</h1>
-  <p class="meta">August 29, 2015 | <span class="time">0</span> Minute Read</p>
+  <p class="meta">August 29, 2015 | <span class="time">1</span> Minute Read</p>
 
   <h4 id="java-sort-a-list">[Java] Sort a List</h4>
 <hr />
 
-<p>In a project, I have to retrieved amounts of data with the following table structure.</p>
+<p>In the recent work, I have to retrieved a list of data with the following data structure.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>  <span class="kd">class</span> <span class="nc">Entity</span><span class="o">{</span>
       <span class="kt">int</span> <span class="n">id</span><span class="o">;</span> <span class="c1">//Primary key</span>
@@ -202,9 +211,9 @@ ga('send', 'pageview');
   <span class="o">}</span>
 </code></pre>
 </div>
-<p>But each time, the data retrieved are not in numerical order. In order to maintain an ascending ordering to show in the UI, a comparator is needed.</p>
+<p>However, the data retrieved are not in sequential order sorted by the ID. In order to maintain an ascending ordering by ID to show in the UI, a comparator is introduced to help.</p>
 
-<p>Let’s say we have a list Entity and want to sort by its id.</p>
+<p>Let’s say we have a list Entity and want to sort the list by its id. The following Java codes show the step.</p>
 
 <p>```java
     List<entity> entityList = getEntityList();</entity></p>

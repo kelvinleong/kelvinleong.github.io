@@ -1,0 +1,170 @@
+<p>One little-discussed performance implication of synchronization involves false sharing. That used to be a fairly obscure artifact of threaded programs, but as multi-core machines become the norm—and as other, more obvious, synchronization performance issues are addressed—false sharing is an increasingly important issue.</p>
+
+<p>False sharing occurs because of the way in which CPUs handle their cache. Consider the data in this simple class:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">DataHolder</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">volatile</span> <span class="kt">long</span> <span class="n">L1</span><span class="o">;</span>
+      <span class="kd">public</span> <span class="kd">volatile</span> <span class="kt">long</span> <span class="n">L2</span><span class="o">;</span>
+      <span class="kd">public</span> <span class="kd">volatile</span> <span class="kt">long</span> <span class="n">L3</span><span class="o">;</span>
+      <span class="kd">public</span> <span class="kd">volatile</span> <span class="kt">long</span> <span class="n">L4</span><span class="o">;</span>
+  <span class="o">}</span>
+</code></pre>
+</div>
+<p>Each of the long values here is stored in memory adjacent to each other—for example, L1 could be stored at memory location 0xF20. Then L2 would be stored in memory at 0xF28, L3 at 0xF2c, and so on. When it comes time for the program to operate on L2, it will load a relatively large amount of memory—for example, 128 bytes from location 0xF00 to 0xF80—into a cache line on one of the cores of (one of) the CPU(s). A second thread that wants to operate on L3 will load that same chunk of memory into a cache line on a different core.</p>
+
+<p>Loading nearby values like that makes sense in most cases—if the application accesses one particular instance variable in an object, it is likely to access nearby instance variables. If they are already loaded into the core’s cache, then that memory access is very, very fast—a big performance win.</p>
+
+<p>The downside to this scheme is that whenever the program updates a value in its local cache, that core must notify all the other cores that the memory in question has been changed. Those other cores must invalidate their cache lines and reload that data from memory.</p>
+
+<p>Let’s see what happens if the <em>DataHolder</em> class is heavily used by multiple threads:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FalseSharing</span> <span class="kd">extends</span> <span class="n">Thread</span><span class="o">{</span>
+	<span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">DataHolder</span><span class="o">{</span>
+		<span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">long</span> <span class="n">l1</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">long</span> <span class="n">l2</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">long</span> <span class="n">l3</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">long</span> <span class="n">l4</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">private</span> <span class="kd">static</span> <span class="n">DataHolder</span> <span class="n">dh</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DataHolder</span><span class="o">();</span>
+	<span class="kd">private</span> <span class="kd">static</span> <span class="kt">long</span> <span class="n">loops</span><span class="o">;</span>
+
+	<span class="kd">public</span> <span class="n">FalseSharing</span><span class="o">(</span><span class="n">Runnable</span> <span class="n">r</span><span class="o">){</span>
+		<span class="kd">super</span><span class="o">(</span><span class="n">r</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="n">TestVolatile</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">InterruptedException</span><span class="o">{</span>
+		<span class="n">loops</span> <span class="o">=</span> <span class="mi">100000000</span><span class="o">;</span>
+		<span class="n">FalseSharing</span><span class="o">[]</span> <span class="n">tests</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FalseSharing</span><span class="o">[</span><span class="mi">4</span><span class="o">];</span>
+
+		<span class="n">tests</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FalseSharing</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+		    <span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">loops</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			    <span class="n">dh</span><span class="o">.</span><span class="na">l1</span> <span class="o">+=</span> <span class="n">i</span><span class="o">;</span>
+		    <span class="o">}</span>
+		<span class="o">});</span>
+
+		<span class="n">tests</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FalseSharing</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+		    <span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">loops</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			    <span class="n">dh</span><span class="o">.</span><span class="na">l2</span> <span class="o">+=</span> <span class="n">i</span><span class="o">;</span>
+		    <span class="o">}</span>
+		<span class="o">});</span>
+
+		<span class="n">tests</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FalseSharing</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+		    <span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">loops</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			    <span class="n">dh</span><span class="o">.</span><span class="na">l1</span> <span class="o">+=</span> <span class="n">i</span><span class="o">;</span>
+		    <span class="o">}</span>
+		<span class="o">});</span>
+
+		<span class="n">tests</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FalseSharing</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+		    <span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">loops</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			    <span class="n">dh</span><span class="o">.</span><span class="na">l2</span> <span class="o">+=</span> <span class="n">i</span><span class="o">;</span>
+		    <span class="o">}</span>
+		<span class="o">});</span>
+
+		<span class="kt">long</span> <span class="n">then</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+    
+		<span class="k">for</span> <span class="o">(</span><span class="n">FalseSharing</span> <span class="n">ct</span> <span class="o">:</span> <span class="n">tests</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">ct</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+		<span class="o">}</span>
+	  
+		<span class="k">for</span> <span class="o">(</span><span class="n">FalseSharing</span> <span class="n">ct</span> <span class="o">:</span> <span class="n">tests</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">ct</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+		<span class="o">}</span>
+
+		<span class="kt">long</span> <span class="n">now</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Duration: "</span> <span class="o">+</span> <span class="o">(</span><span class="n">now</span> <span class="o">-</span> <span class="n">then</span><span class="o">)</span> <span class="o">+</span> <span class="s">" ms"</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>There are four separate threads here, and they are not sharing any variables—each is accessing only a single member of the DataHolder class. From a synchronization standpoint, there is no contention, and we might reasonably expect that this code would execute in the same amount of time regardless of whether it runs one thread or four threads (given a four-core machine).</p>
+
+<p>It doesn’t turn out that way—when one particular thread writes the volatile value in its loop, the cache line for every other thread will get invalidated, and the memory values must be reloaded</p>
+
+<p>Let’s see what happens if the <em>DataHolderLocal</em> (without volatile keyword) class is heavily used by multiple threads:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FalseSharing</span> <span class="kd">extends</span> <span class="n">Thread</span><span class="o">{</span>
+  	<span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">DataHolderLocal</span><span class="o">{</span>
+  		<span class="kd">private</span>  <span class="kt">long</span> <span class="n">l1</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  		<span class="kd">private</span>  <span class="kt">long</span> <span class="n">l2</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  		<span class="kd">private</span>  <span class="kt">long</span> <span class="n">l3</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  		<span class="kd">private</span>  <span class="kt">long</span> <span class="n">l4</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  	<span class="o">}</span>
+
+  	<span class="kd">private</span> <span class="kd">static</span> <span class="n">DataHolder</span> <span class="n">dh</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DataHolder</span><span class="o">();</span>
+  	<span class="kd">private</span> <span class="kd">static</span> <span class="n">DataHolderLocal</span> <span class="n">dhLocal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DataHolderLocal</span><span class="o">();</span>
+  	<span class="kd">private</span> <span class="kd">static</span> <span class="kt">long</span> <span class="n">loops</span><span class="o">;</span>
+
+  	<span class="kd">public</span> <span class="n">FalseSharing</span><span class="o">(</span><span class="n">Runnable</span> <span class="n">r</span><span class="o">){</span>
+  		<span class="kd">super</span><span class="o">(</span><span class="n">r</span><span class="o">);</span>
+  	<span class="o">}</span>
+
+  	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="n">TestLocal</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">InterruptedException</span><span class="o">{</span>
+	    <span class="n">loops</span> <span class="o">=</span> <span class="mi">1000000</span><span class="o">;</span>
+	    <span class="n">FalseSharing</span><span class="o">[]</span> <span class="n">tests</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FalseSharing</span><span class="o">[</span><span class="mi">4</span><span class="o">];</span>
+		
+	    <span class="n">tests</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FalseSharing</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+		    <span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">loops</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="n">dhLocal</span><span class="o">.</span><span class="na">l1</span> <span class="o">+=</span> <span class="n">i</span><span class="o">;</span>
+		    <span class="o">}</span>
+	    <span class="o">});</span>
+	    <span class="n">tests</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FalseSharing</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+	            <span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">loops</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+	            	<span class="n">dhLocal</span><span class="o">.</span><span class="na">l2</span> <span class="o">+=</span> <span class="n">i</span><span class="o">;</span>
+	            <span class="o">}</span>
+	    <span class="o">});</span>
+	    
+	    <span class="n">tests</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FalseSharing</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+		    <span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">loops</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="n">dhLocal</span><span class="o">.</span><span class="na">l1</span> <span class="o">+=</span> <span class="n">i</span><span class="o">;</span>
+            <span class="o">}</span>
+	    <span class="o">});</span>
+		
+	    <span class="n">tests</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FalseSharing</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+	            <span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">loops</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+	            	<span class="n">dhLocal</span><span class="o">.</span><span class="na">l2</span> <span class="o">+=</span> <span class="n">i</span><span class="o">;</span>
+	            <span class="o">}</span>
+	    <span class="o">});</span>
+	    
+	    <span class="kt">long</span> <span class="n">then</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+
+	    <span class="k">for</span> <span class="o">(</span><span class="n">FalseSharing</span> <span class="n">ct</span> <span class="o">:</span> <span class="n">tests</span><span class="o">)</span> <span class="o">{</span>
+		 <span class="n">ct</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+	    <span class="o">}</span>
+	    
+	    <span class="k">for</span> <span class="o">(</span><span class="n">FalseSharing</span> <span class="n">ct</span> <span class="o">:</span> <span class="n">tests</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">ct</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+	    <span class="o">}</span>
+	    
+            <span class="kt">long</span> <span class="n">now</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+	    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Duration: "</span> <span class="o">+</span> <span class="o">(</span><span class="n">now</span> <span class="o">-</span> <span class="n">then</span><span class="o">)</span> <span class="o">+</span> <span class="s">" ms"</span><span class="o">);</span>
+	<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>The following Table shows the result:</p>
+
+<hr />
+<p>|loops         | Elapsed Time(volatile)         | Elapsed Time(wihout volatile)     |
+|————–|——————————–|———————————–|
+|100000000     |     6173ms                     |          142ms                    |
+|1000000       |     607ms                      |           30ms                    |
+|10000         |     61ms                       |           7ms                     |
+————————————————————————————-</p>
+
+<p>The performance plunge dramatically due to involving volatile (or synchronzied) varaibles whereever any data value in the CPU cache is written, other caches that hold the same data range must be invalidated.</p>
+
+<p>Quick Summary:</p>
+
+<ul>
+  <li>
+    <p>False sharing can have significant performance impact on code that frequently modifies volatile variables or exits synchronized blocks.</p>
+  </li>
+  <li>
+    <p>False sharing is difficult to detect. When a loop seems to be taking too long to occur, inspect the code to see if it matches the pattern where false sharing can occur.</p>
+  </li>
+  <li>
+    <p>False sharing is best avoided by moving the data to local variables and storing them later. Alternately, padding can sometimes can be used to move the conflicting variables to different cache lines.</p>
+  </li>
+</ul>

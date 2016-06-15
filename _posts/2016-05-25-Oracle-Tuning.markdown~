@@ -165,7 +165,7 @@ The following Table shows the result:
 
 The performance plunge dramatically due to involving volatile (or synchronzied) varaibles whereever any data value in the CPU cache is written, other caches that hold the same data range must be invalidated.
 
-**Quick Summary:**
+Quick Summary:
 
 * False sharing can have significant performance impact on code that frequently modifies volatile variables or exits synchronized blocks.
 * False sharing is difficult to detect. When a loop seems to be taking too long to occur, inspect the code to see if it matches the pattern where false sharing can occur.

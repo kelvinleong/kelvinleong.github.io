@@ -1,0 +1,97 @@
+<blockquote>
+  <p>GitHub Pages is now running the latest major version of Jekyll, Jekyll 3.0, and with it, many of the complexities associated with publishing have been further simplified, meaning it’s now easier and faster to publish beautiful sites for you and your projects.</p>
+</blockquote>
+
+<p>My github page is built on top of Jekyll 2.0, which runs well on my local testing while throwing out “404” errors while visited from the github domain. And the problems is due to github pages updating Jekyll to version 3.0 while my page is still running based on v2.0.</p>
+
+<p>To solve the problem, what I have to do is simply upgrading the Jekyll version and re-deployed my repository.</p>
+
+<p>Here are steps to go:</p>
+
+<ul>
+  <li><strong>Update your ruby version to 2.0</strong></li>
+</ul>
+
+<p>Jekylly 3.0 require ruby-2.0 environment. The quickest way of installing Ruby on Rails with rvm is to run the following commands as a regular user:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+\curl -sSL https://get.rvm.io | bash -s stable --rails
+</code></pre>
+</div>
+
+<p>Following a long installation procedure, all you need to do is source the rvm scripts by typing:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>source ~/.rvm/scripts/rvm
+rvm list / rvm list known
+rvm use ruby_version(ruby-2.0)
+</code></pre>
+</div>
+
+<ul>
+  <li><strong>Update your Jekyll</strong></li>
+</ul>
+
+<p>Well, just use the following command :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ gem update jekyll
+</code></pre>
+</div>
+
+<ul>
+  <li><strong>Revise Jekyll configuration</strong></li>
+</ul>
+
+<p>As announced, github pages will no longer support “redcarpet” markdown and “pygment” highlighter and change to “Kramdown” and “Rouge” respectively. Therefore, change the mardown and highlighter value in “_config.yaml” file to continue.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+paginate: 7
+</code></pre>
+</div>
+
+<p>In Jekyll 3 and above, relative permalinks have been deprecated. Removing the following line from your _config.yml file:
+<code class="highlighter-rouge">
+relative_permalinks: true
+</code></p>
+
+<p>Besides that, I got the following problems that “Deprecation: You appear to have pagination turned on, but you haven’t included the jekyll-paginate gem.” Ensure you have “gems: [jekyll-paginate, jekyll-gist]” in the _config.yaml file. As well, ensure you have jekyll-paginate and jekyll-gist installed using the following command:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ gem install jekyll-paginate
+$ gem install jekyll-gist
+</code></pre>
+</div>
+
+<ul>
+  <li><strong>Enable remote access Jekyll page thru local network</strong></li>
+</ul>
+
+<p>Try jekyll serve –host=0.0.0.0 when you invoke Jekyll on the command line.</p>
+
+<p>That will make Jekyll’s HTTP server bind to all available IPs, rather than just to localhost.</p>
+
+<p>You can also add this to your _config.yml with host: 0.0.0.0. GitHub will simply ignore this when you push, so it’s safe to use if you don’t mind having your work openly accessible on your network.</p>
+
+<p>Without <strong><em>–host=0.0.0.0 Jekyll</em></strong> will output something like this when you start up:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ jekyll serve
+[...]
+Server address: http://127.0.0.1:4000/
+Server running... press ctrl-c to stop.
+</code></pre>
+</div>
+
+<p>But with <strong><em>–host=0.0.0.0</em></strong> (or host: 0.0.0.0 in _config.yml) you’ll notice that it’s listening on all interfaces (represented by 0.0.0.0) rather than just listening on the loopback interface (represented by 127.0.0.1)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ jekyll serve --host=0.0.0.0
+[...]
+Server address: http://0.0.0.0:4000/
+Server running... press ctrl-c to stop.
+</code></pre>
+</div>
+
+<p>Reference:</p>
+
+<blockquote>
+  <p><a href="https://jekyllrb.com/docs/upgrading/2-to-3/">https://jekyllrb.com/docs/upgrading/2-to-3/</a></p>
+</blockquote>

@@ -1,0 +1,20 @@
+<h4 id="maven-update-svn-version">[maven] Update SVN version</h4>
+<hr />
+
+<p>In the .pom.xml file,  find the following plugin in.</p>
+
+<blockquote>
+  <p><code class="highlighter-rouge">&lt;groupId&gt; com.google.code.maven-svn-revision-number-plugin&lt;/groupId&gt;</code></p>
+</blockquote>
+
+<p>Add the following dependency, which upgrade the svn version to 1.8 (my current version)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.tmatesoft.svnkit<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>svnkit<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>1.8.10<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+</code></pre>
+</div>
