@@ -19,6 +19,39 @@
   }
 }
 
+@media screen and (min-width:600px) and (max-width:800px) {
+  .sidebar{
+    margin-top: 5%;
+    width: 20%;
+  }
+
+  .post{
+    width: 95%;
+  }
+
+  #home .posts{
+    margin-left: 20%;
+  },
+  #home .pageTitle,
+  #home .pagination{
+    width:70%;
+    float:rihgt;
+    margin-right:2.12766%;
+    float:none;
+    margin:0 auto 1.5em
+  }
+  #home .pageTitle{margin:2rem auto 1em}
+}
+
+emcode {
+    font-size: 18px;8
+    margin: 0 2px;
+    padding: 0 5px;
+    border: 1px solid #ddd;
+    background-color: #f2f2f2;
+    border-radius: 3px;
+}
+
 @media screen and (min-width:800px) {
   .sidebar{
     margin-top: 5%;
