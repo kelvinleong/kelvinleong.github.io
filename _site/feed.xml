@@ -5,8 +5,8 @@
     <description>Long Form Jekyll theme built with SASS / COMPASS / SUSY</description>
     <link>127.0.0.1/</link>
     <atom:link href="127.0.0.1/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 21 Jun 2016 17:38:49 +0800</pubDate>
-    <lastBuildDate>Tue, 21 Jun 2016 17:38:49 +0800</lastBuildDate>
+    <pubDate>Tue, 21 Jun 2016 17:42:53 +0800</pubDate>
+    <lastBuildDate>Tue, 21 Jun 2016 17:42:53 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       
@@ -16,10 +16,10 @@
 
 &lt;p&gt;Here are basic introduction of Google Analytic and steps to install Google Analytic to my jekyll website. To integrate GA to your website, you MUST have a google account to work.&lt;/p&gt;
 
-&lt;h3 id=&quot;what-is-google-analytic-&quot;&gt;What is Google Analytic ?&lt;/h3&gt;
+&lt;h4 id=&quot;what-is-google-analytic-&quot;&gt;What is Google Analytic ?&lt;/h4&gt;
 &lt;p&gt;Google Analytics tracking is a free web analytics service offered by Google that tracks and reports website traffic. It’s really easy to add the tracking code to your Jekyll static website.&lt;/p&gt;
 
-&lt;h3 id=&quot;steps-for-integrating-ga-in-a-website&quot;&gt;Steps for integrating GA in a website&lt;/h3&gt;
+&lt;h4 id=&quot;steps-for-integrating-ga-in-web-project&quot;&gt;Steps for integrating GA in web project&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;1. Create A Reporting View for a website&lt;/strong&gt;&lt;/li&gt;
@@ -72,7 +72,7 @@ google_analytics: UA—XXXXXXXX-X
   &lt;p&gt;JEKYLL_ENV=production jekyll build&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;how-to-analyze&quot;&gt;How to analyze&lt;/h3&gt;
+&lt;h4 id=&quot;how-to-analyze&quot;&gt;How to analyze&lt;/h4&gt;
 
 &lt;p&gt;Once GA is successfully integrated, you can get lots of reporting information from GA to analyze the visitors behaviors, which may look like in the following picture. Under the side bar on the left click “Audience &amp;gt; Overview”, select a period you want to track (I chose one-month period from 22 May to 22 Jun), then you will see curves showing the number of visitors visited daily and some statistic data for &lt;em&gt;Session&lt;/em&gt;/&lt;em&gt;Users&lt;/em&gt;/&lt;em&gt;Page Views&lt;/em&gt;(etc) are there for your reference.&lt;/p&gt;
 

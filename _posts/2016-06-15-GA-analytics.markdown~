@@ -9,10 +9,10 @@ I want to track visitors who access my webpage which could help me to analyze my
 
 Here are basic introduction of Google Analytic and steps to install Google Analytic to my jekyll website. To integrate GA to your website, you MUST have a google account to work.
 
-### What is Google Analytic ?
+#### What is Google Analytic ?
 Google Analytics tracking is a free web analytics service offered by Google that tracks and reports website traffic. It’s really easy to add the tracking code to your Jekyll static website.
 
-### Steps for integrating GA in a website
+#### Steps for integrating GA in web project
 
 * **1. Create A Reporting View for a website**
 
@@ -48,16 +48,16 @@ google_analytics: UA—XXXXXXXX-X
 Finally, open \_layouts/head.html and add the following code just before the end </head> tag. Google recommends this placement to track all of the pages on your website correctly.
 
 ```html
-	{\% if jekyll.environment == 'production' \%}
-	{\% include analytics.html \%}
-	{\% endif \%}
+{\% if jekyll.environment == 'production' \%}
+{\% include analytics.html \%}
+{\% endif \%}
 ```
 
 In future, when building your Jekyll project with jekyll build, you will need to prefix the command with JEKYLL_ENV=production like this
 
 > JEKYLL_ENV=production jekyll build
 
-### How to analyze
+#### How to analyze
 
 Once GA is successfully integrated, you can get lots of reporting information from GA to analyze the visitors behaviors, which may look like in the following picture. Under the side bar on the left click "Audience > Overview", select a period you want to track (I chose one-month period from 22 May to 22 Jun), then you will see curves showing the number of visitors visited daily and some statistic data for *Session*/*Users*/*Page Views*(etc) are there for your reference.
 
