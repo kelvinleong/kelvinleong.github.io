@@ -5,9 +5,134 @@
     <description>Long Form Jekyll theme built with SASS / COMPASS / SUSY</description>
     <link>127.0.0.1/</link>
     <atom:link href="127.0.0.1/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 23 Jun 2016 16:11:45 +0800</pubDate>
-    <lastBuildDate>Thu, 23 Jun 2016 16:11:45 +0800</lastBuildDate>
+    <pubDate>Thu, 04 Aug 2016 13:50:02 +0800</pubDate>
+    <lastBuildDate>Thu, 04 Aug 2016 13:50:02 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      
+      <item>
+        <title>Auto Login Bank Account using Python</title>
+        <description>&lt;p&gt;Whenever I want to check my HSBC bank account, it requires me to input the first password and some random bits of the second password. However, I always mistakenly fill the wrong password which results that I have to input the information again which is tedious. And what’s serious is that if you input incorrect passwords for more than 3 times then your account will be locked until you unblock it via the passcode authentication. Therefore, I want to automate the login process so that I don’t have to deal with.&lt;/p&gt;
+
+&lt;p&gt;After google, I found the most convenient way to implement should be using python with Selenium libraray. So in this tutorial, I will use python and selenium to implement and following packages are all I need.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Selenium (See the &lt;a href=&quot;http://selenium-python.readthedocs.io/installation.html&quot;&gt;installation guide and introduction of Selenium&lt;/a&gt;)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;o let’s begin our tour to auto login the HSBC e-banking account.&lt;/p&gt;
+
+&lt;p&gt;We will perform the following steps to auto login the website:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Extract and study the details in the webpage that we need for the login&lt;/li&gt;
+  &lt;li&gt;Perform login to site&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;step-1-study-the-website&quot;&gt;Step 1. Study the website&lt;/h3&gt;
+
+&lt;p&gt;To login my HSBC e-banking account, it requires me fill the username first and end up in another page to input the first password and some bits of your second password i.e., 2-way authentication.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/Autologin/username-page.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;check-the-details-that-we-need-to-extract-in-order-to-login&quot;&gt;Check the details that we need to extract in order to login&lt;/h4&gt;
+
+&lt;p&gt;In the first login page, we have to fill the username and click “Dual Password” to proceed.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/Autologin/usrname-page-html.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;With the help of browser safari (chrome is more recommended), we can inspect the page source so that to analyze the site. By right click the user name field and select “inspect element” we can find this input which the value of the “name” attribute is “u_UserID”. Therefore I can fill the input field with my account name using selenium &lt;strong&gt;&lt;em&gt;send_Keys&lt;/em&gt;&lt;/strong&gt; api. Apply the same principle, find the element “Dual Password” and perform the click action via its native method “Click”. Note, some times we may get multiple elements by just one criteria and by default selenium will just return the first element to us. Therefore we can consider to use “find_element_by_xpath” which could guarantee the uniqueness.&lt;/p&gt;
+
+&lt;p&gt;Code implementation:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# find username input&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;usr_name_input&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_element_by_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;u_UserID&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;usr_name_input&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send_keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;your_user_name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# submit the form (although google automatically searches now without submitting)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;submit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_element_by_xpath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;//a[@href=&#39;javascript:PC_7_0G3UNU10SD0MHTI7TQA0000000000000_validate()&#39;]&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;submit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now that we should reach the page which requires us to fill the password.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/Autologin/fill-pwd.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For the first password, by “find_element_by_xpath” method we can get the control of the element and use send_keys api to fill the password. For the second password, the key solution is to find out the index so that we can get the field by traversing the array and fill it to the element. Having observed the second password I found the trick that some fields are omitted represented by 3 dots so that the index after will be denoted by “xxxlast” (xxx is the reversed index) or “Last” (if the first last).&lt;/p&gt;
+
+&lt;p&gt;Code implementation:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# now we are on the password input page and fill the first password&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;firstPassword&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_element_by_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;memorableAnswer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;firstPassword&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send_keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;your_first_password&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# find the index&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;all_secondPassword&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;all_secondPassword&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_elements_by_xpath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;//td[@width=&#39;28&#39;]&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;valid_sec_pwd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;secondPwd&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;all_secondPassword&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sec_pwd_input&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;secondPwd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_elements_by_xpath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.//label[@for=&#39;code&#39;]&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sec_pwd_input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;index_str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sec_pwd_input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;index_str: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index_str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index_str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;last&#39;&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index_str&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;Last&#39;&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index_str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index_str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;Last&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sec_pwd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sec_pwd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index_str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index_str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;valid_sec_pwd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sec_pwd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;valid_sec_pwd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Not required field&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# fill the second password&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sec_pwd_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;RCC_PWD&#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_element_by_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sec_pwd_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send_keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;valid_sec_pwd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;step-2-perform-the-logon-action&quot;&gt;Step 2. Perform the logon action&lt;/h3&gt;
+
+&lt;p&gt;Well, it is almost done as we have filled all the required information! The last step is to click the “Logon” button and if successfully authenticated, we should see the bank account page.&lt;/p&gt;
+
+&lt;p&gt;Code implementation:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# press logon&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;logon&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_element_by_xpath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;//input[@src=&#39;/P2GTheme/themes/html/BDE_HBAP_LOGON/images/buttons/btn_logon_png.gif&#39;]&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;logon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;So far, we can automate the login process without inputing username or password  which may save you from the login pain.&lt;/p&gt;
+
+&lt;p&gt;For the integrated codes please find in the &lt;a href=&quot;https://github.com/kelvinleong/hsbc_bank_account_autologin&quot;&gt;repo&lt;/a&gt;.&lt;/p&gt;
+</description>
+        
+          <description>&lt;p&gt;Whenever I want to check my HSBC bank account, it requires me to input the first password and some random bits of the second password. However, I always mistakenly fill the wrong password which results that I have to input the information again which is tedious. And what’s serious is that if you input incorrect passwords for more than 3 times then your account will be locked until you unblock it via the passcode authentication. Therefore, I want to automate the login process so that I don’t have to deal with.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 19 Jul 2016 19:08:00 +0800</pubDate>
+        <link>127.0.0.1/python/2016/07/19/Scrape-Bank-Account.html</link>
+        <guid isPermaLink="true">127.0.0.1/python/2016/07/19/Scrape-Bank-Account.html</guid>
+        
+        
+        <category>Python</category>
+        
+      </item>
+      
     
       
       <item>
@@ -1353,67 +1478,6 @@ http://www.javatpoint.com/synchronization-in-java&lt;/p&gt;
         
         
         <category>Java</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Explore PDF</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;&lt;em&gt;This article is to illustrate and explore the popular encoding format “PDF”&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Background: I was asked to develop an application to extract a pdf and convert those traditional Chinese to simplified. Sounds easy, ahuh?
-At first, I think it’s not that difficult until I really get suck into the “notorious” format. So, to begin with, let’s look at the brief of what is a PDF.&lt;/p&gt;
-
-&lt;h4 id=&quot;what-is-the-pdf&quot;&gt;1. What is the PDF?&lt;/h4&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;&lt;em&gt;Portable Document Format (PDF) is a file format used to present documents in a manner independent of application software, hardware and operating systems.[2] Each PDF file encapsulates a complete description of a fixed-layout flat document, including the text, fonts, graphics and other information needed to display it. [From &lt;a href=&quot;http://www.wikiwand.com/en/Portable_Document_Format&quot;&gt;WikiPedia&lt;/a&gt;]&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Basically, the PDF is designed as a universal reading format so that the document can be viewed in various kinds of devices. Therefore, it’s not expected to “edit” a pdf document as per the “universal read” design principle. But, if you are ambitious enough (just like me), you would forcibly process a PDF and make some kinds of modification on that with the help of an Apache project &lt;a href=&quot;https://pdfbox.apache.org/&quot;&gt;“PDFBox”&lt;/a&gt; . Fortunately, PDFBox is a powerful lib for processing a pdf document. There are apis for pdf extraction and parse. What’s more, it is open source! So I can even customize the lib to suit for my needs. But I would say there is a little bit mess of the PDFBox source code, I mean the source code it’s rather in a complicated nature as I read. Well, that will be another post to talk about the PDFBox.&lt;/p&gt;
-
-&lt;p&gt;Since there is no way to overwrite the PDF document, the only way to replace the traditional chinese characters with simplified is to re-write the them to a new file, a “copy-and-replace” solution. It seems that the strategy is reasonable and straightforward. But as you explore more in the PDF structure and its format encoding, you will find it’s a nightmare to simplify the solution as “copy-and-replace”. To sum up, you have to pay if you insist to edit the PDF!!! Now, let’s go thru the PDF structure.&lt;/p&gt;
-
-&lt;h4 id=&quot;pdf-structure&quot;&gt;2. PDF Structure&lt;/h4&gt;
-
-&lt;p&gt;Significantly, a PDF document is composed of 3 key elements images, text and graphics (symbols/lines/arrows/etc). So if you want to completely rewrite a pdf, you’ll have to extract all the information of those elements and use them to recover in the new file.&lt;/p&gt;
-
-&lt;h5 id=&quot;text&quot;&gt;2.1 Text&lt;/h5&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;&lt;em&gt;Text in PDF is represented by text elements in page content streams. A text element specifies that characters should be drawn at certain positions. The characters are specified using the encoding of a selected font resource.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;So to edit a text, you have to deal with two things, one is the font and the other is “encoding”. English and ASCII characters are easy to handle in this case as the font and encoding would not be complicated for those characters. But for chinese characters, it’s a catastrophe.&lt;/p&gt;
-
-&lt;p&gt;Let’s say I have parsed the text position and get all the meta information I need for recovering. The first step is to detect what exactly is the “character”, whether a English letter or chinese character. Fortunately, pdfBox provide api to retrieve the Unicode of a particular character. Assume that a traditional chinese character “檔” is found and wanna change it to simplified “档”. Even though you can recognize the character by reading its unicode but again the nightmare occurs, you will have to specify a font which contains simplified chinese charaset and then put the corresponding Unicode to the font writer and then write it out.&lt;/p&gt;
-
-&lt;h5 id=&quot;images--symbols&quot;&gt;2.2 Images &amp;amp; symbols&lt;/h5&gt;
-
-&lt;p&gt;The most critical part is to recover images &amp;amp; symbols as their nature of complication. Unfortunately, the meta-data for images and symbols would be hardly retrieved. Even though you can get the full meta data of images or symbols, yet pdfBox doesn’t provide such a powerful api for fully images or symbols recovery. Frankly speaking, you’ll have no way to recover the images and symbols without the help of pdfBox. So that’s why I have to give up my “copy-and-replace” solution.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;http://ccckmit.wikidot.com/pdf:streamcoding&quot;&gt;http://ccckmit.wikidot.com/pdf:streamcoding&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-        
-          <description>&lt;blockquote&gt;
-  &lt;p&gt;&lt;em&gt;This article is to illustrate and explore the popular encoding format “PDF”&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-</description>
-        
-        <pubDate>Tue, 06 Oct 2015 23:53:00 +0800</pubDate>
-        <link>127.0.0.1/pdf/2015/10/06/PDF-Exploration.html</link>
-        <guid isPermaLink="true">127.0.0.1/pdf/2015/10/06/PDF-Exploration.html</guid>
-        
-        
-        <category>PDF</category>
         
       </item>
       
