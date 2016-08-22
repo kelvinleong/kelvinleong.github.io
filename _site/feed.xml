@@ -5,9 +5,86 @@
     <description>Long Form Jekyll theme built with SASS / COMPASS / SUSY</description>
     <link>127.0.0.1/</link>
     <atom:link href="127.0.0.1/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 04 Aug 2016 13:50:02 +0800</pubDate>
-    <lastBuildDate>Thu, 04 Aug 2016 13:50:02 +0800</lastBuildDate>
+    <pubDate>Mon, 22 Aug 2016 15:19:21 +0800</pubDate>
+    <lastBuildDate>Mon, 22 Aug 2016 15:19:21 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      
+      <item>
+        <title>Download Secure Data with Request</title>
+        <description>&lt;p&gt;In the previous post, I have introduce how to auto login to the HSBC website using python. But my final purpose is to download the eStatements of my credit card and saving accounts monthly. So in the post I’ll introduce the steps to auto download the eStatements.&lt;/p&gt;
+
+&lt;p&gt;The first step is to find out the route to the page where the eStatements could be viewed.&lt;/p&gt;
+
+&lt;p&gt;It can be easily found that eStatements view page could be accessed under “Card” tab –&amp;gt; eStatements and service link. Therefore, after login to the online banking account. To implement the mentioned steps, it could be done by the following codes.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;c&quot;&gt;# route to Card tab page&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://www1.personal.ebanking.hsbc.com.hk/1/3/cards?__cmd-All_MenuRefresh=&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+   &lt;span class=&quot;c&quot;&gt;# click e-Statement hyperlink&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_element_by_xpath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;//a[@href=&#39;https://www1.personal.ebanking.hsbc.com.hk/1/3/my-hsbc/estatement?cmd-ECorrespDummyPortlet_in=&amp;amp;designateType=Card&#39;]&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Next, we have to find out the source download address of these pdf files so that we can save it to the local file. After several trials, I found that there is no easy way to get the source address. The address is embedded in new open window which is triggered by some javascript codes and will be changed each time. So my solution is to open the pdf file and then grep the source address in the page source by the following codes:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# switch to new open window&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;new_win&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;window_handles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;switch_to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new_win&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+   &lt;span class=&quot;c&quot;&gt;# print(driver.page_source)&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;pdf_file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_element_by_tag_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;iframe&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pdf_file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_attribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;src&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;However, even though we can get the source address it does not mean that we can call some selenium api so that it will download the file for us. Because Selenium &lt;strong&gt;&lt;em&gt;doest not&lt;/em&gt;&lt;/strong&gt; support the download feature. Therefore, I switch to another open lib for help i.e., request.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-is-request&quot;&gt;what is Request?&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Requests is an elegant and simple HTTP library for Python, built for human beings. You are currently looking at the documentation of the development release.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;You can find more tutorial and introductions in &lt;a href=&quot;http://docs.python-requests.org/en/master/user/quickstart/&quot;&gt;Request&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We can get the e-Statements source content by using request get method and then write it to the local file by triggering file write method. But there is still one problem, that is we have to obtain the secure session so that we can proceed the download action. This would be done by injecting the cookies data retrieved via Selenium’s get_cookie() to the request session. The following codes show you how to do it.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;User-Agent&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36&quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;cookies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_cookies&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cookie&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_cookies&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;# c = {cookie[&#39;name&#39;]: cookie[&#39;value&#39;]}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cookies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cookie&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;name&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cookie&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;value&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;local_filename&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/Users/kelvinleung/Downloads/Test/Test_Args/&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;.pdf&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;local_filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;wb&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;By the way, it’s better to use a fake header to cheat the HSBC server as it may discard the request  without header information to prevent attack.&lt;/p&gt;
+</description>
+        
+          <description>&lt;p&gt;In the previous post, I have introduce how to auto login to the HSBC website using python. But my final purpose is to download the eStatements of my credit card and saving accounts monthly. So in the post I’ll introduce the steps to auto download the eStatements.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 19 Aug 2016 19:08:00 +0800</pubDate>
+        <link>127.0.0.1/python/2016/08/19/Download-Secure-Data.html</link>
+        <guid isPermaLink="true">127.0.0.1/python/2016/08/19/Download-Secure-Data.html</guid>
+        
+        
+        <category>Python</category>
+        
+      </item>
+      
     
       
       <item>
@@ -1410,74 +1487,6 @@ http://www.javatpoint.com/synchronization-in-java&lt;/p&gt;
         
         
         <category>JVM</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Java Garbage Collection</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;&lt;em&gt;This article is to illustrate and explore the mechanism of Garbage Collection&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Garbage collection is a big topic for Java programmer and it always occurs in the interview (I was challenged several times) ! So in this passage, I will try to illustrate how Garbage Collection works with the Hotspot JVM.&lt;/p&gt;
-
-&lt;p&gt;Java’s automatic garbage collection nicely frees programmers from worrying about memory management. Think about C++ programming, every time you new something, you have to cater for the delete appropriately. However, in java, you just new an object as you want without concerning to free them at all. But the convenience is not free and exactly JVM is responsible to collect the unreferenced objects(or so called “garbage”). That’s why the interviewer like to challenge interviewee on this topic.&lt;/p&gt;
-
-&lt;p&gt;First, how does Garbage Collection works?&lt;/p&gt;
-
-&lt;p&gt;Java implements something called a generational garbage collector based upon the generational hypothesis assumption, which states that &lt;strong&gt;&lt;em&gt;the majority of objects that are created are quickly discarded&lt;/em&gt;&lt;/strong&gt;, and objects that are not quickly collected are likely to be around for a while.&lt;/p&gt;
-
-&lt;p&gt;Let’s have a look at the structure of Hotspot heap&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/resources/Slide5.PNG&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;As you can see from the diagram, the heap is divided into 3 parts, young , tenured and permanent generation respectively.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;The Young Generation is where all new objects are allocated and aged. When the young generation fills up, this causes a minor garbage collection. Minor collections can be optimized assuming a high object mortality rate. A young generation full of dead objects is collected very quickly. Some surviving objects are aged and eventually move to the old generation. More specifically,&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Eden Space - Objects start out here. Most objects are created and destroyed in the Eden Space. Here, the GC does Minors GCs, which are optimized garbage collections. When a Minor GC is performed, any references to objects that are still needed are migrated to one of the survivors spaces (S0 or S1).&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Survivor Space (S0 and S1) - Objects that survive Eden end up here. There are two of these, and only one is in use at any given time (unless we have a serious memory leak). One is designated as empty, and the other as live, alternating with every GC cycle.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The Old Generation is used to store long surviving objects. Typically, a threshold is set for young generation object and when that age is met, the object gets moved to the old generation. Eventually the old generation needs to be collected. This event is called a major garbage collection.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The Permanent generation contains metadata required by the JVM to describe the classes and methods used in the application. The permanent generation is populated by the JVM at runtime based on classes in use by the application. In addition, Java SE library classes and methods may be stored here.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;&lt;a href=&quot;http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html&quot;&gt;http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;http://www.toptal.com/java/hunting-memory-leaks-in-java&quot;&gt;http://www.toptal.com/java/hunting-memory-leaks-in-java&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-</description>
-        
-          <description>&lt;blockquote&gt;
-  &lt;p&gt;&lt;em&gt;This article is to illustrate and explore the mechanism of Garbage Collection&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-</description>
-        
-        <pubDate>Tue, 10 Nov 2015 23:53:00 +0800</pubDate>
-        <link>127.0.0.1/java/2015/11/10/JVM-Introduction.html</link>
-        <guid isPermaLink="true">127.0.0.1/java/2015/11/10/JVM-Introduction.html</guid>
-        
-        
-        <category>Java</category>
         
       </item>
       
