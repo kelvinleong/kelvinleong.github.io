@@ -7,7 +7,7 @@ categories: Python
 
 Whenever I want to check my HSBC bank account, it requires me to input the first password and some random bits of the second password. However, I always mistakenly fill the wrong password which results that I have to input the information again which is tedious. And what's serious is that if you input incorrect passwords for more than 3 times then your account will be locked until you unblock it via the passcode authentication. Therefore, I want to automate the login process so that I don't have to deal with.
 
-After google, I found the most convenient way to implement should be using python with Selenium libraray. So in this tutorial, I will use python and selenium to implement and following packages are all I need.
+After google, I found the most convenient way to implement should be using python with Selenium librarsy. So in this tutorial, I will use python and selenium to implement and following packages are all I need.
 
 > Selenium (See the [installation guide and introduction of Selenium](http://selenium-python.readthedocs.io/installation.html))
 

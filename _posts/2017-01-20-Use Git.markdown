@@ -1,0 +1,66 @@
+---
+layout: post
+title:  "Basic Git Workflow"
+date:   2017-01-20 16:49:00
+categories: Git
+---
+
+I have used git in my recent projects. But I found that I am so stubborn on the mindset of SVN and clearly not taking the advantages. What's more, I faced serious version conflicts while developing on multiple machines. Therefore, I decide to learn it systematically.
+
+* Difference between Git & SVN
+
+The traditional source control is from the local development directory to the server-side (remote) repository. In SVN, the workflow of source control would be like:
+
+![Alt text](/resources/Git/workflow.png)
+
+Git introduce a promotional model workflow where content moves up through the levels as it matures. The git workflow is:
+
+![Alt text](/resources/Git/git-workflow.jpg)
+
+Let's take a look at the 4 different environments.
+
+#### 1. Working directory
+Any directory or directory tree on your local system can be a working directory for a Git repository. A working directory can have any number of subdirectories that form an overall *workspace*.
+
+#### 2. The Staging Area
+The staging area is one of the concepts in Git that many new users have difficulty understanding and appreciating. At first glance, it may seem like an unnecessary intermediate level that gets in the way of trying to promote content from the working directory to the local repository. In fact, it plays a significant role in several parts of Git's functionality.
+
+#### 3. The Local Repository
+The local repository is the final piece of the set of Git levels that exist on a user's local machine (the local environment). Once content has been created or updated and then staged, it is ready to be committed into the local repository. As mentioned earlier, this repository is physically stored inside a separate (normally hidden) subdirectory normally within the root of the working directory. It is created in one of two ways: via a clone (copy) of a repository from a remote, or through telling Git to initialize a new environment locally.
+
+#### 4. The Remote Repository
+The remote repository is the level of Git that hosts and serves up content for wider consumption. It's the place where multiple Git users sync up the changes from their respective local repositories. It corresponds to what you would traditionally think of as the server in other source management systems.
+
+#### Core Git Commands for Moving Contents
+Now that, we understand the different levels in Git model. It's a good time to introduce the Core Git commands for moving content between them. As shown in the above Git workflow, we can summarize the core commands in the following table:
+
+|From                | To                  | Command   | Notes
+|--------------------|---------------------|-----------|------------------------------------|
+|Working Directory   | Staging Area        |  ***add***      |Stages local changes                |
+|Staging Area        | Local Repository    |  ***commit***   |Commits only content in staging area|
+|Local Repository    | Remote Repository   |  ***push***     |Syncs content at time of push       |
+|Local Repository    | Working Directory   | ***check out*** |Switches current branch             |
+|Remote Repository   | Local Environment   |  ***clone***    |Creates local repository and working directory|
+|Remote Repository   | Local Repository    |  ***fetch***    |Updates references for remote branches|
+|Remote Repository   | Local Repository & Working Directory| ***pull*** |Fetches and merges to local branch and working directory|
+
+
+#### Working with branches
+A branch can be described as :
+
+*  A line of development, associated with a specific changes
+*  A collection of specific versions of a group of files associated with a specific commit
+
+Let's say you have finished some features and have your development work well tested. And now, you are required to make some enhancements on your previous work. The best way to continue your development without jeopardizing the new features, you should create a new branch containing the new feature and work on it instead of changing the master source directly.
+Git introduces fast, lightweight and yet very powerful branching model for developers. Using command ***git checkout -b \<branch_name\>***, git will create a new branch for you. You'll see you are now on branch working directory by using ***git status*** command.
+
+![Alt text](/resources/Git/git-branch.png)
+
+##### One Working Directory - Many Branches model
+Git took care of updating the content in the working directory to be from the branch that you told it you wanted to work with—with no effort on your part other than to run the checkout command.
+
+This means that you can work with as many branches as you want in the same repository and only use one working directory. Git ensures the content in the working directory is from the correct branch.
+
+This allows for the powerful feature of Git: being able to work in one working area per directory, regardless of how many branches are used. Switching branches does assume that there are no uncommitted changes in the working directory.
+
+There are some common workflows for using branches with Git. Many of these workflows revolve around the idea of only using one branch (usually master) and doing multiple releases out of that branch, tagging release points in between.

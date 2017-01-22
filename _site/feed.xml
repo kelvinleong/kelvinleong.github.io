@@ -5,13 +5,139 @@
     <description>Long Form Jekyll theme built with SASS / COMPASS / SUSY</description>
     <link>127.0.0.1/</link>
     <atom:link href="127.0.0.1/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 22 Aug 2016 15:19:21 +0800</pubDate>
-    <lastBuildDate>Mon, 22 Aug 2016 15:19:21 +0800</lastBuildDate>
+    <pubDate>Sun, 22 Jan 2017 23:18:56 +0800</pubDate>
+    <lastBuildDate>Sun, 22 Jan 2017 23:18:56 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       
       <item>
-        <title>Download Secure Data with Request</title>
+        <title>Basic Git Workflow</title>
+        <description>&lt;p&gt;I have used git in my recent projects. But I found that I am so stubborn on the mindset of SVN and clearly not taking the advantages. What’s more, I faced serious version conflicts while developing on multiple machines. Therefore, I decide to learn it systematically.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Difference between Git &amp;amp; SVN&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The traditional source control is from the local development directory to the server-side (remote) repository. In SVN, the workflow of source control would be like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/Git/workflow.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Git introduce a promotional model workflow where content moves up through the levels as it matures. The git workflow is:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/Git/git-workflow.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s take a look at the 4 different environments.&lt;/p&gt;
+
+&lt;h4 id=&quot;working-directory&quot;&gt;1. Working directory&lt;/h4&gt;
+&lt;p&gt;Any directory or directory tree on your local system can be a working directory for a Git repository. A working directory can have any number of subdirectories that form an overall &lt;em&gt;workspace&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;the-staging-area&quot;&gt;2. The Staging Area&lt;/h4&gt;
+&lt;p&gt;The staging area is one of the concepts in Git that many new users have difficulty understanding and appreciating. At first glance, it may seem like an unnecessary intermediate level that gets in the way of trying to promote content from the working directory to the local repository. In fact, it plays a significant role in several parts of Git’s functionality.&lt;/p&gt;
+
+&lt;h4 id=&quot;the-local-repository&quot;&gt;3. The Local Repository&lt;/h4&gt;
+&lt;p&gt;The local repository is the final piece of the set of Git levels that exist on a user’s local machine (the local environment). Once content has been created or updated and then staged, it is ready to be committed into the local repository. As mentioned earlier, this repository is physically stored inside a separate (normally hidden) subdirectory normally within the root of the working directory. It is created in one of two ways: via a clone (copy) of a repository from a remote, or through telling Git to initialize a new environment locally.&lt;/p&gt;
+
+&lt;h4 id=&quot;the-remote-repository&quot;&gt;4. The Remote Repository&lt;/h4&gt;
+&lt;p&gt;The remote repository is the level of Git that hosts and serves up content for wider consumption. It’s the place where multiple Git users sync up the changes from their respective local repositories. It corresponds to what you would traditionally think of as the server in other source management systems.&lt;/p&gt;
+
+&lt;h4 id=&quot;core-git-commands-for-moving-contents&quot;&gt;Core Git Commands for Moving Contents&lt;/h4&gt;
+&lt;p&gt;Now that, we understand the different levels in Git model. It’s a good time to introduce the Core Git commands for moving content between them. As shown in the above Git workflow, we can summarize the core commands in the following table:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;From&lt;/th&gt;
+      &lt;th&gt;To&lt;/th&gt;
+      &lt;th&gt;Command&lt;/th&gt;
+      &lt;th&gt;Notes&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Working Directory&lt;/td&gt;
+      &lt;td&gt;Staging Area&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;&lt;em&gt;add&lt;/em&gt;&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Stages local changes&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Staging Area&lt;/td&gt;
+      &lt;td&gt;Local Repository&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;&lt;em&gt;commit&lt;/em&gt;&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Commits only content in staging area&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Local Repository&lt;/td&gt;
+      &lt;td&gt;Remote Repository&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;&lt;em&gt;push&lt;/em&gt;&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Syncs content at time of push&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Local Repository&lt;/td&gt;
+      &lt;td&gt;Working Directory&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;&lt;em&gt;check out&lt;/em&gt;&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Switches current branch&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Remote Repository&lt;/td&gt;
+      &lt;td&gt;Local Environment&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;&lt;em&gt;clone&lt;/em&gt;&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Creates local repository and working directory&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Remote Repository&lt;/td&gt;
+      &lt;td&gt;Local Repository&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;&lt;em&gt;fetch&lt;/em&gt;&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Updates references for remote branches&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Remote Repository&lt;/td&gt;
+      &lt;td&gt;Local Repository &amp;amp; Working Directory&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;&lt;em&gt;pull&lt;/em&gt;&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Fetches and merges to local branch and working directory&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&quot;working-with-branches&quot;&gt;Working with branches&lt;/h4&gt;
+&lt;p&gt;A branch can be described as :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A line of development, associated with a specific changes&lt;/li&gt;
+  &lt;li&gt;A collection of specific versions of a group of files associated with a specific commit&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Let’s say you have finished some features and have your development work well tested. And now, you are required to make some enhancements on your previous work. The best way to continue your development without jeopardizing the new features, you should create a new branch containing the new feature and work on it instead of changing the master source directly.
+Git introduces fast, lightweight and yet very powerful branching model for developers. Using command &lt;strong&gt;&lt;em&gt;git checkout -b &amp;lt;branch_name&amp;gt;&lt;/em&gt;&lt;/strong&gt;, git will create a new branch for you. You’ll see you are now on branch working directory by using &lt;strong&gt;&lt;em&gt;git status&lt;/em&gt;&lt;/strong&gt; command.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/Git/git-branch.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;one-working-directory---many-branches-model&quot;&gt;One Working Directory - Many Branches model&lt;/h5&gt;
+&lt;p&gt;Git took care of updating the content in the working directory to be from the branch that you told it you wanted to work with—with no effort on your part other than to run the checkout command.&lt;/p&gt;
+
+&lt;p&gt;This means that you can work with as many branches as you want in the same repository and only use one working directory. Git ensures the content in the working directory is from the correct branch.&lt;/p&gt;
+
+&lt;p&gt;This allows for the powerful feature of Git: being able to work in one working area per directory, regardless of how many branches are used. Switching branches does assume that there are no uncommitted changes in the working directory.&lt;/p&gt;
+
+&lt;p&gt;There are some common workflows for using branches with Git. Many of these workflows revolve around the idea of only using one branch (usually master) and doing multiple releases out of that branch, tagging release points in between.&lt;/p&gt;
+</description>
+        
+          <description>&lt;p&gt;I have used git in my recent projects. But I found that I am so stubborn on the mindset of SVN and clearly not taking the advantages. What’s more, I faced serious version conflicts while developing on multiple machines. Therefore, I decide to learn it systematically.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 21 Jan 2017 00:49:00 +0800</pubDate>
+        <link>127.0.0.1/git/2017/01/21/Use-Git.html</link>
+        <guid isPermaLink="true">127.0.0.1/git/2017/01/21/Use-Git.html</guid>
+        
+        
+        <category>Git</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>Download Secure Data</title>
         <description>&lt;p&gt;In the previous post, I have introduce how to auto login to the HSBC website using python. But my final purpose is to download the eStatements of my credit card and saving accounts monthly. So in the post I’ll introduce the steps to auto download the eStatements.&lt;/p&gt;
 
 &lt;p&gt;The first step is to find out the route to the page where the eStatements could be viewed.&lt;/p&gt;
@@ -70,6 +196,8 @@
 &lt;/div&gt;
 
 &lt;p&gt;By the way, it’s better to use a fake header to cheat the HSBC server as it may discard the request  without header information to prevent attack.&lt;/p&gt;
+
+&lt;p&gt;So far, we can be able to auto login to the website and download the statement files.&lt;/p&gt;
 </description>
         
           <description>&lt;p&gt;In the previous post, I have introduce how to auto login to the HSBC website using python. But my final purpose is to download the eStatements of my credit card and saving accounts monthly. So in the post I’ll introduce the steps to auto download the eStatements.&lt;/p&gt;
@@ -91,7 +219,7 @@
         <title>Auto Login Bank Account using Python</title>
         <description>&lt;p&gt;Whenever I want to check my HSBC bank account, it requires me to input the first password and some random bits of the second password. However, I always mistakenly fill the wrong password which results that I have to input the information again which is tedious. And what’s serious is that if you input incorrect passwords for more than 3 times then your account will be locked until you unblock it via the passcode authentication. Therefore, I want to automate the login process so that I don’t have to deal with.&lt;/p&gt;
 
-&lt;p&gt;After google, I found the most convenient way to implement should be using python with Selenium libraray. So in this tutorial, I will use python and selenium to implement and following packages are all I need.&lt;/p&gt;
+&lt;p&gt;After google, I found the most convenient way to implement should be using python with Selenium librarsy. So in this tutorial, I will use python and selenium to implement and following packages are all I need.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Selenium (See the &lt;a href=&quot;http://selenium-python.readthedocs.io/installation.html&quot;&gt;installation guide and introduction of Selenium&lt;/a&gt;)&lt;/p&gt;
@@ -1430,63 +1558,6 @@ http://www.javatpoint.com/synchronization-in-java&lt;/p&gt;
         
         
         <category>Oracle</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Monitor the application in JVisualVm</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;&lt;em&gt;This article is to illustrate how to monitor the application with the help of JVisualVm&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I am developing a JavaFx test tool for back-end server APIs validity checking. In practice, I found the application is easy to hang after running for a while. Therefore, I use the JVisualVm to monitor the application and find out what’s going wrong there.&lt;/p&gt;
-
-&lt;h4 id=&quot;how-to-install-jvisualvm-&quot;&gt;1. How to Install JVisualVM ?&lt;/h4&gt;
-&lt;p&gt;JVisualVm is a standard part of Sun’s JDK distribution since JDK 6 Update. To begin the tour following &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/technotes/guides/visualvm/intro.html&quot;&gt;this link&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;to-monitor-your-application&quot;&gt;2. To monitor your application&lt;/h4&gt;
-&lt;p&gt;It’s easy to use JVisualVM to monitor your application. Just click the application’s name on the “Applications” list view on the left. You can see the CPU/Heap/Classes/Threads usage diagrams by clicking the “Monitor” tab for further exploration.
-&lt;img src=&quot;/resources/jvisualvm/monitor.PNG&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;By monitoring the threads, I found a big problem that every time I open one of the UI, which is for history review, it creates a new thread and after closing the UI, the tread still keeps alive and never exit (as shown in the following figure). That would cause a MOM disaster if the ui is frequently in use.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/resources/jvisualvm/thread-trace.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So, I check carefully in the source of the UI, I found a thread is always created to read the data from a blocking queue periodically during initialization of the UI. But the problem is the thread is embedded with a while(true) loop which will never exit so that even its parent UI died, the thread will not be killed but continue the dead loop. Therefore, I use a poison pill to message the thread to stop. To be more concrete, that is by changing the “poison pill” (a default true volatile boolean value) to false while on close method of the UI is invoked thus the thread will terminate itself by leaving the dead loop (refer to the following sampe codes). Then I assign a name to the thread and trace it in JVisualVm. As expected, the thread exit after I close the UI (see the following figure), thus solving the problem!&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;volatile&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-   &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-           &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                   &lt;span class=&quot;c1&quot;&gt;//Do something there&lt;/span&gt;
-           &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/resources/jvisualvm/thread-trace-1.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/strong&gt;
-&amp;gt; &lt;a href=&quot;http://www.javaworld.com/article/2072322/from-jconsole-to-visualvm.html&quot;&gt;http://www.javaworld.com/article/2072322/from-jconsole-to-visualvm.html&lt;/a&gt;&lt;/p&gt;
-</description>
-        
-          <description>&lt;blockquote&gt;
-  &lt;p&gt;&lt;em&gt;This article is to illustrate how to monitor the application with the help of JVisualVm&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-</description>
-        
-        <pubDate>Mon, 30 Nov 2015 23:53:00 +0800</pubDate>
-        <link>127.0.0.1/jvm/2015/11/30/Find-All-Referenced-Tables.html</link>
-        <guid isPermaLink="true">127.0.0.1/jvm/2015/11/30/Find-All-Referenced-Tables.html</guid>
-        
-        
-        <category>JVM</category>
         
       </item>
       
