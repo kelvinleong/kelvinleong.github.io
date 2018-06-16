@@ -32,6 +32,7 @@ pre.prettyprinted {
 	border:1px solid #0b0c0a;
 }
 
+pre.highlight.prettyprint.prettyprinted {width: 1200px;}
 
 /* ------------------------
 //Section: class 'linenums' for line numbering
