@@ -123,7 +123,7 @@ at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProx
 Having gone thru the logs, we are really confused by exceptions raised by spring mongo. Why the vertx blocking is related to mongodb? What's more tricky is that blocking did not ensue steadily. To idenity the cause, we need to reproduce the case steadily ... but we have no ideas how it went wrong thus trapped in the dead loop. Fortuantely, we came up with some hints. Firstly, the error happened mostly after restarting the server and was not found during normal session. Emmm so it seemed like something went wrong during startup process. Also, no matter how hard we tried in our local environment (from the web page), we cannot reproduce the error. Therefore we turned our eyes on mobile. Lucikly, we reproduced the case! We reproduced the case thru following steps. Step 1, login thru a test mobile device in dev environment and keep the session alive. Step 2, restart the service and track the logs. Bingo, the exceptions raise. We repeated step 1 and 2 to make sure that the trouble ensues steadily. Finally we identity that errors occur steadily following the mentioned two steps. So the problem seems to be more clear, server is blocked after restart while some mobile devices still keep its session alive.
 But why web did not make the trouble? That push us to think about the communication flow of the two frontend
 
-## The architecture of backend and how frontend communicate with it
+### The architecture of backend
 
 ![Alt text](/resources/WSThreadBlock/backend.png)
 
